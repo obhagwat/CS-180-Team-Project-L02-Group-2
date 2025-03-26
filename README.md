@@ -13,5 +13,5 @@ Our application offers a simple way for governments to offer contracts and compa
 by industry. Through user verification, reviews, and buyer/seller ratings, we ensure security and transparency for both governments and
 contractors.
 
-Note to team
+Note to team:\n
 If u dont like this idea, the fields and class names can easily be changed for a more basic app like ebay or whatever
