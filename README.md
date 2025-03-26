@@ -12,3 +12,6 @@ and newer contracting companies, loads of govt websites for contractors looking 
 Our application offers a simple way for governments to offer contracts and compare bids, and for contractors to filter through contracts 
 by industry. Through user verification, reviews, and buyer/seller ratings, we ensure security and transparency for both governments and
 contractors.
+
+Note to team
+If u dont like this idea, the fields and class names can easily be changed for a more basic app like ebay or whatever
