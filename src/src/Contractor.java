@@ -11,6 +11,20 @@ import java.util.ArrayList;
  *  @version Mar 26, 2025
  */
 public class Contractor extends User {
+    private String contractorID;
+    private String contractorName;
+    private String phone;
+    private String companyType;
+    private String numEmployees;
+    private int yearFounded;
+    private String industry;
+    // array of govts with which the contractor is registered
+    // array of govt ID Nums for those govts
+    private ArrayList<Contract> contractsWon;   //Contracts for which they were selected
+    private ArrayList<Bid> publicBids;  // These are visible to anyone
+    private ArrayList<Bid> allBids;  //These are only visible to the contractor
+    private String link2Certs;      // This will be the link to the contractor's portfolio/website that appears on their profile
+
 
 
 

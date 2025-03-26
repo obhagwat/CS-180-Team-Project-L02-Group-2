@@ -11,6 +11,11 @@
 public class User {
     private String username;
     private String password;
-    private double rating;
+    private double rating;      // How reputable they are.
+    // only a winning bidder can rate a solicitor and solicitors can only rate their chosen bidder.
+    private String countryOfOrigin;
+    private String address;
+    private String email;
+    private boolean verified;   // Whether it is confirmed they are who they say they are
 
 }

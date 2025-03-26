@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *  @version Mar 26, 2025
  */
 public class Solicitor extends User {
-    private ArrayList<Contract> prevRequests;       // Previously posted contracts
+    private String solicitorID;
+    private String solicitorName;
 
 }

@@ -15,5 +15,6 @@ public class Contract {
     private String contractDescription;
     private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it
     private String deadline; // The "due date" for bids
+    private String completionDate;  // Date the work needs to be done by
     private ArrayList<Bid> bids;    // The list of bids on this contract
 }
