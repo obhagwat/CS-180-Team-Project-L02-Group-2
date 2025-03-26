@@ -17,5 +17,4 @@ public class User {
     private String address;
     private String email;
     private boolean verified;   // Whether it is confirmed they are who they say they are
-
 }
