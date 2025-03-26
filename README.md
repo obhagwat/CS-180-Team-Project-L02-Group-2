@@ -17,4 +17,5 @@ we ensure security and transparency for both governments and
 contractors.
 
 Note to team: If u dont like this idea, the fields and class names can easily be changed for a more basic app like ebay or whatever
+
 [Project Guide doc](https://docs.google.com/document/d/1TrToqI1D0JqabIITiFDCbOp5mhsz4vfsDnJ16f8bZbs/edit?tab=t.0)
