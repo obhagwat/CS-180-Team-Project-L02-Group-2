@@ -20,6 +20,7 @@ public class Bid {
         this.requestedPay = requestedPay;
         this.status = status;
     }
+    //sarahs test comment
 
     public Contractor getContractor() {
         return contractor;
