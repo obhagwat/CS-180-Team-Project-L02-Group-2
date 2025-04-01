@@ -6,14 +6,50 @@
  *  @author
  *  @author
  *
- *  @version Mar 26, 2025
+ *  @version Apr --, 2025
  */
 public class Bid {
     private Contractor contractor;  // The contractor bidding the bid
     private Contract contract;  // The contract this bid is on
-    private double resquestedPay; //Contractor's asking price
-    private boolean publicBid;  // Whether the bid is visible to the public.
+    private double requestedPay; //Contractor's asking price
     private String status;  // Rejected, Accepted, Under Consideration
 
+    public Bid(Contractor contractor, Contract contract, double requestedPay, String status) {
+        this.contractor = contractor;
+        this.contract = contract;
+        this.requestedPay = requestedPay;
+        this.status = status;
+    }
 
+    public Contractor getContractor() {
+        return contractor;
+    }
+
+    public void setContractor(Contractor contractor) {
+        this.contractor = contractor;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public double getRequestedPay() {
+        return requestedPay;
+    }
+
+    public void setRequestedPay(double requestedPay) {
+        this.requestedPay = requestedPay;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
