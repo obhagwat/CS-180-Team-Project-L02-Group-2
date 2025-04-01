@@ -18,6 +18,7 @@ public class Contract {
     private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it
     private LocalDateTime deadline; // The "due date" for bids
     private ArrayList<Bid> bids;    // The list of bids on this contract
+    // blah blah
 
     public Contract(Solicitor solicitor, String contractDescription) {
         this.solicitor = solicitor;
