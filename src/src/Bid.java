@@ -12,7 +12,6 @@ public class Bid {
     private Contractor contractor;  // The contractor bidding the bid
     private Contract contract;  // The contract this bid is on
     private double resquestedPay; //Contractor's asking price
-    private boolean sealed;     // Whether the bid is visible to the Buyer before the deadline
     private boolean publicBid;  // Whether the bid is visible to the public.
     private String status;  // Rejected, Accepted, Under Consideration
 

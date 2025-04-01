@@ -13,5 +13,10 @@ import java.util.ArrayList;
 public class Solicitor extends User {
     private String solicitorID;
     private String solicitorName;
+    private String agencyLevel;
+    private String branch;
+    private String subBranch;
+    private ArrayList<Contract> contractsSolicted;  //All contracts this agency has posted
+    private ArrayList<Contract> openContracts;  // Contracts which are still "up for grabs"
 
 }
