@@ -18,7 +18,7 @@ public class User {
     protected String email;
     protected String phoneNumber;
     protected double balance;    // When a payment is made, all we have to do is subtract or add
-
+//example
 
     public User(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber) {
         this.username = username;
