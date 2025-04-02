@@ -60,8 +60,11 @@ public class User implements Serializable {
         return rating;
     }
 
+    public int getIntRating() { return intRating; }
+
     public void setRating(double rating) {
         this.rating = rating;
+        calcIntRating();
     }
 
     public String getCountryOfOrigin() {
