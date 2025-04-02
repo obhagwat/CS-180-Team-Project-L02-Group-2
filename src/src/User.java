@@ -14,7 +14,10 @@ import java.util.Date;
 public class User implements Serializable {
     protected String username;
     protected String password;
-    protected double rating;      // How reputable they are.
+    protected double rating;
+    protected int intRating;
+    protected int numOfRatings;
+    // How reputable they are.
     // only a winning bidder can rate a solicitor and solicitors can only rate their chosen bidder.
     protected String countryOfOrigin;
     protected String address;
@@ -26,7 +29,8 @@ public class User implements Serializable {
     public User(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber) {
         this.username = username;
         this.password = password;
-        this.rating = rating;
+        this.rating = 0;
+        this.numOfRatings = 0;
         this.countryOfOrigin = countryOfOrigin;
         this.address = address;
         this.email = email;
@@ -122,6 +126,12 @@ public class User implements Serializable {
     }
 
     public void calcRating(double newRating) {
-        rating = (rating + newRating) / 2;
+        numOfRatings++;
+        rating = (rating * (numOfRatings - 1) + newRating) / numOfRatings;
+        calcIntRating();
+    }
+
+    public void calcIntRating() {
+        intRating = (int) Math.round(rating);
     }
 }
