@@ -1,3 +1,5 @@
+package Exceptions;
+
 /**
  * InvalidBid Exception: Contains invalid Bid objects
  *  @author Sarah Stone, Lab sec 02

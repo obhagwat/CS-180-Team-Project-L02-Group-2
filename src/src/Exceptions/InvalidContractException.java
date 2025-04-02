@@ -1,3 +1,5 @@
+package Exceptions;
+
 /**
  * InvalidContract Exception: Contains invalid Contract objects
  *  @author Sarah Stone, Lab sec 02

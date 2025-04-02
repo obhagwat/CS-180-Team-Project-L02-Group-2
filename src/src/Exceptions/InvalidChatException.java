@@ -1,3 +1,5 @@
+package Exceptions;
+
 /**
  * InvalidChat Exception: Contains invalid Chat objects
  *
