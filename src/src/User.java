@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * User Class: Contains all methods and fields pertaining to User objects, which are divided into
@@ -95,5 +96,32 @@ public class User implements Serializable {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public void deleteAccount() {
+        username = null;
+        password = null;
+        rating = 0;
+        countryOfOrigin = null;
+        address = null;
+        email = null;
+        phoneNumber = null;
+        balance = 0;
+    }
+
+    public void sendMessage(String text, User recipient) {
+        new Message(new Date(), text, this, recipient);
+    }
+
+    public void sendMessage(String text, User recipient, Bid bid) {
+        new Message(new Date(), text, this, recipient, bid);
+    }
+
+    public void postReview(User user, double rating) {
+        user.calcRating(rating);
+    }
+
+    public void calcRating(double newRating) {
+        rating = (rating + newRating) / 2;
     }
 }
