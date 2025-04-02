@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.Serializable;
+
 
 /**
  * Solicitor Class: Contains all methods and fields pertaining to Solicitor objects; Solicitors are entities
@@ -10,7 +12,7 @@ import java.util.ArrayList;
  *
  *  @version Apr --, 2025
  */
-public class Solicitor extends User {
+public class Solicitor extends User implements Serializable {
     private String solicitorName;
     private String agencyLevel;
     private String branch;

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.io.Serializable;
+
 
 /**
  * Contract Class: Contains all methods and fields pertaining to contract objects, which are contract solicitations
@@ -12,7 +14,7 @@ import java.time.LocalDateTime;
  *
  *  @version Apr --, 2025
  */
-public class Contract {
+public class Contract implements Serializable {
     private Solicitor solicitor; // The solicitor who posted the contract
     private String contractDescription; // includes description of work needing to be done, and expected completion date
     private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it

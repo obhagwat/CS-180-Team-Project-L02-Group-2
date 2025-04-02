@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.Serializable;
+
 
 /**
  * Contractor Class: Contains all methods and fields pertaining to Contractor objects, which are entities
@@ -11,7 +13,7 @@ import java.util.ArrayList;
  *
  *  @version Apr --, 2025
  */
-public class Contractor extends User {
+public class Contractor extends User implements Serializable {
     private String contractorName;
     private String companyType;
     private String numEmployees;

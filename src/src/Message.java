@@ -1,4 +1,6 @@
 import java.time.LocalDateTime;
+import java.io.Serializable;
+
 
 /**
  * Contract Class: Contains all methods and fields pertaining to message objects
@@ -9,7 +11,7 @@ import java.time.LocalDateTime;
  *
  *  @version Apr --, 2025
  */
-public class Message {
+public class Message implements Serializable {
     private LocalDateTime timeStamp;   // Marks the time the message was sent
     private String text;    // message contents
     private User sender;

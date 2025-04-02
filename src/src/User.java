@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * User Class: Contains all methods and fields pertaining to User objects, which are divided into
  * Solicitors and Contractors
@@ -8,7 +10,7 @@
  *
  *  @version Apr --, 2025
  */
-public class User {
+public class User implements Serializable {
     protected String username;
     protected String password;
     protected double rating;      // How reputable they are.
