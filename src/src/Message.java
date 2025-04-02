@@ -1,7 +1,6 @@
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 
 /**
@@ -11,58 +10,47 @@ import java.text.SimpleDateFormat;
  *  @version Apr --, 2025
  */
 public class Message implements Serializable {
-    private LocalDateTime timeStamp;   // Marks the time the message was sent
+    private Date timeStamp;   // Marks the time the message was sent
     private String text;    // message contents
     private User sender;
     private User recipient;
     private Bid bid;    //
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm");
 
-    public Message(LocalDateTime timeStamp, String text, User sender, User recipient, Bid bid) {
+
+    public Message(Date timeStamp, String text, User sender, User recipient) {
+        this.timeStamp = timeStamp;
+        this.text = text;
+        this.sender = sender;
+        this.recipient = recipient;
+    }
+
+    public Message(Date timeStamp, String text, User sender, User recipient, Bid bid) {
         this.timeStamp = timeStamp;
         this.text = text;
         this.sender = sender;
         this.recipient = recipient;
         this.bid = bid;
     }
-    public LocalDateTime getTimeStamp() {
+    public Date getTimeStamp() {
         return timeStamp;
-    }
-
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
 
     public User getSender() {
         return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
     }
 
     public User getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(User recipient) {
-        this.recipient = recipient;
-    }
-
     public Bid getBid() {
         return bid;
-    }
-
-    public void setBid(Bid bid) {
-        this.bid = bid;
     }
 
     public boolean verifyMessage() {
@@ -76,5 +64,14 @@ public class Message implements Serializable {
             return false; // check message length
         }
         return true;
+    }
+
+    public String toString() {
+        if (recipient != null) {
+            return String.format("[%s], %s, %s, %s",
+                    dateFormat.format(timeStamp), sender.getUsername(), recipient.getUsername(), text);
+        }
+        return String.format("[%s], %s, %s",
+                dateFormat.format(timeStamp), sender.getUsername(), text);
     }
 }
