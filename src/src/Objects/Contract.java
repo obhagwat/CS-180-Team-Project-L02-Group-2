@@ -71,4 +71,15 @@ public class Contract implements Serializable {
     public void setBids(ArrayList<Bid> bids) {
         this.bids = bids;
     }
+
+    @Override
+    public String toString() {
+        String bidList = bids.isEmpty() ? "No bids" : bids.toString(); // Converts the list of bids to a string
+        return String.format("Contract [Solicitor: %s, Description: %s, Status: %s, Deadline: %s, Bids: %s]",
+                solicitor,
+                contractDescription,
+                contractStatus ? "Open" : "Closed",
+                deadline,
+                bidList);
+    }
 }

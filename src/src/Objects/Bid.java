@@ -56,4 +56,11 @@ public class Bid implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Bid [Contractor: %s, Contract: %s, Requested Pay: $%.2f, Status: %s]",
+                contractor, contract, requestedPay, status);
+    }
+
 }
