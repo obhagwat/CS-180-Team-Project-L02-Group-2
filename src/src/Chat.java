@@ -1,6 +1,8 @@
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.UUID;
+
 
 /**
  * Chat Class: Contains all methods and fields pertaining to chat objects
@@ -48,6 +50,19 @@ public class Chat implements Serializable {
 
     public ArrayList<Message> getMessages() {
         return messages;
+    }
+
+    public boolean addMessage(Message message) {
+        if (message.verifyMessage()) {
+            messages.add(message);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isChatBetween(User userA, User userB) {
+        return (user1.equals(userA) && user2.equals(userB)) ||
+                (user1.equals(userB) && user2.equals(userA));
     }
 
     @Override

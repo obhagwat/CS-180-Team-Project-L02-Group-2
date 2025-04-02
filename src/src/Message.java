@@ -1,5 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -15,14 +17,15 @@ public class Message implements Serializable {
     private LocalDateTime timeStamp;   // Marks the time the message was sent
     private String text;    // message contents
     private User sender;
-    private User receiver;
+    private User recipient;
     private Bid bid;    //
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm");
 
-    public Message(LocalDateTime timeStamp, String text, User sender, User receiver, Bid bid) {
+    public Message(LocalDateTime timeStamp, String text, User sender, User recipient, Bid bid) {
         this.timeStamp = timeStamp;
         this.text = text;
         this.sender = sender;
-        this.receiver = receiver;
+        this.recipient = recipient;
         this.bid = bid;
     }
     public LocalDateTime getTimeStamp() {
@@ -49,12 +52,12 @@ public class Message implements Serializable {
         this.sender = sender;
     }
 
-    public User getReceiver() {
-        return receiver;
+    public User getRecipient() {
+        return recipient;
     }
 
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
+    public void setRecipient(User recipient) {
+        this.recipient = recipient;
     }
 
     public Bid getBid() {
@@ -63,5 +66,18 @@ public class Message implements Serializable {
 
     public void setBid(Bid bid) {
         this.bid = bid;
+    }
+
+    public boolean verifyMessage() {
+        if (sender == null || recipient == null) {
+            return false;
+        }
+        if (this.text == null || this.text.trim().isEmpty()) {
+            return false;
+        }
+        if (this.text.length() > 500) {
+            return false; // check message length
+        }
+        return true;
     }
 }
