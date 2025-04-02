@@ -1,8 +1,9 @@
-import java.io.*;
+package Database;
+
 import java.util.ArrayList;
 
 /**
- * Database Class: Contains all methods and fields pertaining to database objects
+ * Database.Database Class: Contains all methods and fields pertaining to database objects
  *  @author Ana Farmus, Lab sec 02
  *
  *  @version Apr --, 2025
