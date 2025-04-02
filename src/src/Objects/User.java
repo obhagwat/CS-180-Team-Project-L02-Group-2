@@ -28,10 +28,11 @@ public class User implements Serializable {
     protected double balance;    // When a payment is made, all we have to do is subtract or add
 //example
 
-    public User(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber) {
+    public User(String username, String password, String countryOfOrigin, String address, String email, String phoneNumber) {
         this.username = username;
         this.password = password;
         this.rating = 0;
+        this.intRating = 0;
         this.numOfRatings = 0;
         this.countryOfOrigin = countryOfOrigin;
         this.address = address;
