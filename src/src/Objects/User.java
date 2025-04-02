@@ -140,4 +140,11 @@ public class User implements Serializable {
     public void calcIntRating() {
         intRating = (int) Math.round(rating);
     }
+
+    @Override
+    public String toString() {
+        return String.format("User [Username: %s, Password: %s, Rating: %d, Number of Ratings: %d, Country: %s, Address: %s, Email: %s, Phone Number: %s, Balance: $%.2f]",
+                username, password, intRating, numOfRatings, countryOfOrigin, address, email, phoneNumber, balance);
+    }
+
 }
