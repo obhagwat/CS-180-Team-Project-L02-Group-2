@@ -8,10 +8,6 @@ import java.util.UUID;
  * Chat Class: Contains all methods and fields pertaining to chat objects
  *
  *  @author Ana Farmus, Lab sec 02
- *  @author
- *  @author
- *  @author
- *
  *  @version Apr --, 2025
  */
 public class Chat implements Serializable {

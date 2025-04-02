@@ -7,9 +7,6 @@ import java.text.SimpleDateFormat;
 /**
  * Contract Class: Contains all methods and fields pertaining to message objects
  *  @author Ana Farmus, Lab sec 02
- *  @author
- *  @author
- *  @author
  *
  *  @version Apr --, 2025
  */
