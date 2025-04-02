@@ -112,6 +112,8 @@ public class User implements Serializable {
         username = null;
         password = null;
         rating = 0;
+        intRating = 0;
+        numOfRatings = 0;
         countryOfOrigin = null;
         address = null;
         email = null;
