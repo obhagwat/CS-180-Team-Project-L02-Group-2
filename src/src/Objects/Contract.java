@@ -10,7 +10,7 @@ import java.io.Serializable;
  * posted by Solicitors.
  *
  *  @author Ana Farmus, Lab sec 02
- *  @author
+ *  @author Saahil Kajarekar, Lab sec 2
  *  @author
  *  @author
  *
@@ -76,6 +76,14 @@ public class Contract implements Serializable {
     public Bid getWinningBid() { return winningBid; }
 
     public void setWinningBid(Bid winningBid) { this.winningBid = winningBid; }
+
+    public void addBid(Bid bid) {
+        if (contractStatus) {  // Only allow adding bids if the contract is open
+            bids.add(bid);
+        } else {
+            throw new IllegalStateException("Cannot add a bid to a closed contract.");
+        }
+    }
 
     @Override
     public String toString() {

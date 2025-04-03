@@ -9,7 +9,7 @@ import java.io.Serializable;
  * offering bids to complete contracts
  *
  *  @author Ana Farmus, Lab sec 02
- *  @author
+ *  @author Saahil Kajarekar, Lab sec 2
  *  @author
  *  @author
  *
@@ -20,12 +20,12 @@ public class Contractor extends User implements Serializable {
     private String companyType;
     private String numEmployees;
     private int yearFounded;
-    private String industry;
+    private Industry industry;
     private ArrayList<Contract> contractsWon;   //Contracts for which they were selected
     private ArrayList<Bid> allBids;//These are only visible to the contractor
 
     public Contractor(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber,
-                      String contractorName, String companyType, String numEmployees, int yearFounded, String industry, String country) {
+                      String contractorName, String companyType, String numEmployees, int yearFounded, Industry industry, String country) {
         super(username, password, rating, countryOfOrigin, address, email, phoneNumber);
         this.contractorName = contractorName;
         this.companyType = companyType;
@@ -68,11 +68,11 @@ public class Contractor extends User implements Serializable {
         this.yearFounded = yearFounded;
     }
 
-    public String getIndustry() {
+    public Industry getIndustry() {
         return industry;
     }
 
-    public void setIndustry(String industry) {
+    public void setIndustry(Industry industry) {
         this.industry = industry;
     }
 
@@ -130,5 +130,17 @@ public class Contractor extends User implements Serializable {
         return bidsUnderReview;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Contractor [Name: %s, Company Type: %s, Employees: %s, Industry: %s, Contracts Won: %d]",
+                contractorName, companyType, numEmployees, industry, contractsWon.size());
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contractor contractor = (Contractor) o;
+        return username.equals(contractor.username);
+    }
 }

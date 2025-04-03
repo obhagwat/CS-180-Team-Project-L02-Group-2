@@ -7,7 +7,7 @@ import java.util.Date;
  * User Class: Contains all methods and fields pertaining to User objects, which are divided into
  * Solicitors and Contractors
  *  @author Ana Farmus, Lab sec 02
- *  @author
+ *  @author Sarah Stone, Lab sec 02
  *  @author
  *  @author
  *
@@ -121,8 +121,8 @@ public class User implements Serializable {
         balance = 0;
     }
 
-    public void sendMessage(String text, User recipient) {
-        new Message(new Date(), text, this, recipient);
+    public void sendMessage(Chat chat, String text) {
+        chat.addMessage(new Message(new Date(), text, this, chat.getUser1().equals(this) ? chat.getUser2() : chat.getUser1()));
     }
 
     public void sendMessage(String text, User recipient, Bid bid) {

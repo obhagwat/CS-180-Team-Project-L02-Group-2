@@ -49,12 +49,20 @@ public class Bid implements Serializable {
         this.requestedPay = requestedPay;
     }
 
+    public void setStatus(String status) {
+        if (status.equals("Rejected") || status.equals("Accepted") || status.equals("Under Consideration")) {
+            this.status = status;
+        } else {
+            throw new IllegalArgumentException("Invalid bid status.");
+        }
+    }
+
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public boolean isAccepted() {
+        return "Accepted".equals(status);
     }
 
     @Override

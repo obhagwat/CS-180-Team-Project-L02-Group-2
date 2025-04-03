@@ -3,7 +3,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-
 /**
  * Chat Class: Contains all methods and fields pertaining to chat objects
  *

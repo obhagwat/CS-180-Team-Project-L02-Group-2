@@ -68,12 +68,14 @@ public class Message implements Serializable {
         return true;
     }
 
+    @Override
     public String toString() {
         if (recipient != null) {
-            return String.format("[%s], %s, %s, %s",
+            return String.format("[%s] From: %s To: %s - %s",
                     dateFormat.format(timeStamp), sender.getUsername(), recipient.getUsername(), text);
         }
-        return String.format("[%s], %s, %s",
+        return String.format("[%s] From: %s - %s",
                 dateFormat.format(timeStamp), sender.getUsername(), text);
     }
+
 }

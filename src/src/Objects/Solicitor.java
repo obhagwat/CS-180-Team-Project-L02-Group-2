@@ -1,4 +1,5 @@
 package Objects;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -7,12 +8,12 @@ import java.io.Serializable;
 /**
  * Solicitor Class: Contains all methods and fields pertaining to Solicitor objects; Solicitors are entities
  * posting contracts, and asking for bids from Contractors.
- *  @author Ana Farmus, Lab sec 02
- *  @author Saahil Kajarekar, Lab sec 2
- *  @author
- *  @author
  *
- *  @version Apr --, 2025
+ * @author Ana Farmus, Lab sec 02
+ * @author Saahil Kajarekar, Lab sec 2
+ * @author
+ * @author
+ * @version Apr --, 2025
  */
 public class Solicitor extends User implements Serializable {
     private String solicitorName;
@@ -32,6 +33,7 @@ public class Solicitor extends User implements Serializable {
         contractsSolicted = new ArrayList<>();
         openContracts = new ArrayList<>();
     }
+
     public String getSolicitorName() {
         return solicitorName;
     }
@@ -82,23 +84,17 @@ public class Solicitor extends User implements Serializable {
 
     /**
      * Posts a contract by adding it to the solicitor's list of contracts.
+     *
      * @param contractDescription Description of the contract.
-     * @param contractStatus Status of the contract (true for open, false for closed).
-     * @param deadline The deadline for bid submissions.
-     * @param bids The list of initial bids (can be empty).
+     * @param deadline            The deadline for bid submissions.
+     * @param bids                The list of initial bids (can be empty).
      */
-    public void postContract(String contractDescription, boolean contractStatus, LocalDateTime deadline, ArrayList<Bid> bids) {
-        // Create a new contract
-        Contract newContract = new Contract(this, contractDescription, contractStatus, deadline, bids);
-
-        // Add the contract to the solicitor's list of contracts
+    public void postContract(String contractDescription, LocalDateTime deadline, ArrayList<Bid> bids) {
+        Contract newContract = new Contract(this, contractDescription, true, deadline, bids);
         contractsSolicted.add(newContract);
-
-        // If the contract is open, add it to openContracts as well
-        if (contractStatus) {
-            openContracts.add(newContract);
-        }
+        openContracts.add(newContract);
     }
+
 
     /**
      * makes a payment to contractor according to a bid using the super user methods
@@ -106,11 +102,24 @@ public class Solicitor extends User implements Serializable {
     public void makePayment(Bid bid) {
         super.setBalance(super.getBalance() - bid.getRequestedPay());
     }
-//    /**
-//     * selects the winning bid for the contract, based on on what the user enters hold off on the code for now
-//     * @param contract  the contract that wins the bid
-//     */
-//    public void selectWinningBid(Bid bid){
-//
-//    }
+
+    public void closeContract(Contract contract) {
+        if (openContracts.remove(contract)) {
+            contract.setContractStatus(false);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Solicitor [Name: %s, Agency Level: %s, Branch: %s, Sub-Branch: %s, Open Contracts: %d, Total Contracts: %d]",
+                solicitorName, agencyLevel, branch, subBranch, openContracts.size(), contractsSolicted.size());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Solicitor solicitor = (Solicitor) o;
+        return username.equals(solicitor.username);
+    }
 }
