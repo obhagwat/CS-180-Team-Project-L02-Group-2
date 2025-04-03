@@ -125,10 +125,6 @@ public class User implements Serializable {
         chat.addMessage(new Message(new Date(), text, this, chat.getUser1().equals(this) ? chat.getUser2() : chat.getUser1()));
     }
 
-    public void sendMessage(String text, User recipient, Bid bid) {
-        new Message(new Date(), text, this, recipient, bid);
-    }
-
     public void postReview(User user, double rating) {
         user.calcRating(rating);
     }
@@ -147,6 +143,14 @@ public class User implements Serializable {
     public String toString() {
         return String.format("User [Username: %s, Password: %s, Rating: %d, Number of Ratings: %d, Country: %s, Address: %s, Email: %s, Phone Number: %s, Balance: $%.2f]",
                 username, password, intRating, numOfRatings, countryOfOrigin, address, email, phoneNumber, balance);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return username.equals(user.username);
     }
 
 }
