@@ -1,4 +1,5 @@
 package Objects;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -80,13 +81,25 @@ public class Solicitor extends User implements Serializable {
     }
 
     /**
-     * posts a contract by adding it to the solicited list
-     * @param description the description of the contract
+     * Posts a contract by adding it to the solicitor's list of contracts.
+     * @param contractDescription Description of the contract.
+     * @param contractStatus Status of the contract (true for open, false for closed).
+     * @param deadline The deadline for bid submissions.
+     * @param bids The list of initial bids (can be empty).
      */
-    public void postContract(String description){
-        contractsSolicted.add(new Contract(this, description));
+    public void postContract(String contractDescription, boolean contractStatus, LocalDateTime deadline, ArrayList<Bid> bids) {
+        // Create a new contract
+        Contract newContract = new Contract(this, contractDescription, contractStatus, deadline, bids);
 
+        // Add the contract to the solicitor's list of contracts
+        contractsSolicted.add(newContract);
+
+        // If the contract is open, add it to openContracts as well
+        if (contractStatus) {
+            openContracts.add(newContract);
+        }
     }
+
     /**
      * makes a payment to contractor according to a bid using the super user methods
      */

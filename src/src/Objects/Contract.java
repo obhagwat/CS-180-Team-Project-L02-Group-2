@@ -19,18 +19,18 @@ import java.io.Serializable;
 public class Contract implements Serializable {
     private Solicitor solicitor; // The solicitor who posted the contract
     private String contractDescription; // includes description of work needing to be done, and expected completion date
-    private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it
+    private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it, or open
     private LocalDateTime deadline; // The "due date" for bids
     private ArrayList<Bid> bids;    // The list of bids on this contract
     private Bid winningBid;
 
-    public Contract(Solicitor solicitor, String contractDescription) {
+    public Contract(Solicitor solicitor, String contractDescription, boolean contractStatus, LocalDateTime deadline, ArrayList<Bid> bids) {
         this.solicitor = solicitor;
         this.contractDescription = contractDescription;
-        this.contractStatus = false;
-        this.deadline = LocalDateTime.now();
+        this.contractStatus = true; // constructor should initialize contract status to be open
+        this.deadline = deadline;
         this.bids = new ArrayList<>();
-        winningBid = null;
+        this.winningBid = null;
     }
 
     public Solicitor getSolicitor() {
