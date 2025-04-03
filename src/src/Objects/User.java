@@ -1,5 +1,7 @@
 package Objects;
 
+import Interfaces.UserInterface;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,7 +15,7 @@ import java.util.Date;
  *
  *  @version Apr --, 2025
  */
-public class User implements Serializable {
+public class User implements Serializable, UserInterface {
     protected String username;
     protected String password;
     protected double rating;
@@ -67,6 +69,10 @@ public class User implements Serializable {
         this.rating = rating;
         calcIntRating();
     }
+
+    public int getNumOfRatings() { return numOfRatings; }
+
+    public void setNumOfRatings(int numOfRatings) { this.numOfRatings = numOfRatings; }
 
     public String getCountryOfOrigin() {
         return countryOfOrigin;
