@@ -108,6 +108,9 @@ public class User implements Serializable {
         this.balance = balance;
     }
 
+    /**
+     * Deletes user account by setting all fields to null or 0
+     */
     public void deleteAccount() {
         username = null;
         password = null;
@@ -121,20 +124,40 @@ public class User implements Serializable {
         balance = 0;
     }
 
+    /**
+     * Allows a user to send a message to another user in a chat
+     *
+     * @param chat      The chat which the message is being sent in
+     * @param text      The message being sent
+     */
     public void sendMessage(Chat chat, String text) {
         chat.addMessage(new Message(new Date(), text, this, chat.getUser1().equals(this) ? chat.getUser2() : chat.getUser1()));
     }
 
+    /**
+     * Adds a review for another user and calculates their new average rating
+     *
+     * @param user      The other user which is being rated
+     * @param rating    The rating being given to the other user
+     */
     public void postReview(User user, double rating) {
         user.calcRating(rating);
     }
 
+    /**
+     * When a user receives a new rating, re-calculates their average rating
+     *
+     * @param newRating     The new rating to be calculated in to the average
+     */
     public void calcRating(double newRating) {
         numOfRatings++;
         rating = (rating * (numOfRatings - 1) + newRating) / numOfRatings;
         calcIntRating();
     }
 
+    /**
+     * Every time the user's rating is modified, this method should be called to round to the nearest integer
+     */
     public void calcIntRating() {
         intRating = (int) Math.round(rating);
     }
