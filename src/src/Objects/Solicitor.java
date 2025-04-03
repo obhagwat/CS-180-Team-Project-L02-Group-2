@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Solicitor Class: Contains all methods and fields pertaining to Solicitor objects; Solicitors are entities
  * posting contracts, and asking for bids from Contractors.
  *  @author Ana Farmus, Lab sec 02
- *  @author
+ *  @author Saahil Kajarekar, Lab sec 2
  *  @author
  *  @author
  *
@@ -22,7 +22,7 @@ public class Solicitor extends User implements Serializable {
     private ArrayList<Contract> openContracts;  // Contracts which are still "up for grabs"
 
     public Solicitor(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber,
-                     String solicitorName, String agencyLevel, String branch, String subBranch) {
+                     String solicitorName, String agencyLevel, String branch, String subBranch, double money) {
         super(username, password, rating, countryOfOrigin, address, email, phoneNumber);
         this.solicitorName = solicitorName;
         this.agencyLevel = agencyLevel;
@@ -78,4 +78,26 @@ public class Solicitor extends User implements Serializable {
     public void setOpenContracts(ArrayList<Contract> openContracts) {
         this.openContracts = openContracts;
     }
+
+    /**
+     * posts a contract by adding it to the solicited list
+     * @param description the description of the contract
+     */
+    public void postContract(String description){
+        contractsSolicted.add(new Contract(this, description));
+
+    }
+    /**
+     * makes a payment to contractor according to a bid using the super user methods
+     */
+    public void makePayment(Bid bid) {
+        super.setBalance(super.getBalance() - bid.getRequestedPay());
+    }
+//    /**
+//     * selects the winning bid for the contract, based on on what the user enters hold off on the code for now
+//     * @param contract  the contract that wins the bid
+//     */
+//    public void selectWinningBid(Bid bid){
+//
+//    }
 }

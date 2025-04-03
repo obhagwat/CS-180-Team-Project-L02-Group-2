@@ -22,7 +22,7 @@ public class Contract implements Serializable {
     private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it
     private LocalDateTime deadline; // The "due date" for bids
     private ArrayList<Bid> bids;    // The list of bids on this contract
-    // blah blah
+    private Bid winningBid;
 
     public Contract(Solicitor solicitor, String contractDescription) {
         this.solicitor = solicitor;
@@ -30,6 +30,7 @@ public class Contract implements Serializable {
         this.contractStatus = false;
         this.deadline = LocalDateTime.now();
         this.bids = new ArrayList<>();
+        winningBid = null;
     }
 
     public Solicitor getSolicitor() {
@@ -71,6 +72,10 @@ public class Contract implements Serializable {
     public void setBids(ArrayList<Bid> bids) {
         this.bids = bids;
     }
+
+    public Bid getWinningBid() { return winningBid; }
+
+    public void setWinningBid(Bid winningBid) { this.winningBid = winningBid; }
 
     @Override
     public String toString() {

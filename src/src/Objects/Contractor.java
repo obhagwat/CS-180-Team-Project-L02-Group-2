@@ -22,7 +22,7 @@ public class Contractor extends User implements Serializable {
     private int yearFounded;
     private String industry;
     private ArrayList<Contract> contractsWon;   //Contracts for which they were selected
-    private ArrayList<Bid> allBids;  //These are only visible to the contractor
+    private ArrayList<Bid> allBids;//These are only visible to the contractor
 
     public Contractor(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber,
                       String contractorName, String companyType, String numEmployees, int yearFounded, String industry, String country) {
@@ -91,4 +91,44 @@ public class Contractor extends User implements Serializable {
     public void setAllBids(ArrayList<Bid> allBids) {
         this.allBids = allBids;
     }
+    /**
+     * recieves a payment from Solictor according to a bid using the super user methhods
+     */
+    public void recievePayment(Bid bid) {
+        super.setBalance(super.getBalance() + bid.getRequestedPay());
+
+    }
+
+    /**
+     * adds a new big to all bids for a contract
+     * @param contract to be bid on
+     * @param bidAmount the requested pay for the job
+     */
+    public void replyWithBid(Contract contract, double bidAmount) {
+        allBids.add(new Bid(this,contract,bidAmount,"Under Consideration"));
+    }
+    /**
+     *adds a contract to the contracts won arrayList
+     * @param contract the contract to be added
+     */
+    public void addToContractsWon(Contract contract) {
+        contractsWon.add(contract);
+    }
+
+    /**
+     *  returns a list of all bids under consideration
+     * @return an arraylist of all bids under consideration
+     */
+    public ArrayList<Bid> bidsUnderReview(){
+       ArrayList<Bid> bidsUnderReview = new ArrayList<>();
+        for(Bid bid : allBids){
+            String status = bid.getStatus();
+            if(status.equals("Under Consideration")){
+                bidsUnderReview.add(bid);
+            }
+        }
+        return bidsUnderReview;
+    }
+
+
 }
