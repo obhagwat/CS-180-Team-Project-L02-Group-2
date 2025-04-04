@@ -9,7 +9,7 @@ import java.util.UUID;
  *  @author Ana Farmus, Lab sec 02
  *  @version Apr --, 2025
  */
-public class Chat implements Serializable {
+public class Chat implements Serializable, ChatInterface {
     private User user1;
     private User user2;
     private String chatId;
