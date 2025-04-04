@@ -146,7 +146,7 @@ public class User implements Serializable, UserInterface {
      * @param user      The other user which is being rated
      * @param rating    The rating being given to the other user
      */
-    public void postReview(User user, double rating) {
+    public void postReview(User user, int rating) {
         user.calcRating(rating);
     }
 
@@ -155,7 +155,7 @@ public class User implements Serializable, UserInterface {
      *
      * @param newRating     The new rating to be calculated in to the average
      */
-    public void calcRating(double newRating) {
+    public void calcRating(int newRating) {
         numOfRatings++;
         rating = (rating * (numOfRatings - 1) + newRating) / numOfRatings;
         calcIntRating();
