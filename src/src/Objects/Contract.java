@@ -1,5 +1,7 @@
 package Objects;
 
+import Interfaces.ContractInterface;
+
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.io.Serializable;
@@ -16,7 +18,7 @@ import java.io.Serializable;
  *
  *  @version Apr --, 2025
  */
-public class Contract implements Serializable {
+public class Contract implements Serializable, ContractInterface {
     private Solicitor solicitor; // The solicitor who posted the contract
     private String contractDescription; // includes description of work needing to be done, and expected completion date
     private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it, or open
