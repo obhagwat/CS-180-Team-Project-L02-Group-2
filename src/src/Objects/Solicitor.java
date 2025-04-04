@@ -1,5 +1,7 @@
 package Objects;
 
+import Interfaces.SolicitorInterface;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -15,7 +17,7 @@ import java.io.Serializable;
  * @author
  * @version Apr --, 2025
  */
-public class Solicitor extends User implements Serializable {
+public class Solicitor extends User implements Serializable, SolicitorInterface {
     private String solicitorName;
     private String agencyLevel;
     private String branch;
@@ -66,11 +68,11 @@ public class Solicitor extends User implements Serializable {
         this.subBranch = subBranch;
     }
 
-    public ArrayList<Contract> getContractsSolicted() {
+    public ArrayList<Contract> getContractsSolicited() {
         return contractsSolicted;
     }
 
-    public void setContractsSolicted(ArrayList<Contract> contractsSolicted) {
+    public void setContractsSolicited(ArrayList<Contract> contractsSolicted) {
         this.contractsSolicted = contractsSolicted;
     }
 

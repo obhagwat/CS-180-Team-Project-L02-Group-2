@@ -24,6 +24,7 @@ public interface UserInterface {
     String getEmail();
     String getPhoneNumber();
     double getBalance();
+
     void setUsername(String username);
     void setPassword(String password);
     void setRating(double rating);
@@ -33,6 +34,7 @@ public interface UserInterface {
     void setEmail(String email);
     void setPhoneNumber(String phoneNumber);
     void setBalance(double balance);
+
     void deleteAccount();
     void sendMessage(Chat chat, String message);
     void postReview(User user, int rating);
