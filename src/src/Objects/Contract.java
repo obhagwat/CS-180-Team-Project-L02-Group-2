@@ -79,6 +79,10 @@ public class Contract implements Serializable, ContractInterface {
 
     public void setWinningBid(Bid winningBid) { this.winningBid = winningBid; }
 
+    /**
+     * Add a bid to the contract if the contract is open, otherwise throw an error
+     * @param bid   The bid to add to the contract
+     */
     public void addBid(Bid bid) {
         if (contractStatus) {  // Only allow adding bids if the contract is open
             bids.add(bid);

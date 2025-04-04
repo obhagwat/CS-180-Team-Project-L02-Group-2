@@ -57,6 +57,9 @@ public class Message implements Serializable, MessageInterface {
         return bid;
     }
 
+    /**
+     * Verifies that a message is valid by insuring it has a sender, recipient, and text, and that the text is less than 500 characters long
+     */
     public boolean verifyMessage() {
         if (sender == null || recipient == null) {
             return false;

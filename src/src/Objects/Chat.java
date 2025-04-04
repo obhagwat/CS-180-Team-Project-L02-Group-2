@@ -49,6 +49,11 @@ public class Chat implements Serializable, ChatInterface {
         return messages;
     }
 
+    /**
+     * Verify whether a message is valid, and if so add it to the chat
+     * @param message   The message to be sent in the chat
+     * @return whether the message was successfully sent
+     */
     public boolean addMessage(Message message) {
         if (message.verifyMessage()) {
             messages.add(message);
@@ -57,6 +62,12 @@ public class Chat implements Serializable, ChatInterface {
         return false;
     }
 
+    /**
+     * Check if the chat is between two specific users
+     * @param userA   One of the users to check
+     * @param userB   The other user to check
+     * @return whether the chat is between those two users
+     */
     public boolean isChatBetween(User userA, User userB) {
         return (user1.equals(userA) && user2.equals(userB)) ||
                 (user1.equals(userB) && user2.equals(userA));
