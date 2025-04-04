@@ -1,4 +1,6 @@
 package Objects;
+import Interfaces.NotificationInterface;
+
 import java.time.LocalDateTime;
 
 /**
@@ -11,7 +13,7 @@ import java.time.LocalDateTime;
  *
  *  @version Apr --, 2025
  */
-public class Notification {
+public class Notification implements NotificationInterface {
     private String message;
     private LocalDateTime timestamp;
     private User recipient;
