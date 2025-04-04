@@ -1,4 +1,5 @@
 package Database;
+import Interfaces.DatabaseInterface;
 import  Objects.*;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  *
  *  @version Apr --, 2025
  */
-public class Database {
+public class Database implements DatabaseInterface {
     private ArrayList<User> users;
     private ArrayList<Chat> chats;
     private static final Object GATEKEEPER = new Object();
