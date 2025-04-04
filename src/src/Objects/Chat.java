@@ -1,4 +1,6 @@
 package Objects;
+import Interfaces.ChatInterface;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;

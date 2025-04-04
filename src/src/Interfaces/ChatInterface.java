@@ -16,11 +16,9 @@ import java.util.ArrayList;
  */
 
 public interface ChatInterface {
-    String generateChatID();
-
     User getUser1();
     User getUser2();
-    String getChatID();
+    String getChatId();
     ArrayList<User> getUsers();
     ArrayList<Message> getMessages();
 
