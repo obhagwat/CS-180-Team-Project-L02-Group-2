@@ -1,5 +1,7 @@
 package Objects;
 
+import Interfaces.MessageInterface;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.io.Serializable;
@@ -11,7 +13,7 @@ import java.io.Serializable;
  *
  *  @version Apr --, 2025
  */
-public class Message implements Serializable {
+public class Message implements Serializable, MessageInterface {
     private Date timeStamp;   // Marks the time the message was sent
     private String text;    // message contents
     private User sender;
