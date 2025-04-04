@@ -1,5 +1,7 @@
 package Objects;
 
+import Interfaces.ContractorInterface;
+
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -15,7 +17,7 @@ import java.io.Serializable;
  *
  *  @version Apr --, 2025
  */
-public class Contractor extends User implements Serializable {
+public class Contractor extends User implements Serializable, ContractorInterface {
     private String contractorName;
     private String companyType;
     private String numEmployees;
