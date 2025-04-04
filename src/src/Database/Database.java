@@ -34,8 +34,10 @@ public class Database implements DatabaseInterface {
      * into the users list.
      */
     public Database() {
-        this.users = new ArrayList<>();
-        this.chats = new ArrayList<>();
+        synchronized (GATEKEEPER) {
+            this.users = new ArrayList<>();
+            this.chats = new ArrayList<>();
 //        loadDatabase();
+        }
     }
 }
