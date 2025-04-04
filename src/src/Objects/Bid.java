@@ -1,4 +1,6 @@
 package Objects;
+import Interfaces.BidInterface;
+
 import java.io.Serializable;
 
 /**
@@ -11,7 +13,7 @@ import java.io.Serializable;
  *
  *  @version Apr --, 2025
  */
-public class Bid implements Serializable {
+public class Bid implements Serializable, BidInterface {
     private Contractor contractor;  // The contractor bidding the bid
     private Contract contract;  // The contract this bid is on
     private double requestedPay; //Contractor's asking price
@@ -23,7 +25,6 @@ public class Bid implements Serializable {
         this.requestedPay = requestedPay;
         this.status = status;
     }
-    //sarahs test comment
 
     public Contractor getContractor() {
         return contractor;
