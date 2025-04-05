@@ -1,4 +1,4 @@
-package JUnit_Tests;
+package Test;
 
 public class DatabaseTest {
 }
