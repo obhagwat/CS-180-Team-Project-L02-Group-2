@@ -63,7 +63,7 @@ public class TestSolicitor {
         assertEquals("Open contracts list should have 1 contract",
                 1, solicitor.getOpenContracts().size());
 
-        Contract postedContract = solicitor.getContractsSolicited().get(0);
+        Contract postedContract = solicitor.getContractsSolicited().getFirst();
         assertEquals("Contract description should match", "Test contract", postedContract.getContractDescription());
         assertEquals("Contract deadline should match", deadline, postedContract.getDeadline());
         assertTrue("Contract should be open", postedContract.isContractStatus());
@@ -86,7 +86,7 @@ public class TestSolicitor {
     @Test
     public void closeContractTest() {
         solicitor.postContract("Test contract", deadline, new ArrayList<>());
-        Contract contract = solicitor.getOpenContracts().get(0);
+        Contract contract = solicitor.getOpenContracts().getFirst();
 
         solicitor.closeContract(contract);
         assertFalse("Contract should be closed", contract.isContractStatus());

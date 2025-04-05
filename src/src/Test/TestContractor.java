@@ -63,7 +63,7 @@ public class TestContractor {
     public void replyWithBidTest() {
         contractor.replyWithBid(contract, 1000.0);
         assertEquals("All bids list should have 1 bid", 1, contractor.getAllBids().size());
-        Bid addedBid = contractor.getAllBids().get(0);
+        Bid addedBid = contractor.getAllBids().getFirst();
         assertEquals("Bid contractor should match", contractor, addedBid.getContractor());
         assertEquals("Bid contract should match", contract, addedBid.getContract());
         assertEquals("Bid amount should match", 1000.0, addedBid.getRequestedPay(), 0.001);
@@ -74,7 +74,7 @@ public class TestContractor {
     public void addToContractsWonTest() {
         contractor.addToContractsWon(contract);
         assertEquals("Contracts won list should have 1 contract", 1, contractor.getContractsWon().size());
-        assertEquals("Added contract should match", contract, contractor.getContractsWon().get(0));
+        assertEquals("Added contract should match", contract, contractor.getContractsWon().getFirst());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class TestContractor {
 
         ArrayList<Bid> underReview = contractor.bidsUnderReview();
         assertEquals("Should return only bids under consideration", 1, underReview.size());
-        assertEquals("Should return the correct bid", 1000.0, underReview.get(0).getRequestedPay(), 0.001);
+        assertEquals("Should return the correct bid", 1000.0, underReview.getFirst().getRequestedPay(), 0.001);
     }
 
     @Test

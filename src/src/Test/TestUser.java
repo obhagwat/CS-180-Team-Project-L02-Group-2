@@ -6,7 +6,6 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import java.util.Date;
 import static org.junit.Assert.*;
 
 /**
@@ -93,7 +92,7 @@ public class TestUser {
 
         user.sendMessage(chat, "Hello");
         assertEquals("Chat should have 1 message", 1, chat.getMessages().size());
-        assertEquals("Message content should match", "Hello", chat.getMessages().get(0).getText());
+        assertEquals("Message content should match", "Hello", chat.getMessages().getFirst().getText());
     }
 
     @Test
@@ -116,8 +115,8 @@ public class TestUser {
                 "different@test.com", "9999999999");
         User differentUser = new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222");
 
-        assertTrue("Users with same username should be equal", user.equals(sameUser));
-        assertFalse("Users with different usernames should not be equal", user.equals(differentUser));
+        assertEquals("Users with same username should be equal", user, sameUser);
+        assertNotEquals("Users with different usernames should not be equal", user, differentUser);
     }
 
     public static void main(String[] args) {

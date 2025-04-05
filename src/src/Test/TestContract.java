@@ -75,7 +75,7 @@ public class TestContract {
 
         contract.addBid(bid);
         assertEquals("Bids list should have 1 bid", 1, contract.getBids().size());
-        assertEquals("Added bid should match", bid, contract.getBids().get(0));
+        assertEquals("Added bid should match", bid, contract.getBids().getFirst());
     }
 
     @Test(expected = IllegalStateException.class)
