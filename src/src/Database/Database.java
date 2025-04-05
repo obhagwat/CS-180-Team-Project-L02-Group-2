@@ -47,21 +47,23 @@ public class Database implements DatabaseInterface {
 //        loadDatabase();
         }
 
-        /**
-         * Returns the singleton instance of the Database. If no instance exists,
-         * a new one is created and initialized by loading data from the file.
-         *
-         * @return the singleton instance of the Database
-         */
-        public synchronized static Database getInstance() {
-            if (instance == null) {
-                synchronized (Database.class) {
-                    if (instance == null) {
-                        instance = new Database();
-                    }
+
+    }
+
+    /**
+     * Returns the singleton instance of the Database. If no instance exists,
+     * a new one is created and initialized by loading data from the file.
+     *
+     * @return the singleton instance of the Database
+     */
+    public synchronized static Database getInstance() {
+        if (instance == null) {
+            synchronized (Database.class) {
+                if (instance == null) {
+                    instance = new Database();
                 }
             }
-            return instance;
         }
+        return instance;
     }
 }
