@@ -2,6 +2,9 @@ package Database;
 import Interfaces.DatabaseInterface;
 import  Objects.*;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 /**
@@ -11,8 +14,12 @@ import java.util.ArrayList;
  *  @version Apr --, 2025
  */
 public class Database implements DatabaseInterface {
+    private static Database instance;
     private ArrayList<User> users;
     private ArrayList<Chat> chats;
+    private static final String DIRECTORY = "data/";
+    private static String userDataFile = DIRECTORY + "userData.dat";
+    private static String chatDataFile = DIRECTORY + "chatData.dat";
     private static final Object GATEKEEPER = new Object();
 
 /**
@@ -38,6 +45,23 @@ public class Database implements DatabaseInterface {
             this.users = new ArrayList<>();
             this.chats = new ArrayList<>();
 //        loadDatabase();
+        }
+
+        /**
+         * Returns the singleton instance of the Database. If no instance exists,
+         * a new one is created and initialized by loading data from the file.
+         *
+         * @return the singleton instance of the Database
+         */
+        public synchronized static Database getInstance() {
+            if (instance == null) {
+                synchronized (Database.class) {
+                    if (instance == null) {
+                        instance = new Database();
+                    }
+                }
+            }
+            return instance;
         }
     }
 }
