@@ -1,6 +1,6 @@
 package Database;
-import Interfaces.DatabaseInterface;
 import  Objects.*;
+import Database.DatabaseInterface;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -65,5 +65,85 @@ public class Database implements DatabaseInterface {
             }
         }
         return instance;
+    }
+
+    @Override
+    public void initializeDatabase() {
+
+    }
+
+    @Override
+    public void closeDatabase() {
+
+    }
+
+    @Override
+    public void addUser(User newUser) {
+
+    }
+
+    @Override
+    public User getUser(String username) {
+        return null;
+    }
+
+    @Override
+    public void deleteUser(String username) {
+
+    }
+
+    @Override
+    public boolean UserExists(String username) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<User> searchUsers() {
+        return null;
+    }
+
+    @Override
+    public void addChat(Chat chat) {
+
+    }
+
+    @Override
+    public Chat getChatBetweenUsers(User user1, User user2) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Chat> getChatsforUser(String username) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Chat> getChats() {
+        return null;
+    }
+
+    @Override
+    public boolean ChatExists(String username, Chat chat) {
+        return false;
+    }
+
+    @Override
+    public void deleteChat(Chat chat) {
+
+    }
+
+    @Override
+    public void serializeDatabase() {
+
+    }
+
+    @Override
+    public void loadDatabase() {
+
+    }
+
+    @Override
+    public void clearDatabase() {
+
     }
 }
