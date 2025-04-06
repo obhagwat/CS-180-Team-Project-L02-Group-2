@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
  * @author Ovi Bhagwat
  * @version April 5, 2025
  */
+
 @RunWith(JUnit4.class)
 public class TestUser {
     private User user;
