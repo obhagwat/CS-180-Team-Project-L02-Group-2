@@ -31,16 +31,16 @@ public class TestDatabase {
     public TemporaryFolder tempFolder = new TemporaryFolder();
 
     @Before
-    public void setUp() {
-        testUsers = new ArrayList<>();
-        testUsers.add(new User("user1", "pass1", 0.0, "USA", "123 St", "user1@test.com", "1111111111"));
-        testUsers.add(new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222"));
-
-        testChats = new ArrayList<>();
-        testChats.add(new Chat(testUsers.get(0), testUsers.get(1)));
-
-        database = new Database(testUsers, testChats);
-    }
+//    public void setUp() {
+//        testUsers = new ArrayList<>();
+//        testUsers.add(new User("user1", "pass1", 0.0, "USA", "123 St", "user1@test.com", "1111111111"));
+//        testUsers.add(new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222"));
+//
+//        testChats = new ArrayList<>();
+//        testChats.add(new Chat(testUsers.get(0), testUsers.get(1)));
+//
+//        database = new Database(testUsers, testChats);
+//    }
 
     @Test
     public void singletonInstanceTest() {
