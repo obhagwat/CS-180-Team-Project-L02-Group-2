@@ -1,9 +1,12 @@
 package Database;
-
 import Objects.*;
-
 import java.util.ArrayList;
 
+/**
+ * Database.Database Class: Contains all methods and fields pertaining to database objects
+ *  @author Ana Farmus, Lab sec 02
+ *  @version Apr 6, 2025
+ */
 public interface DatabaseInterface {
     void initializeDatabase();
     void closeDatabase();

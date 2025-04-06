@@ -13,10 +13,8 @@ import java.io.Serializable;
  *
  *  @author Ana Farmus, Lab sec 02
  *  @author Saahil Kajarekar, Lab sec 2
- *  @author
- *  @author
- *
- *  @version Apr --, 2025
+ *  @author Sarah Stone*
+ *  @version Apr 6, 2025
  */
 public class Contract implements Serializable, ContractInterface {
     private Solicitor solicitor; // The solicitor who posted the contract

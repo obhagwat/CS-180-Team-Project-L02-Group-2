@@ -8,11 +8,7 @@ import java.util.ArrayList;
 /**
  *  Chat Interface: Interface for Chat class
  *  @author Sarah Stone, Lab sec 02
- *  @author
- *  @author
- *  @author
- *
- *  @version Apr --, 2025
+ *  @version Apr 6, 2025
  */
 
 public interface ChatInterface {

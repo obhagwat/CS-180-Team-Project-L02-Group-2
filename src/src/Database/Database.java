@@ -10,8 +10,8 @@ import java.util.ArrayList;
 /**
  * Database.Database Class: Contains all methods and fields pertaining to database objects
  *  @author Ana Farmus, Lab sec 02
- *
- *  @version Apr --, 2025
+ *  @author Ovi Bhagwat
+ *  @version Apr 6, 2025
  */
 public class Database implements DatabaseInterface {
     private static Database instance;

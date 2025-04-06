@@ -10,10 +10,7 @@ import java.util.Date;
  * Solicitors and Contractors
  *  @author Ana Farmus, Lab sec 02
  *  @author Sarah Stone, Lab sec 02
- *  @author
- *  @author
- *
- *  @version Apr --, 2025
+ *  @version Apr 6, 2025
  */
 public class User implements Serializable, UserInterface {
     protected String username;

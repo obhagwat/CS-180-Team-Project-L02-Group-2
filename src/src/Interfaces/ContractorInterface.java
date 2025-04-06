@@ -9,11 +9,7 @@ import java.util.ArrayList;
 /**
  *  Contractor Interface: Interface for Contractor class
  *  @author Sarah Stone, Lab sec 02
- *  @author
- *  @author
- *  @author
- *
- *  @version Apr --, 2025
+ *  @version Apr 6, 2025
  */
 
 public interface ContractorInterface {

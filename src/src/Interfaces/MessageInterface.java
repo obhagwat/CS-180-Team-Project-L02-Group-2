@@ -6,13 +6,8 @@ import Objects.User;
 import java.util.Date;
 
 /**
- *  Message Interface: Interface for Message class
  *  @author Sarah Stone, Lab sec 02
- *  @author
- *  @author
- *  @author
- *
- *  @version Apr --, 2025
+ *  @version Apr 6, 2025
  */
 
 public interface MessageInterface {

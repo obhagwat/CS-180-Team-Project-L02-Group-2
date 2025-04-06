@@ -13,9 +13,8 @@ import java.io.Serializable;
  *
  * @author Ana Farmus, Lab sec 02
  * @author Saahil Kajarekar, Lab sec 2
- * @author
- * @author
- * @version Apr --, 2025
+ * @author Sarah Stone
+ * @version Apr 6, 2025
  */
 public class Solicitor extends User implements Serializable, SolicitorInterface {
     private String solicitorName;

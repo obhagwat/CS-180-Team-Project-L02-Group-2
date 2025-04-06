@@ -10,8 +10,8 @@ import java.io.Serializable;
 /**
  * Contract Class: Contains all methods and fields pertaining to message objects
  *  @author Ana Farmus, Lab sec 02
- *
- *  @version Apr --, 2025
+ *  @author Sarah Stone
+ *  @version Apr 6, 2025
  */
 public class Message implements Serializable, MessageInterface {
     private Date timeStamp;   // Marks the time the message was sent

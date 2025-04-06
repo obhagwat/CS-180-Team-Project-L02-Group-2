@@ -7,11 +7,8 @@ import java.io.Serializable;
  * Bid Class: Contains all methods and fields pertaining to bid objects, which are contract proposals
  * offered by contractors.
  *  @author Ana Farmus, Lab sec 02
- *  @author
- *  @author
- *  @author
  *
- *  @version Apr --, 2025
+ *  @version Apr 6, 2025
  */
 public class Bid implements Serializable, BidInterface {
     private Contractor contractor;  // The contractor bidding the bid
