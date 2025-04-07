@@ -25,20 +25,20 @@ public class TestContractor {
 
     @Before
     public void setUp() {
-        contractor = new Contractor("contractor1", "pass123", 0.0, "USA", "123 St",
-                "contractor@test.com", "1234567890",
-                "Test Contractor", "LLC", "50", 2000, Industry.CONSTRUCTION, "USA");
-        contract = new Contract(null, "Test contract", true, null, new ArrayList<>());
-        bid = new Bid(contractor, contract, 1000.0, "Under Consideration");
+        contractor = new Contractor("greenfieldconstruction", "securePass123", 0.0, "USA", "789 Elm St",
+                "contact@greenfield.com", "5551234567",
+                "Greenfield Construction Inc.", "LLC", "75", 2010, Industry.CONSTRUCTION, "USA");
+        contract = new Contract(null, "New Government Building Contract", true, null, new ArrayList<>());
+        bid = new Bid(contractor, contract, 250000.0, "Under Review");
     }
 
     @Test
     public void constructorTest() {
         assertNotNull("Contractor object should be created", contractor);
-        assertEquals("Contractor name should match", "Test Contractor", contractor.getContractorName());
+        assertEquals("Contractor name should match", "Greenfield Construction Inc.", contractor.getContractorName());
         assertEquals("Company type should match", "LLC", contractor.getCompanyType());
-        assertEquals("Number of employees should match", "50", contractor.getNumEmployees());
-        assertEquals("Year founded should match", 2000, contractor.getYearFounded());
+        assertEquals("Number of employees should match", "75", contractor.getNumEmployees());
+        assertEquals("Year founded should match", 2010, contractor.getYearFounded());
         assertEquals("Industry should match", Industry.CONSTRUCTION, contractor.getIndustry());
         assertTrue("Contracts won list should be empty", contractor.getContractsWon().isEmpty());
         assertTrue("All bids list should be empty", contractor.getAllBids().isEmpty());
@@ -46,27 +46,27 @@ public class TestContractor {
 
     @Test
     public void gettersAndSettersTest() {
-        contractor.setContractorName("Updated Contractor");
-        contractor.setCompanyType("Inc");
-        contractor.setNumEmployees("100");
-        contractor.setYearFounded(1990);
+        contractor.setContractorName("Greenfield Construction Enterprises");
+        contractor.setCompanyType("Corporation");
+        contractor.setNumEmployees("120");
+        contractor.setYearFounded(2005);
         contractor.setIndustry(Industry.IT_SERVICES);
 
-        assertEquals("Contractor name should be updated", "Updated Contractor", contractor.getContractorName());
-        assertEquals("Company type should be updated", "Inc", contractor.getCompanyType());
-        assertEquals("Number of employees should be updated", "100", contractor.getNumEmployees());
-        assertEquals("Year founded should be updated", 1990, contractor.getYearFounded());
+        assertEquals("Contractor name should be updated", "Greenfield Construction Enterprises", contractor.getContractorName());
+        assertEquals("Company type should be updated", "Corporation", contractor.getCompanyType());
+        assertEquals("Number of employees should be updated", "120", contractor.getNumEmployees());
+        assertEquals("Year founded should be updated", 2005, contractor.getYearFounded());
         assertEquals("Industry should be updated", Industry.IT_SERVICES, contractor.getIndustry());
     }
 
     @Test
     public void replyWithBidTest() {
-        contractor.replyWithBid(contract, 1000.0);
+        contractor.replyWithBid(contract, 250000.0);
         assertEquals("All bids list should have 1 bid", 1, contractor.getAllBids().size());
         Bid addedBid = contractor.getAllBids().getFirst();
         assertEquals("Bid contractor should match", contractor, addedBid.getContractor());
         assertEquals("Bid contract should match", contract, addedBid.getContract());
-        assertEquals("Bid amount should match", 1000.0, addedBid.getRequestedPay(), 0.001);
+        assertEquals("Bid amount should match", 250000.0, addedBid.getRequestedPay(), 0.001);
         assertEquals("Bid status should be Under Consideration", "Under Consideration", addedBid.getStatus());
     }
 
@@ -87,18 +87,18 @@ public class TestContractor {
 
     @Test
     public void bidsUnderReviewTest() {
-        contractor.replyWithBid(contract, 1000.0); // Under Consideration
-        Bid rejectedBid = new Bid(contractor, contract, 800.0, "Rejected");
+        contractor.replyWithBid(contract, 250000.0); // Under Review
+        Bid rejectedBid = new Bid(contractor, contract, 200000.0, "Rejected");
         contractor.getAllBids().add(rejectedBid);
 
         ArrayList<Bid> underReview = contractor.bidsUnderReview();
-        assertEquals("Should return only bids under consideration", 1, underReview.size());
-        assertEquals("Should return the correct bid", 1000.0, underReview.getFirst().getRequestedPay(), 0.001);
+        assertEquals("Should return only bids under review", 1, underReview.size());
+        assertEquals("Should return the correct bid", 250000.0, underReview.getFirst().getRequestedPay(), 0.001);
     }
 
     @Test
     public void toStringTest() {
-        String expected = "Contractor [Name: Test Contractor, Company Type: LLC, Employees: 50, " +
+        String expected = "Contractor [Name: Greenfield Construction Inc., Company Type: LLC, Employees: 75, " +
                 "Industry: CONSTRUCTION, Contracts Won: 0]";
         assertEquals("toString should match expected format", expected, contractor.toString());
     }

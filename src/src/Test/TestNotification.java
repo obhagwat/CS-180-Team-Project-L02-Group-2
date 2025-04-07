@@ -17,41 +17,40 @@ import static org.junit.Assert.*;
  * @author Ovi Bhagwat
  * @version April 5, 2025
  */
+
 @RunWith(JUnit4.class)
 public class TestNotification {
-    private User recipient;
-    private Notification notification;
+    private User testGovUser;
+    private Notification bidNotification;
 
     @Before
     public void setUp() {
-        recipient = new User("user1", "pass1", 0.0, "USA", "123 St", "user1@test.com", "1111111111");
-        notification = new Notification("Test message", recipient);
+        testGovUser = new User("govUser22", "securePass1", 0.0, "USA", "456 Contract Ave", "govuser@agency.org", "5559876543");
+        bidNotification = new Notification("New bid submitted on your contract.", testGovUser);
     }
 
     @Test
     public void constructorTest() {
-        assertNotNull("Notification object should be created", notification);
-        assertEquals("Message should match", "Test message", notification.getMessage());
-        assertNotNull("Timestamp should be set", notification.getTimestamp());
-        assertEquals("Recipient should match", recipient, notification.getRecipient());
+        assertNotNull("Notification object should be created", bidNotification);
+        assertEquals("Message should match", "New bid submitted on your contract.", bidNotification.getMessage());
+        assertNotNull("Timestamp should be set", bidNotification.getTimestamp());
+        assertEquals("Recipient should match", testGovUser, bidNotification.getRecipient());
     }
 
     @Test
     public void timestampTest() {
-        LocalDateTime beforeCreation = LocalDateTime.now().minusSeconds(1);
-        LocalDateTime afterCreation = LocalDateTime.now().plusSeconds(1);
+        LocalDateTime beforeNotif = LocalDateTime.now().minusSeconds(1);
+        LocalDateTime afterNotif = LocalDateTime.now().plusSeconds(1);
 
-        assertTrue("Timestamp should be after beforeCreation",
-                notification.getTimestamp().isAfter(beforeCreation));
-        assertTrue("Timestamp should be before afterCreation",
-                notification.getTimestamp().isBefore(afterCreation));
+        assertTrue("Timestamp should be after beforeNotif", bidNotification.getTimestamp().isAfter(beforeNotif));
+        assertTrue("Timestamp should be before afterNotif", bidNotification.getTimestamp().isBefore(afterNotif));
     }
 
     @Test
     public void gettersTest() {
-        assertEquals("Message should be accessible", "Test message", notification.getMessage());
-        assertNotNull("Timestamp should be accessible", notification.getTimestamp());
-        assertEquals("Recipient should be accessible", recipient, notification.getRecipient());
+        assertEquals("Message should be accessible", "New bid submitted on your contract.", bidNotification.getMessage());
+        assertNotNull("Timestamp should be accessible", bidNotification.getTimestamp());
+        assertEquals("Recipient should be accessible", testGovUser, bidNotification.getRecipient());
     }
 
     public static void main(String[] args) {

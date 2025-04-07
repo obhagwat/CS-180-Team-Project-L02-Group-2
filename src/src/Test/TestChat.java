@@ -20,22 +20,24 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestChat {
-    private User user1;
-    private User user2;
+    private User jake;
+    private User jane;
     private Chat chat;
 
     @Before
     public void setUp() {
-        user1 = new User("user1", "pass1", 0.0, "USA", "123 St", "user1@test.com", "1111111111");
-        user2 = new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222");
-        chat = new Chat(user1, user2);
+        jake = new User("jakedoe", "password123", 5.0, "USA",
+                "123 Elm St, Springfield", "jake.doe@example.com", "5051234567");
+        jane = new User("janesmith", "securePassword456", 3.0, "Canada",
+                "456 Maple Ave, Toronto", "jane.smith@example.com", "7685678901");
+        chat = new Chat(jake, jane);
     }
 
     @Test
     public void constructorTest() {
         assertNotNull("Chat object should be created", chat);
-        assertEquals("User1 should match", user1, chat.getUser1());
-        assertEquals("User2 should match", user2, chat.getUser2());
+        assertEquals("User1 should match", jake, chat.getUser1());
+        assertEquals("User2 should match", jane, chat.getUser2());
         assertNotNull("Chat ID should be generated", chat.getChatId());
         assertTrue("Messages list should be empty", chat.getMessages().isEmpty());
     }
@@ -44,13 +46,13 @@ public class TestChat {
     public void getUsersTest() {
         ArrayList<User> users = chat.getUsers();
         assertEquals("Should contain 2 users", 2, users.size());
-        assertTrue("Should contain user1", users.contains(user1));
-        assertTrue("Should contain user2", users.contains(user2));
+        assertTrue("Should contain user1", users.contains(jake));
+        assertTrue("Should contain user2", users.contains(jane));
     }
 
     @Test
     public void addValidMessageTest() {
-        Message message = new Message(new Date(), "Hello", user1, user2);
+        Message message = new Message(new Date(), "Hello, Jane!", jake, jane);
         assertTrue("Valid message should be added", chat.addMessage(message));
         assertEquals("Messages list should have 1 message", 1, chat.getMessages().size());
     }
@@ -65,18 +67,19 @@ public class TestChat {
     @Test
     public void isChatBetweenTest() {
         assertTrue("Should recognize chat between user1 and user2",
-                chat.isChatBetween(user1, user2));
+                chat.isChatBetween(jake, jane));
         assertTrue("Should recognize chat between user2 and user1",
-                chat.isChatBetween(user2, user1));
+                chat.isChatBetween(jane, jake));
 
-        User user3 = new User("user3", "pass3", 0.0, "CA", "789 St", "user3@test.com", "3333333333");
+        User tony = new User("tonyjohnson", "password789", 2.0, "Australia",
+                "789 Pine St, Melbourne", "tinyjohn@apple.com", "1949986483");
         assertFalse("Should not recognize chat with non-participant",
-                chat.isChatBetween(user1, user3));
+                chat.isChatBetween(jake, tony));
     }
 
     @Test
     public void toStringTest() {
-        assertEquals("toString should show usernames", "user1, user2", chat.toString());
+        assertEquals("toString should show usernames", "jakedoe, janesmith", chat.toString());
     }
 
     public static void main(String[] args) {

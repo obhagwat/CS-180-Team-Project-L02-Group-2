@@ -20,91 +20,91 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestContract {
-    private Solicitor solicitor;
-    private Contract contract;
+    private Solicitor builidingsSolicitor;
+    private Contract govtDeal;
     private LocalDateTime deadline;
 
     @Before
     public void setUp() {
-        solicitor = new Solicitor("solicitor1", "pass123", 0.0, "USA", "123 St",
-                "solicitor@test.com", "1234567890", "Test Solicitor",
-                "Federal", "DOD", "Army", 10000.0);
-        deadline = LocalDateTime.now().plusDays(7);
-        contract = new Contract(solicitor, "Test contract", true, deadline, new ArrayList<>());
+        builidingsSolicitor = new Solicitor("johnsmith", "securePass123", 0.0, "USA", "1600 Pennsylvania Ave",
+                "john.smith@gsa.gov", "2025550100", "John Smith",
+                "Federal", "GSA", "Public Buildings Service", 250000.0);
+        deadline = LocalDateTime.now().plusDays(30);
+        govtDeal = new Contract(builidingsSolicitor, "New Federal Courthouse Construction", true, deadline, new ArrayList<>());
     }
 
     @Test
     public void constructorTest() {
-        assertNotNull("Contract object should be created", contract);
-        assertEquals("Solicitor should match", solicitor, contract.getSolicitor());
-        assertEquals("Description should match", "Test contract", contract.getContractDescription());
-        assertTrue("Contract should be open", contract.isContractStatus());
-        assertEquals("Deadline should match", deadline, contract.getDeadline());
-        assertTrue("Bids list should be empty", contract.getBids().isEmpty());
-        assertNull("Winning bid should be null initially", contract.getWinningBid());
+        assertNotNull("Contract object should be created", govtDeal);
+        assertEquals("Solicitor should match", builidingsSolicitor, govtDeal.getSolicitor());
+        assertEquals("Description should match", "New Federal Courthouse Construction", govtDeal.getContractDescription());
+        assertTrue("Contract should be open", govtDeal.isContractStatus());
+        assertEquals("Deadline should match", deadline, govtDeal.getDeadline());
+        assertTrue("Bids list should be empty", govtDeal.getBids().isEmpty());
+        assertNull("Winning bid should be null initially", govtDeal.getWinningBid());
     }
 
     @Test
     public void gettersAndSettersTest() {
-        Solicitor newSolicitor = new Solicitor("solicitor2", "pass456", 0.0, "UK", "456 St",
-                "solicitor2@test.com", "0987654321", "New Solicitor",
-                "State", "DOE", "Energy", 5000.0);
-        LocalDateTime newDeadline = LocalDateTime.now().plusDays(14);
+        Solicitor newOfficer = new Solicitor("janedoe", "anotherPass456", 0.0, "USA", "1800 F St NW",
+                "jane.doe@gsa.gov", "2025550200", "Jane Doe",
+                "Federal", "GSA", "Office of Acquisition", 300000.0);
+        LocalDateTime newDeadline = LocalDateTime.now().plusDays(45);
 
-        contract.setSolicitor(newSolicitor);
-        contract.setContractDescription("Updated contract");
-        contract.setDeadline(newDeadline);
+        govtDeal.setSolicitor(newOfficer);
+        govtDeal.setContractDescription("Post Office Renovation Project");
+        govtDeal.setDeadline(newDeadline);
 
-        assertEquals("Solicitor should be updated", newSolicitor, contract.getSolicitor());
-        assertEquals("Description should be updated", "Updated contract", contract.getContractDescription());
-        assertEquals("Deadline should be updated", newDeadline, contract.getDeadline());
+        assertEquals("Solicitor should be updated", newOfficer, govtDeal.getSolicitor());
+        assertEquals("Description should be updated", "Post Office Renovation Project", govtDeal.getContractDescription());
+        assertEquals("Deadline should be updated", newDeadline, govtDeal.getDeadline());
     }
 
     @Test
     public void contractStatusTest() {
-        contract.setContractStatus(false);
-        assertFalse("Contract should be closed", contract.isContractStatus());
+        govtDeal.setContractStatus(false);
+        assertFalse("Contract should be closed", govtDeal.isContractStatus());
     }
 
     @Test
     public void addBidToOpenContractTest() {
-        Contractor contractor = new Contractor("contractor1", "pass123", 0.0, "USA",
-                "123 St", "contractor@test.com", "1234567890",
-                "Test Contractor", "LLC", "50", 2000, Industry.CONSTRUCTION, "USA");
-        Bid bid = new Bid(contractor, contract, 1000.0, "Under Consideration");
+        Contractor constructionCo = new Contractor("turnerconstruction", "build2024", 0.0, "USA",
+                "500 Construction Way", "bids@turner.com", "2125553000",
+                "Turner Construction", "Inc", "5000", 100000, Industry.CONSTRUCTION, "Global");
+        Bid proposal = new Bid(constructionCo, govtDeal, 15000000.0, "Submitted");
 
-        contract.addBid(bid);
-        assertEquals("Bids list should have 1 bid", 1, contract.getBids().size());
-        assertEquals("Added bid should match", bid, contract.getBids().getFirst());
+        govtDeal.addBid(proposal);
+        assertEquals("Bids list should have 1 bid", 1, govtDeal.getBids().size());
+        assertEquals("Added bid should match", proposal, govtDeal.getBids().getFirst());
     }
 
     @Test(expected = IllegalStateException.class)
     public void addBidToClosedContractTest() {
-        contract.setContractStatus(false);
-        Contractor contractor = new Contractor("contractor1", "pass123", 0.0, "USA",
-                "123 St", "contractor@test.com", "1234567890",
-                "Test Contractor", "LLC", "50", 2000, Industry.CONSTRUCTION, "USA");
-        Bid bid = new Bid(contractor, contract, 1000.0, "Under Consideration");
+        govtDeal.setContractStatus(false);
+        Contractor constructionCo = new Contractor("turnerconstruction", "build2024", 0.0, "USA",
+                "500 Construction Way", "bids@turner.com", "2125553000",
+                "Turner Construction", "Inc", "5000", 100000, Industry.CONSTRUCTION, "Global");
+        Bid proposal = new Bid(constructionCo, govtDeal, 15000000.0, "Submitted");
 
-        contract.addBid(bid);
+        govtDeal.addBid(proposal);
     }
 
     @Test
     public void winningBidTest() {
-        Contractor contractor = new Contractor("contractor1", "pass123", 0.0, "USA",
-                "123 St", "contractor@test.com", "1234567890",
-                "Test Contractor", "LLC", "50", 2000, Industry.CONSTRUCTION, "USA");
-        Bid bid = new Bid(contractor, contract, 1000.0, "Under Consideration");
+        Contractor constructionCo = new Contractor("turnerconstruction", "build2024", 0.0, "USA",
+                "500 Construction Way", "bids@turner.com", "2125553000",
+                "Turner Construction", "Inc", "5000", 100000, Industry.CONSTRUCTION, "Global");
+        Bid winningProposal = new Bid(constructionCo, govtDeal, 14500000.0, "Accepted");
 
-        contract.setWinningBid(bid);
-        assertEquals("Winning bid should be set", bid, contract.getWinningBid());
+        govtDeal.setWinningBid(winningProposal);
+        assertEquals("Winning bid should be set", winningProposal, govtDeal.getWinningBid());
     }
 
     @Test
     public void toStringTest() {
         String expected = String.format("Contract [Solicitor: %s, Description: %s, Status: %s, Deadline: %s, Bids: %s]",
-                solicitor, "Test contract", "Open", deadline, "No bids");
-        assertEquals("toString should match expected format", expected, contract.toString());
+                builidingsSolicitor, "New Federal Courthouse Construction", "Open", deadline, "No bids");
+        assertEquals("toString should match expected format", expected, govtDeal.toString());
     }
 
     public static void main(String[] args) {

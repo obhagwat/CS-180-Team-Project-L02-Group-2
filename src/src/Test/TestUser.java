@@ -23,53 +23,54 @@ public class TestUser {
 
     @Before
     public void setUp() {
-        user = new User("user1", "pass1", 0.0, "USA", "123 St", "user1@test.com", "1111111111");
+        user = new User("annapaul", "annabanana", 0.0, "USA",
+                "1111 3rd St", "annap@gmail.com", "2064448019");
     }
 
     @Test
     public void constructorTest() {
         assertNotNull("User object should be created", user);
-        assertEquals("Username should match", "user1", user.getUsername());
-        assertEquals("Password should match", "pass1", user.getPassword());
-        assertEquals("Rating should be 0 initially", 0.0, user.getRating(), 0.001);
+        assertEquals("Username should match", "annapaul", user.getUsername());
+        assertEquals("Password should match", "annabanana", user.getPassword());
+        assertEquals("Rating should be 0 initially", 0.0, user.getRating(), 0.0001);
         assertEquals("Country should match", "USA", user.getCountryOfOrigin());
-        assertEquals("Address should match", "123 St", user.getAddress());
-        assertEquals("Email should match", "user1@test.com", user.getEmail());
-        assertEquals("Phone number should match", "1111111111", user.getPhoneNumber());
-        assertEquals("Balance should be 0 initially", 0.0, user.getBalance(), 0.001);
+        assertEquals("Address should match", "1111 3rd St", user.getAddress());
+        assertEquals("Email should match", "annap@gmail.com", user.getEmail());
+        assertEquals("Phone number should match", "2064448019", user.getPhoneNumber());
+        assertEquals("Balance should be 0 initially", 0.0, user.getBalance(), 0.0001);
     }
 
     @Test
     public void gettersAndSettersTest() {
-        user.setUsername("newUser");
-        user.setPassword("newPass");
-        user.setCountryOfOrigin("UK");
-        user.setAddress("456 St");
-        user.setEmail("new@test.com");
-        user.setPhoneNumber("2222222222");
-        user.setBalance(100.0);
+        user.setUsername("johnsnow");
+        user.setPassword("gameofthrones");
+        user.setCountryOfOrigin("USA");
+        user.setAddress("400 Apple Ave");
+        user.setEmail("johnsnow@yahoo.com");
+        user.setPhoneNumber("9048927493");
+        user.setBalance(4500.00);
 
-        assertEquals("Username should be updated", "newUser", user.getUsername());
-        assertEquals("Password should be updated", "newPass", user.getPassword());
-        assertEquals("Country should be updated", "UK", user.getCountryOfOrigin());
-        assertEquals("Address should be updated", "456 St", user.getAddress());
-        assertEquals("Email should be updated", "new@test.com", user.getEmail());
-        assertEquals("Phone number should be updated", "2222222222", user.getPhoneNumber());
-        assertEquals("Balance should be updated", 100.0, user.getBalance(), 0.001);
+        assertEquals("Username should be updated", "johnsnow", user.getUsername());
+        assertEquals("Password should be updated", "gameofthrones", user.getPassword());
+        assertEquals("Country should be updated", "USA", user.getCountryOfOrigin());
+        assertEquals("Address should be updated", "400 Apple Ave", user.getAddress());
+        assertEquals("Email should be updated", "johnsnow@yahoo.com", user.getEmail());
+        assertEquals("Phone number should be updated", "9048927493", user.getPhoneNumber());
+        assertEquals("Balance should be updated", 4500.00, user.getBalance(), 0.0001);
     }
 
     @Test
     public void ratingCalculationTest() {
         user.calcRating(5);
-        assertEquals("Rating should be 5 after one 5-star rating", 5.0, user.getRating(), 0.001);
+        assertEquals("Rating should be 5 after one 5-star rating", 5.0, user.getRating(), 0.0001);
         assertEquals("Integer rating should be 5", 5, user.getIntRating());
 
         user.calcRating(3);
-        assertEquals("Rating should be 4 after 5 and 3", 4.0, user.getRating(), 0.001);
+        assertEquals("Rating should be 4 after 5 and 3", 4.0, user.getRating(), 0.0001);
         assertEquals("Integer rating should be 4", 4, user.getIntRating());
 
         user.calcRating(1);
-        assertEquals("Rating should be 3 after 5, 3, and 1", 3.0, user.getRating(), 0.001);
+        assertEquals("Rating should be 3 after 5, 3, and 1", 3.0, user.getRating(), 0.0001);
         assertEquals("Integer rating should be 3", 3, user.getIntRating());
     }
 
@@ -78,17 +79,18 @@ public class TestUser {
         user.deleteAccount();
         assertNull("Username should be null", user.getUsername());
         assertNull("Password should be null", user.getPassword());
-        assertEquals("Rating should be 0", 0.0, user.getRating(), 0.001);
+        assertEquals("Rating should be 0", 0.0, user.getRating(), 0.0001);
         assertNull("Country should be null", user.getCountryOfOrigin());
         assertNull("Address should be null", user.getAddress());
         assertNull("Email should be null", user.getEmail());
         assertNull("Phone number should be null", user.getPhoneNumber());
-        assertEquals("Balance should be 0", 0.0, user.getBalance(), 0.001);
+        assertEquals("Balance should be 0", 0.0, user.getBalance(), 0.0001);
     }
 
     @Test
     public void sendMessageTest() {
-        User recipient = new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222");
+        User recipient = new User("lizzysmith", "ilovelizards", 0.0, "USA",
+                "3012 Reptile Ct", "lizsmith4@outlook.com", "2904738493");
         Chat chat = new Chat(user, recipient);
 
         user.sendMessage(chat, "Hello");
@@ -98,23 +100,26 @@ public class TestUser {
 
     @Test
     public void postReviewTest() {
-        User otherUser = new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222");
+        User otherUser = new User("bradenwren", "soccer4lyfe", 0.0, "USA",
+                "1302 211th St", "brady13@gmail.com", "3385927492");
         user.postReview(otherUser, 5);
-        assertEquals("Other user's rating should be updated", 5.0, otherUser.getRating(), 0.001);
+        assertEquals("Other user's rating should be updated", 5.0, otherUser.getRating(), 0.0001);
     }
 
     @Test
     public void toStringTest() {
-        String expected = "User [Username: user1, Password: pass1, Rating: 0, Number of Ratings: 0, " +
-                "Country: USA, Address: 123 St, Email: user1@test.com, Phone Number: 1111111111, Balance: $0.00]";
+        String expected = "User [Username: annapaul, Password: annabanana, Rating: 0, " +
+                "Number of Ratings: 0, Country: USA, Address: 1111 3rd St, " +
+                "Email: annap@gmail.com, Phone Number: 2064448019, Balance: $0.00]";
         assertEquals("toString should match expected format", expected, user.toString());
     }
 
     @Test
     public void equalsTest() {
-        User sameUser = new User("user1", "differentPass", 0.0, "Different", "Different",
-                "different@test.com", "9999999999");
-        User differentUser = new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222");
+        User sameUser = new User("annapaul", "differentPass", 0.0, "Different",
+                "Different", "different@test.com", "9999999999");
+        User differentUser = new User("user2", "pass2", 0.0, "UK",
+                "456 St", "user2@test.com", "2222222222");
 
         assertEquals("Users with same username should be equal", user, sameUser);
         assertNotEquals("Users with different usernames should not be equal", user, differentUser);

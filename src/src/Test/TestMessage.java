@@ -21,80 +21,79 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestMessage {
-    private User sender;
-    private User recipient;
-    private Message message;
-    private Date timestamp;
-    private SimpleDateFormat testDateFormat; // Local date format for testing
+    private User agencyRep;
+    private User contractor;
+    private Message bidMessage;
+    private Date messageTimestamp;
+    private SimpleDateFormat readableDate;
 
     @Before
     public void setUp() {
-        sender = new User("user1", "pass1", 0.0, "USA", "123 St", "user1@test.com", "1111111111");
-        recipient = new User("user2", "pass2", 0.0, "UK", "456 St", "user2@test.com", "2222222222");
-        timestamp = new Date();
-        message = new Message(timestamp, "Hello", sender, recipient);
-        testDateFormat = new SimpleDateFormat("MM/dd/yy HH:mm"); // Create our own formatter
+        agencyRep = new User("agencyRep", "safePass123", 0.0, "USA", "101 Gov Lane", "rep@govagency.gov", "9998887777");
+        contractor = new User("contractorX", "contract123", 0.0, "USA", "202 Contractor Blvd", "x@firm.com", "8887776666");
+        messageTimestamp = new Date();
+        bidMessage = new Message(messageTimestamp, "Proposal submitted for review.", agencyRep, contractor);
+        readableDate = new SimpleDateFormat("MM/dd/yy HH:mm");
     }
 
     @Test
     public void constructorTest() {
-        assertNotNull("Message object should be created", message);
-        assertEquals("Timestamp should match", timestamp, message.getTimeStamp());
-        assertEquals("Text should match", "Hello", message.getText());
-        assertEquals("Sender should match", sender, message.getSender());
-        assertEquals("Recipient should match", recipient, message.getRecipient());
-        assertNull("Bid should be null when not provided", message.getBid());
+        assertNotNull("Message object should be created", bidMessage);
+        assertEquals("Timestamp should match", messageTimestamp, bidMessage.getTimeStamp());
+        assertEquals("Text should match", "Proposal submitted for review.", bidMessage.getText());
+        assertEquals("Sender should match", agencyRep, bidMessage.getSender());
+        assertEquals("Recipient should match", contractor, bidMessage.getRecipient());
+        assertNull("Bid should be null when not provided", bidMessage.getBid());
     }
 
     @Test
     public void constructorWithBidTest() {
-        Contract contract = new Contract(null, "Test contract", true, null, new ArrayList<>());
-        Bid bid = new Bid(null, contract, 1000.0, "Under Consideration");
-        Message messageWithBid = new Message(timestamp, "Hello with bid", sender, recipient, bid);
+        Contract testContract = new Contract(null, "Secure Facility Upgrade", true, null, new ArrayList<>());
+        Bid proposal = new Bid(null, testContract, 250000.0, "Submitted");
+        Message messageWithProposal = new Message(messageTimestamp, "Proposal attached for consideration.", agencyRep, contractor, proposal);
 
-        assertEquals("Bid should be set", bid, messageWithBid.getBid());
+        assertEquals("Bid should be set", proposal, messageWithProposal.getBid());
     }
 
     @Test
     public void verifyValidMessageTest() {
-        assertTrue("Valid message should verify", message.verifyMessage());
+        assertTrue("Valid message should verify", bidMessage.verifyMessage());
     }
 
     @Test
     public void verifyInvalidMessageTest() {
-        Message nullSender = new Message(timestamp, "Hello", null, recipient);
-        assertFalse("Message with null sender should not verify", nullSender.verifyMessage());
+        Message noSender = new Message(messageTimestamp, "Ping", null, contractor);
+        assertFalse("Message with null sender should not verify", noSender.verifyMessage());
 
-        Message nullRecipient = new Message(timestamp, "Hello", sender, null);
-        assertFalse("Message with null recipient should not verify", nullRecipient.verifyMessage());
+        Message noRecipient = new Message(messageTimestamp, "Ping", agencyRep, null);
+        assertFalse("Message with null recipient should not verify", noRecipient.verifyMessage());
 
-        Message emptyText = new Message(timestamp, "", sender, recipient);
-        assertFalse("Message with empty text should not verify", emptyText.verifyMessage());
+        Message blankBody = new Message(messageTimestamp, "", agencyRep, contractor);
+        assertFalse("Message with empty text should not verify", blankBody.verifyMessage());
 
-        Message nullText = new Message(timestamp, null, sender, recipient);
-        assertFalse("Message with null text should not verify", nullText.verifyMessage());
+        Message nullBody = new Message(messageTimestamp, null, agencyRep, contractor);
+        assertFalse("Message with null text should not verify", nullBody.verifyMessage());
 
-        String longText = new String(new char[501]).replace('\0', 'a');
-        Message tooLong = new Message(timestamp, longText, sender, recipient);
-        assertFalse("Message with >500 chars should not verify", tooLong.verifyMessage());
+        String tooManyChars = "a".repeat(501);
+        Message overflowText = new Message(messageTimestamp, tooManyChars, agencyRep, contractor);
+        assertFalse("Message with >500 chars should not verify", overflowText.verifyMessage());
     }
 
     @Test
     public void toStringTest() {
         String expected = String.format("[%s] From: %s To: %s - %s",
-                testDateFormat.format(timestamp),
-                "user1", "user2", "Hello");
-        assertEquals("toString should match expected format", expected, message.toString());
+                readableDate.format(messageTimestamp),
+                "agencyRep", "contractorX", "Proposal submitted for review.");
+        assertEquals("toString should match expected format", expected, bidMessage.toString());
     }
 
     @Test
     public void toStringWithoutRecipientTest() {
-        Message noRecipient = new Message(timestamp, "Hello", sender, null);
+        Message broadcast = new Message(messageTimestamp, "General update.", agencyRep, null);
         String expected = String.format("[%s] From: %s - %s",
-                testDateFormat.format(timestamp),
-                "user1", "Hello");
-        assertEquals("toString without recipient should match expected format",
-                expected, noRecipient.toString());
+                readableDate.format(messageTimestamp),
+                "agencyRep", "General update.");
+        assertEquals("toString without recipient should match expected format", expected, broadcast.toString());
     }
 
     public static void main(String[] args) {

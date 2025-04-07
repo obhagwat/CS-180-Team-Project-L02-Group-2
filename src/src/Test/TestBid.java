@@ -28,9 +28,9 @@ public class TestBid {
 
     @Before
     public void setUp() {
-        contractor = new Contractor("contractor1", "pass123", 0.0, "USA",
-                "123 St", "contractor@test.com", "1234567890",
-                "Test Contractor", "LLC", "50", 2000, Industry.CONSTRUCTION, "USA");
+        contractor = new Contractor("ProtectUs", "sheildforall", 0.0, "USA",
+                "410 Salisbury Ave", "protectUS@yahoo.com", "5550005050",
+                "ProtectUs", "INC", "5000", 2014, Industry.DEFENSE, "USA");
         contract = new Contract(null, "Test contract", true, null, new ArrayList<>());
         bid = new Bid(contractor, contract, 1000.0, "Under Consideration");
     }
@@ -40,15 +40,15 @@ public class TestBid {
         assertNotNull("Bid object should be created", bid);
         assertEquals("Contractor should match", contractor, bid.getContractor());
         assertEquals("Contract should match", contract, bid.getContract());
-        assertEquals("Requested pay should match", 1000.0, bid.getRequestedPay(), 0.001);
+        assertEquals("Requested pay should match", 1000.0, bid.getRequestedPay(), 0.0001);
         assertEquals("Status should match", "Under Consideration", bid.getStatus());
     }
 
     @Test
     public void gettersAndSettersTest() {
-        Contractor newContractor = new Contractor("contractor2", "pass456", 0.0, "UK",
-                "456 St", "contractor2@test.com", "0987654321",
-                "New Contractor", "Inc", "100", 1990, Industry.IT_SERVICES, "UK");
+        Contractor newContractor = new Contractor("farmersedu", "fruitbasket", 0.0, "US",
+                "Main St", "farmersedu@outlook.com", "4254254255",
+                "Farmer's Edu", "LLC", "3000", 1946, Industry.EDUCATION, "US");
         Contract newContract = new Contract(null, "New contract", true, null, new ArrayList<>());
 
         bid.setContractor(newContractor);
@@ -57,7 +57,7 @@ public class TestBid {
 
         assertEquals("Contractor should be updated", newContractor, bid.getContractor());
         assertEquals("Contract should be updated", newContract, bid.getContract());
-        assertEquals("Requested pay should be updated", 1500.0, bid.getRequestedPay(), 0.001);
+        assertEquals("Requested pay should be updated", 1500.0, bid.getRequestedPay(), 0.0001);
     }
 
     @Test

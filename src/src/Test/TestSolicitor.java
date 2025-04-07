@@ -20,86 +20,86 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestSolicitor {
-    private Solicitor solicitor;
-    private LocalDateTime deadline;
+    private Solicitor testUser;
+    private LocalDateTime contractDue;
 
     @Before
     public void setUp() {
-        solicitor = new Solicitor("solicitor1", "pass123", 0.0, "USA", "123 St",
-                "solicitor@test.com", "1234567890", "Test Solicitor",
-                "Federal", "DOD", "Army", 10000.0);
-        deadline = LocalDateTime.now().plusDays(7);
+        testUser = new Solicitor("user123", "mypassword", 0.0, "USA", "456 College Ave",
+                "student@email.com", "9876543210", "Alex Johnson",
+                "Federal", "NASA", "SpaceTech", 5000.0);
+        contractDue = LocalDateTime.now().plusDays(7);
     }
 
     @Test
     public void constructorTest() {
-        assertNotNull("Solicitor object should be created", solicitor);
-        assertEquals("Solicitor name should match", "Test Solicitor", solicitor.getSolicitorName());
-        assertEquals("Agency level should match", "Federal", solicitor.getAgencyLevel());
-        assertEquals("Branch should match", "DOD", solicitor.getBranch());
-        assertEquals("Sub-branch should match", "Army", solicitor.getSubBranch());
-        assertTrue("Contracts solicited list should be empty", solicitor.getContractsSolicited().isEmpty());
-        assertTrue("Open contracts list should be empty", solicitor.getOpenContracts().isEmpty());
+        assertNotNull("Solicitor object should be created", testUser);
+        assertEquals("Solicitor name should match", "Alex Johnson", testUser.getSolicitorName());
+        assertEquals("Agency level should match", "Federal", testUser.getAgencyLevel());
+        assertEquals("Branch should match", "NASA", testUser.getBranch());
+        assertEquals("Sub-branch should match", "SpaceTech", testUser.getSubBranch());
+        assertTrue("Contracts solicited list should be empty", testUser.getContractsSolicited().isEmpty());
+        assertTrue("Open contracts list should be empty", testUser.getOpenContracts().isEmpty());
     }
 
     @Test
     public void gettersAndSettersTest() {
-        solicitor.setSolicitorName("Updated Solicitor");
-        solicitor.setAgencyLevel("State");
-        solicitor.setBranch("DOE");
-        solicitor.setSubBranch("Energy");
+        testUser.setSolicitorName("Jamie Lee");
+        testUser.setAgencyLevel("Local");
+        testUser.setBranch("ParksDept");
+        testUser.setSubBranch("Forestry");
 
-        assertEquals("Solicitor name should be updated", "Updated Solicitor", solicitor.getSolicitorName());
-        assertEquals("Agency level should be updated", "State", solicitor.getAgencyLevel());
-        assertEquals("Branch should be updated", "DOE", solicitor.getBranch());
-        assertEquals("Sub-branch should be updated", "Energy", solicitor.getSubBranch());
+        assertEquals("Solicitor name should be updated", "Jamie Lee", testUser.getSolicitorName());
+        assertEquals("Agency level should be updated", "Local", testUser.getAgencyLevel());
+        assertEquals("Branch should be updated", "ParksDept", testUser.getBranch());
+        assertEquals("Sub-branch should be updated", "Forestry", testUser.getSubBranch());
     }
 
     @Test
     public void postContractTest() {
-        solicitor.postContract("Test contract", deadline, new ArrayList<>());
+        testUser.postContract("Fixing trails in local park", contractDue, new ArrayList<>());
         assertEquals("Contracts solicited list should have 1 contract",
-                1, solicitor.getContractsSolicited().size());
+                1, testUser.getContractsSolicited().size());
         assertEquals("Open contracts list should have 1 contract",
-                1, solicitor.getOpenContracts().size());
+                1, testUser.getOpenContracts().size());
 
-        Contract postedContract = solicitor.getContractsSolicited().getFirst();
-        assertEquals("Contract description should match", "Test contract", postedContract.getContractDescription());
-        assertEquals("Contract deadline should match", deadline, postedContract.getDeadline());
+        Contract postedContract = testUser.getContractsSolicited().getFirst();
+        assertEquals("Contract description should match", "Fixing trails in local park", postedContract.getContractDescription());
+        assertEquals("Contract deadline should match", contractDue, postedContract.getDeadline());
         assertTrue("Contract should be open", postedContract.isContractStatus());
     }
 
     @Test
     public void makePaymentTest() {
-        Contractor contractor = new Contractor("contractor1", "pass123", 0.0, "USA",
-                "123 St", "contractor@test.com", "1234567890",
-                "Test Contractor", "LLC", "50", 2000, Industry.CONSTRUCTION, "USA");
-        Contract contract = new Contract(solicitor, "Test contract", true, deadline, new ArrayList<>());
-        Bid bid = new Bid(contractor, contract, 1000.0, "Accepted");
+        Contractor worker = new Contractor("worker123", "pw123", 0.0, "USA",
+                "789 Campus Ln", "worker@sample.com", "3216549870",
+                "Taylor Smith", "Inc", "15", 1500, Industry.CONSTRUCTION, "USA");
+        Contract contract = new Contract(testUser, "Paint city benches", true, contractDue, new ArrayList<>());
+        Bid newBid = new Bid(worker, contract, 1200.0, "Accepted");
 
-        double initialBalance = solicitor.getBalance();
-        solicitor.makePayment(bid);
+        double startingBalance = testUser.getBalance();
+        testUser.makePayment(newBid);
         assertEquals("Balance should decrease by bid amount",
-                initialBalance - bid.getRequestedPay(), solicitor.getBalance(), 0.001);
+                startingBalance - newBid.getRequestedPay(), testUser.getBalance(), 0.001);
     }
 
     @Test
     public void closeContractTest() {
-        solicitor.postContract("Test contract", deadline, new ArrayList<>());
-        Contract contract = solicitor.getOpenContracts().getFirst();
+        testUser.postContract("Set up lighting in gym", contractDue, new ArrayList<>());
+        Contract openOne = testUser.getOpenContracts().getFirst();
 
-        solicitor.closeContract(contract);
-        assertFalse("Contract should be closed", contract.isContractStatus());
-        assertTrue("Open contracts list should be empty", solicitor.getOpenContracts().isEmpty());
+        testUser.closeContract(openOne);
+        assertFalse("Contract should be closed", openOne.isContractStatus());
+        assertTrue("Open contracts list should be empty", testUser.getOpenContracts().isEmpty());
         assertEquals("Contracts solicited list should still have 1 contract",
-                1, solicitor.getContractsSolicited().size());
+                1, testUser.getContractsSolicited().size());
     }
 
     @Test
     public void toStringTest() {
-        String expected = "Solicitor [Name: Test Solicitor, Agency Level: Federal, Branch: DOD, " +
-                "Sub-Branch: Army, Open Contracts: 0, Total Contracts: 0]";
-        assertEquals("toString should match expected format", expected, solicitor.toString());
+        String expected = "Solicitor [Name: Alex Johnson, Agency Level: Federal, Branch: NASA, " +
+                "Sub-Branch: SpaceTech, Open Contracts: 0, Total Contracts: 0]";
+        assertEquals("toString should match expected format", expected, testUser.toString());
     }
 
     public static void main(String[] args) {
