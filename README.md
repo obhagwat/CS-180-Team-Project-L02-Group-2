@@ -2,11 +2,10 @@
 A Better Way to Contract.
 
 ## Instructions on Compiling and Running
-   To compile, ensure you have JUnit configured in your project, and you included the JUnit library in the classpath. To run the test cases, ensure you have JUnit configured in your project.
-   Compile the test classes, ensuring you include the JUnit library in the classpath.
+   Compile the project in an IDE by clicking the build option. To compile and run the test cases, ensure you have JUnit configured in your project and include the JUnit library in the classpath.
 
 ## Team Members
-- Ovi Bhagwat
+- Ovi Bhagwat: Submitted to Vocareum
 - Sarah Stone
 - Ana Farmus
 - Saahil Kajarekar
@@ -58,5 +57,22 @@ A Better Way to Contract.
 - Relationships: Used only by Contractor instances
 
 ### Database
-- Centralized storage for all application data
-- Relationships:
+- Storage for all application and user data
+- Tested: Singleton enforcement, User and chats creation/deletion/editing, and search functionality
+- Relationships: Contains and manages all Users, Contracts, Bids, Chats, and Messages data
+
+### InvalidBidException
+- Thrown when invalid Bid objects are detected
+- Usage: Checks bid-related operations throughout the system
+
+### InvalidChatException
+- Thrown when invalid Chat objects are detected
+- Usage: Checks chat-related operations and message exchanges
+
+### InvalidContractException
+- Thrown when invalid Contract objects are detected
+- Usage: Checks contract creation and management operations
+
+### InvalidUserException
+- Thrown when invalid User objects are detected
+- Usage: Checks user account operations and authentication
