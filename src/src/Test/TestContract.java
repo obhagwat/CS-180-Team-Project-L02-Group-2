@@ -30,14 +30,16 @@ public class TestContract {
                 "john.smith@gsa.gov", "2025550100", "John Smith",
                 "Federal", "GSA", "Public Buildings Service", 250000.0);
         deadline = LocalDateTime.now().plusDays(30);
-        govtDeal = new Contract(builidingsSolicitor, "New Federal Courthouse Construction", true, deadline, new ArrayList<>());
+        govtDeal = new Contract(builidingsSolicitor, "New Federal Courthouse Construction",
+                true, deadline, new ArrayList<>());
     }
 
     @Test
     public void constructorTest() {
         assertNotNull("Contract object should be created", govtDeal);
         assertEquals("Solicitor should match", builidingsSolicitor, govtDeal.getSolicitor());
-        assertEquals("Description should match", "New Federal Courthouse Construction", govtDeal.getContractDescription());
+        assertEquals("Description should match", "New Federal Courthouse Construction",
+                govtDeal.getContractDescription());
         assertTrue("Contract should be open", govtDeal.isContractStatus());
         assertEquals("Deadline should match", deadline, govtDeal.getDeadline());
         assertTrue("Bids list should be empty", govtDeal.getBids().isEmpty());
@@ -56,7 +58,8 @@ public class TestContract {
         govtDeal.setDeadline(newDeadline);
 
         assertEquals("Solicitor should be updated", newOfficer, govtDeal.getSolicitor());
-        assertEquals("Description should be updated", "Post Office Renovation Project", govtDeal.getContractDescription());
+        assertEquals("Description should be updated", "Post Office Renovation Project",
+                govtDeal.getContractDescription());
         assertEquals("Deadline should be updated", newDeadline, govtDeal.getDeadline());
     }
 

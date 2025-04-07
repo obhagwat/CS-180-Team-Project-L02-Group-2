@@ -27,7 +27,8 @@ public class User implements Serializable, UserInterface {
     protected double balance;    // When a payment is made, all we have to do is subtract or add
 //example
 
-    public User(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber) {
+    public User(String username, String password, double rating, String countryOfOrigin,
+                String address, String email, String phoneNumber) {
         this.username = username;
         this.password = password;
         this.rating = 0;
@@ -134,17 +135,18 @@ public class User implements Serializable, UserInterface {
      * @param text      The message being sent
      */
     public void sendMessage(Chat chat, String text) {
-        chat.addMessage(new Message(new Date(), text, this, chat.getUser1().equals(this) ? chat.getUser2() : chat.getUser1()));
+        chat.addMessage(new Message(new Date(), text, this,
+                chat.getUser1().equals(this) ? chat.getUser2() : chat.getUser1()));
     }
 
     /**
      * Adds a review for another user and calculates their new average rating
      *
      * @param user      The other user which is being rated
-     * @param rating    The rating being given to the other user
+     * @param ratingNum    The rating being given to the other user
      */
-    public void postReview(User user, int rating) {
-        user.calcRating(rating);
+    public void postReview(User user, int ratingNum) {
+        user.calcRating(ratingNum);
     }
 
     /**
@@ -167,7 +169,8 @@ public class User implements Serializable, UserInterface {
 
     @Override
     public String toString() {
-        return String.format("User [Username: %s, Password: %s, Rating: %d, Number of Ratings: %d, Country: %s, Address: %s, Email: %s, Phone Number: %s, Balance: $%.2f]",
+        return String.format("User [Username: %s, Password: %s, Rating: %d, Number of Ratings: %d, Country: %s, " +
+                        "Address: %s, Email: %s, Phone Number: %s, Balance: $%.2f]",
                 username, password, intRating, numOfRatings, countryOfOrigin, address, email, phoneNumber, balance);
     }
 

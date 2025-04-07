@@ -92,7 +92,7 @@ public class Database implements DatabaseInterface {
      *
      * @param filename the name of the file to store serialized data
      */
-    public void SetDataFileToStore(String filename) {
+    public void setDataFileToStore(String filename) {
         contractorDataFile = DIRECTORY + filename;
         solicitorDataFile = DIRECTORY + filename;
         chatDataFile = DIRECTORY + filename;
@@ -344,7 +344,8 @@ public class Database implements DatabaseInterface {
     }
 
     /**
-     * Serializes the contractor data, solicitor data and chat data to the specified files. Each user and chat is written
+     * Serializes the contractor data, solicitor data and chat data to the specified files.
+     * Each user and chat is written
      * as an object to the file, allowing data persistence.
      */
     @Override
@@ -368,7 +369,8 @@ public class Database implements DatabaseInterface {
     }
 
     /**
-     * Loads contractor, solicitor and chat data from the file into the contractor, solicitor and chats list respectively.
+     * Loads contractor, solicitor and chat data from the file into the contractor,
+     * solicitor and chats list respectively.
      * Each user and chat object
      * is read and added to its list, allowing for persistence between sessions.
      */
@@ -386,6 +388,7 @@ public class Database implements DatabaseInterface {
                     loadedContractors.add((Contractor) oisContractor.readObject());
                 }
             } catch (EOFException e) {
+                e.printStackTrace();
             }
 
             try {
@@ -393,6 +396,7 @@ public class Database implements DatabaseInterface {
                     loadedSolicitors.add((Solicitor) oisSolicitor.readObject());
                 }
             } catch (EOFException e) {
+                e.printStackTrace();
             }
 
             try {
@@ -400,6 +404,7 @@ public class Database implements DatabaseInterface {
                     loadedChats.add((Chat) oisChat.readObject());
                 }
             } catch (EOFException e) {
+                e.printStackTrace();
             }
 
             this.contractors = loadedContractors;

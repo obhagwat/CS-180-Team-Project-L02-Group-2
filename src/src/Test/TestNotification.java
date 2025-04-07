@@ -25,7 +25,8 @@ public class TestNotification {
 
     @Before
     public void setUp() {
-        testGovUser = new User("govUser22", "securePass1", 0.0, "USA", "456 Contract Ave", "govuser@agency.org", "5559876543");
+        testGovUser = new User("govUser22", "securePass1", 0.0, "USA",
+                "456 Contract Ave", "govuser@agency.org", "5559876543");
         bidNotification = new Notification("New bid submitted on your contract.", testGovUser);
     }
 
@@ -48,7 +49,8 @@ public class TestNotification {
 
     @Test
     public void gettersTest() {
-        assertEquals("Message should be accessible", "New bid submitted on your contract.", bidNotification.getMessage());
+        assertEquals("Message should be accessible", "New bid submitted on your contract.",
+                bidNotification.getMessage());
         assertNotNull("Timestamp should be accessible", bidNotification.getTimestamp());
         assertEquals("Recipient should be accessible", testGovUser, bidNotification.getRecipient());
     }

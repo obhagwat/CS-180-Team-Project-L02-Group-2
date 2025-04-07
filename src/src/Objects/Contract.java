@@ -24,7 +24,8 @@ public class Contract implements Serializable, ContractInterface {
     private ArrayList<Bid> bids;    // The list of bids on this contract
     private Bid winningBid;
 
-    public Contract(Solicitor solicitor, String contractDescription, boolean contractStatus, LocalDateTime deadline, ArrayList<Bid> bids) {
+    public Contract(Solicitor solicitor, String contractDescription,
+                    boolean contractStatus, LocalDateTime deadline, ArrayList<Bid> bids) {
         this.solicitor = solicitor;
         this.contractDescription = contractDescription;
         this.contractStatus = true; // constructor should initialize contract status to be open

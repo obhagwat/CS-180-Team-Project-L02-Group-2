@@ -24,7 +24,8 @@ public class Solicitor extends User implements Serializable, SolicitorInterface 
     private ArrayList<Contract> contractsSolicted;  //All contracts this agency has posted
     private ArrayList<Contract> openContracts;  // Contracts which are still "up for grabs"
 
-    public Solicitor(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber,
+    public Solicitor(String username, String password, double rating, String countryOfOrigin,
+                     String address, String email, String phoneNumber,
                      String solicitorName, String agencyLevel, String branch, String subBranch, double money) {
         super(username, password, rating, countryOfOrigin, address, email, phoneNumber);
         this.solicitorName = solicitorName;
@@ -71,8 +72,8 @@ public class Solicitor extends User implements Serializable, SolicitorInterface 
         return contractsSolicted;
     }
 
-    public void setContractsSolicited(ArrayList<Contract> contractsSolicted) {
-        this.contractsSolicted = contractsSolicted;
+    public void setContractsSolicited(ArrayList<Contract> contractsSolicited) {
+        this.contractsSolicted = contractsSolicited;
     }
 
     public ArrayList<Contract> getOpenContracts() {
@@ -112,7 +113,8 @@ public class Solicitor extends User implements Serializable, SolicitorInterface 
 
     @Override
     public String toString() {
-        return String.format("Solicitor [Name: %s, Agency Level: %s, Branch: %s, Sub-Branch: %s, Open Contracts: %d, Total Contracts: %d]",
+        return String.format("Solicitor [Name: %s, Agency Level: %s, Branch: %s, Sub-Branch: %s, " +
+                        "Open Contracts: %d, Total Contracts: %d]",
                 solicitorName, agencyLevel, branch, subBranch, openContracts.size(), contractsSolicted.size());
     }
 

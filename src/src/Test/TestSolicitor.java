@@ -64,7 +64,8 @@ public class TestSolicitor {
                 1, testUser.getOpenContracts().size());
 
         Contract postedContract = testUser.getContractsSolicited().getFirst();
-        assertEquals("Contract description should match", "Fixing trails in local park", postedContract.getContractDescription());
+        assertEquals("Contract description should match", "Fixing trails in local park",
+                postedContract.getContractDescription());
         assertEquals("Contract deadline should match", contractDue, postedContract.getDeadline());
         assertTrue("Contract should be open", postedContract.isContractStatus());
     }

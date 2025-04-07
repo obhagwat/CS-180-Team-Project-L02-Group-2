@@ -10,10 +10,10 @@ import java.io.Serializable;
  * Contractor Class: Contains all methods and fields pertaining to Contractor objects, which are entities
  * offering bids to complete contracts
  *
- *  @author Ana Farmus, Lab sec 02
- *  @author Saahil Kajarekar, Lab sec 2
- *  @author Sarah Stone
- *  @version Apr 6, 2025
+ * @author Ana Farmus, Lab sec 02
+ * @author Saahil Kajarekar, Lab sec 2
+ * @author Sarah Stone
+ * @version Apr 6, 2025
  */
 public class Contractor extends User implements Serializable, ContractorInterface {
     private String contractorName;
@@ -22,10 +22,12 @@ public class Contractor extends User implements Serializable, ContractorInterfac
     private int yearFounded;
     private Industry industry;
     private ArrayList<Contract> contractsWon;   //Contracts for which they were selected
-    private ArrayList<Bid> allBids;//These are only visible to the contractor
+    private ArrayList<Bid> allBids; //These are only visible to the contractor
 
-    public Contractor(String username, String password, double rating, String countryOfOrigin, String address, String email, String phoneNumber,
-                      String contractorName, String companyType, String numEmployees, int yearFounded, Industry industry, String country) {
+    public Contractor(String username, String password,
+                      double rating, String countryOfOrigin, String address, String email,
+                      String phoneNumber, String contractorName, String companyType,
+                      String numEmployees, int yearFounded, Industry industry, String country) {
         super(username, password, rating, countryOfOrigin, address, email, phoneNumber);
         this.contractorName = contractorName;
         this.companyType = companyType;
@@ -91,6 +93,7 @@ public class Contractor extends User implements Serializable, ContractorInterfac
     public void setAllBids(ArrayList<Bid> allBids) {
         this.allBids = allBids;
     }
+
     /**
      * recieves a payment from Solictor according to a bid using the super user methhods
      */
@@ -101,14 +104,17 @@ public class Contractor extends User implements Serializable, ContractorInterfac
 
     /**
      * adds a new big to all bids for a contract
-     * @param contract to be bid on
+     *
+     * @param contract  to be bid on
      * @param bidAmount the requested pay for the job
      */
     public void replyWithBid(Contract contract, double bidAmount) {
-        allBids.add(new Bid(this,contract,bidAmount,"Under Consideration"));
+        allBids.add(new Bid(this, contract, bidAmount, "Under Consideration"));
     }
+
     /**
-     *adds a contract to the contracts won arrayList
+     * adds a contract to the contracts won arrayList
+     *
      * @param contract the contract to be added
      */
     public void addToContractsWon(Contract contract) {
@@ -116,14 +122,15 @@ public class Contractor extends User implements Serializable, ContractorInterfac
     }
 
     /**
-     *  returns a list of all bids under consideration
+     * returns a list of all bids under consideration
+     *
      * @return an arraylist of all bids under consideration
      */
-    public ArrayList<Bid> bidsUnderReview(){
-       ArrayList<Bid> bidsUnderReview = new ArrayList<>();
-        for(Bid bid : allBids){
+    public ArrayList<Bid> bidsUnderReview() {
+        ArrayList<Bid> bidsUnderReview = new ArrayList<>();
+        for (Bid bid : allBids) {
             String status = bid.getStatus();
-            if(status.equals("Under Consideration")){
+            if (status.equals("Under Consideration")) {
                 bidsUnderReview.add(bid);
             }
         }

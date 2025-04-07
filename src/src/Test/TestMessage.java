@@ -30,7 +30,8 @@ public class TestMessage {
     @Before
     public void setUp() {
         agencyRep = new User("agencyRep", "safePass123", 0.0, "USA", "101 Gov Lane", "rep@govagency.gov", "9998887777");
-        contractor = new User("contractorX", "contract123", 0.0, "USA", "202 Contractor Blvd", "x@firm.com", "8887776666");
+        contractor = new User("contractorX", "contract123", 0.0, "USA",
+                "202 Contractor Blvd", "x@firm.com", "8887776666");
         messageTimestamp = new Date();
         bidMessage = new Message(messageTimestamp, "Proposal submitted for review.", agencyRep, contractor);
         readableDate = new SimpleDateFormat("MM/dd/yy HH:mm");
@@ -50,7 +51,8 @@ public class TestMessage {
     public void constructorWithBidTest() {
         Contract testContract = new Contract(null, "Secure Facility Upgrade", true, null, new ArrayList<>());
         Bid proposal = new Bid(null, testContract, 250000.0, "Submitted");
-        Message messageWithProposal = new Message(messageTimestamp, "Proposal attached for consideration.", agencyRep, contractor, proposal);
+        Message messageWithProposal = new Message(messageTimestamp, "Proposal attached for consideration.",
+                agencyRep, contractor, proposal);
 
         assertEquals("Bid should be set", proposal, messageWithProposal.getBid());
     }

@@ -52,7 +52,8 @@ public class TestContractor {
         contractor.setYearFounded(2005);
         contractor.setIndustry(Industry.IT_SERVICES);
 
-        assertEquals("Contractor name should be updated", "Greenfield Construction Enterprises", contractor.getContractorName());
+        assertEquals("Contractor name should be updated", "Greenfield Construction Enterprises",
+                contractor.getContractorName());
         assertEquals("Company type should be updated", "Corporation", contractor.getCompanyType());
         assertEquals("Number of employees should be updated", "120", contractor.getNumEmployees());
         assertEquals("Year founded should be updated", 2005, contractor.getYearFounded());

@@ -35,7 +35,7 @@ public class TestDatabase {
     @Before
     public void setup() throws Exception {
         db = Database.getInstance();
-        db.SetDataFileToStore(tempFolder.newFile("testDB.dat").getPath());
+        db.setDataFileToStore(tempFolder.newFile("testDB.dat").getPath());
         db.clearDatabase();
 
         legalEagle = new Solicitor(

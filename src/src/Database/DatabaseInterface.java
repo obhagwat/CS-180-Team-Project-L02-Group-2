@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface DatabaseInterface {
     void initializeDatabase();
     void closeDatabase();
-    void SetDataFileToStore(String filename);
+    void setDataFileToStore(String filename);
     void addContractor(Contractor newContractor);
     void addSolicitor(Solicitor newSolicitor);
     Contractor getContractor(String username);
