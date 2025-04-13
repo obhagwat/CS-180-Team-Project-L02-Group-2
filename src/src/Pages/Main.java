@@ -5,7 +5,13 @@ import Database.*;
 import NetworkIO.*;
 import Exceptions.*;
 
-
+/**
+ * -serves as the entry point for starting the server-client application.
+ * -initializes the database and sets up the network by starting the server and client components.
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version April 20, 2024
+ */
 public class Main {
     public static void main(String[] args) {
         Database database = Database.getInstance();
