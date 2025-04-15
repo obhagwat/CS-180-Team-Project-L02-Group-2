@@ -32,7 +32,7 @@ public class Main {
 
         System.out.println("SETTING UP NETWORK...");
         //Server.startServer();
-        //Client.startClient();
+        Client.startClient();
         System.out.println("NETWORK SETUP COMPLETE");
     }
 }
