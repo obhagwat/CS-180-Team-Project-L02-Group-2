@@ -11,4 +11,5 @@ public enum Industry {
     HEALTHCARE,
     EDUCATION,
     DEFENSE,
+    GOVERNMENT,
 }

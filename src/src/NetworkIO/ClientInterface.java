@@ -16,7 +16,7 @@ public interface ClientInterface {
 
     String getPassword();
 
-    String getIndustry();
+    Industry getIndustry();
 
     Contractor getContractor();
 
@@ -25,8 +25,6 @@ public interface ClientInterface {
     void setContractor(Contractor contractor);
 
     void setSolicitor(Solicitor solicitor);
-
-    void sendToUser(User user);
 
     void sendToServer(String message);
 

@@ -14,10 +14,22 @@ import Exceptions.*;
  */
 public class Main {
     public static void main(String[] args) {
+
         Database database = Database.getInstance();
         System.out.println("INITIALIZING DATABASE...");
         database.initializeDatabase();
         System.out.println("DATABASE INITIALIZED");
+
+        System.out.println("CURRENT SOLICITORS: \n");
+        for (Solicitor solicitor : database.getSolicitors()) {
+            System.out.println(solicitor);
+        }
+
+        System.out.println("CURRENT CONTRACTORS: \n");
+        for (Contractor contractor : database.getContractors()) {
+            System.out.println(contractor);
+        }
+
         System.out.println("SETTING UP NETWORK...");
         //Server.startServer();
         //Client.startClient();
