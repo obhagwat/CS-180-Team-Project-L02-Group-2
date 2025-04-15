@@ -14,7 +14,9 @@ public interface DatabaseInterface {
     void addContractor(Contractor newContractor);
     void addSolicitor(Solicitor newSolicitor);
     Contractor getContractor(String username);
+    ArrayList<Contractor> getContractors();
     Solicitor getSolicitor(String username);
+    ArrayList<Solicitor> getSolicitors();
     void deleteContractor(String username);
     void deleteSolicitor(String username);
     boolean contractorExists(String username);

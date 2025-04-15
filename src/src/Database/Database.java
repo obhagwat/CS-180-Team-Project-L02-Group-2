@@ -141,6 +141,16 @@ public class Database implements DatabaseInterface {
     }
 
     /**
+     * Retrieves list of all contractors from database.
+     *
+     * @return Contractor arraylist
+     */
+    @Override
+    public ArrayList<Contractor> getContractors() {
+        return new ArrayList<>(contractors);
+    }
+
+    /**
      * Retrieves a solicitor with a specified username from the database.
      *
      * @param username the username of the solicitor to retrieve
@@ -154,6 +164,16 @@ public class Database implements DatabaseInterface {
             }
         }
         return null;
+    }
+
+    /**
+     * Retrieves list of all solicitors from database.
+     *
+     * @return Solicitor arraylist
+     */
+    @Override
+    public ArrayList<Solicitor> getSolicitors() {
+        return new ArrayList<>(solicitors);
     }
 
     /**
