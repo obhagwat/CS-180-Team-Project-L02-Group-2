@@ -31,7 +31,7 @@ public class User implements Serializable, UserInterface {
                 String address, String email, String phoneNumber) {
         this.username = username;
         this.password = password;
-        this.rating = 0;
+        this.rating = rating;
         this.intRating = 0;
         this.numOfRatings = 0;
         this.countryOfOrigin = countryOfOrigin;
