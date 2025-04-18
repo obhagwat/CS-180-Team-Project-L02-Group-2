@@ -2,16 +2,23 @@ package NetworkIO;
 
 import Objects.*;
 import Exceptions.*;
+
+import java.io.IOException;
 import java.util.*;
 /**
  * Server Interface Class: Contains all methods and fields pertaining to server objects
  * Note: Some of these will be one line because they are handled by the database
  * and we just need to propagate it up
  *
- * @author Saahil Kajarekar, Lab sec 02
+ * @author Saahil Kajarekar, Sarah Stone Lab sec 02
  * @version Apr 16, 2025
  */
 public interface ServerInterface{
+
+    /**
+     * called for each new client to read input and call corresponding methods
+     */
+    void handleClient() throws IOException;
 
     /**
      * accepts a message from the Client
@@ -27,16 +34,17 @@ public interface ServerInterface{
 
     /**
      * authenticates a user through their username and password
+     * @return true if the User fits the role, username, and passwords else false
      * @throws InvalidUserException if the user is not authenticated
      */
-    boolean authenticateUser();
+    boolean authenticateUser(String role, String username, String password) throws InvalidUserException;
 
     /**
      * Sends a message from one client to another
      * @param message the message to be sent
      * @return true if the message successfully sent, else false
      */
-    boolean deliverBetweenClients(String message);
+    boolean deliverBetweenClients(String message, Server receiver);
 
     //Database based
     /**
@@ -53,22 +61,21 @@ public interface ServerInterface{
      */
     boolean deleteUser(User user);
 
-    //GUI based
+    //GUI based, commented out for now
     /**
      * displays all contracts for the industry of the contractor
      */
-    void displayPossibleContracts();
+    //void displayPossibleContracts();
     /**
      * display contractors on the GUI of our choosing
      */
-    void displayContractors();
+    //void displayContractors();
     /**
      * Allows the client to modify their profile including username and password
      */
-    void editProfile();
+    //void editProfile();
     /**
      *
      */
-
 
 }

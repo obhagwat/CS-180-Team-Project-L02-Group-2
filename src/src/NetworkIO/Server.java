@@ -13,7 +13,7 @@ import Exceptions.*;
  *  @author Ana Farmus, Saahil Kajarekar, Sarah Stone Lab sec 02
  *  @version Apr 20, 2025
  */
-public class Server implements Runnable {
+public class Server implements Runnable, ServerInterface {
     private static final int PORT = 888;
     private static final ArrayList<Server> CLIENTSOCKETS = new ArrayList<>();
     private static ServerSocket serverSocket;
@@ -27,6 +27,9 @@ public class Server implements Runnable {
         this.socket = socket;
     }
 
+    /**
+     * creates server socket and then creates new socket and thread for each client
+     */
     public static void startServer() {
         try {
             serverSocket = new ServerSocket(PORT);
@@ -75,6 +78,9 @@ public class Server implements Runnable {
         }
     }
 
+    /**
+     * called for each new client to read input and call corresponding methods
+     */
     public void handleClient() throws IOException {
         String response;
         while ((response = in.readLine()) != null) {
@@ -85,6 +91,10 @@ public class Server implements Runnable {
 
     }
 
+    /**
+     * sends a string to the Client
+     * @param message the message to be sent
+     */
     public void sendToClient(String message) {
             if (socket != null && !socket.isClosed()) {
                 out.println(message);
@@ -93,6 +103,10 @@ public class Server implements Runnable {
             }
     }
 
+    /**
+     * accepts a message from the Client
+     * @return the message from the client
+     */
     public String readFromClient() {
         String response = "";
         try {
