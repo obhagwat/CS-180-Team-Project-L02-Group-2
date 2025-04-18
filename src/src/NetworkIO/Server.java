@@ -46,12 +46,12 @@ public class Server implements Runnable {
             if (socket != null && !socket.isClosed()) {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
-                readFromClient();
+                handleClient();
             } else {
                 System.err.println("[SERVER] Unable to read: Socket is closed");
             }
         } catch (IOException e) {
-            System.err.println("[SERVER] Error: Unable to read from server");
+            System.err.println("[SERVER] Error: Unable to read from client");
         } finally {
             try {
                 if (in != null) {
@@ -69,13 +69,35 @@ public class Server implements Runnable {
         }
     }
 
-    public synchronized void readFromClient() throws IOException {
+    public void handleClient() throws IOException {
         String response;
         while ((response = in.readLine()) != null) {
             System.out.println("[SERVER] Client Response: " + response);
             //echoing for now but will add logic for what to do for each possible response
             out.println(response);
         }
+    }
+
+    public void sendToClient(String message) {
+            if (socket != null && !socket.isClosed()) {
+                out.println(message);
+            } else {
+                System.err.println("[SERVER] Unable to write: Socket is closed.");
+            }
+    }
+
+    public String readFromClient() {
+        String response = "";
+        try {
+            if (socket != null && !socket.isClosed()) {
+                response = in.readLine();
+            } else {
+                System.err.println("[SERVER] Unable to read: Socket is closed.");
+            }
+        } catch (IOException e) {
+            System.err.println("[SERVER] Error: unable to read from client");
+        }
+        return response;
     }
 
 }
