@@ -5,7 +5,8 @@ import Database.*;
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import Exceptions.*;
 
 /**
  * Server Class: Contains all methods and fields pertaining to server objects
@@ -14,11 +15,13 @@ import java.util.Scanner;
  */
 public class Server implements Runnable {
     private static final int PORT = 888;
+    private static final ArrayList<Server> CLIENTSOCKETS = new ArrayList<>();
     private static ServerSocket serverSocket;
     private BufferedReader in;
     private PrintWriter out;
     private Database DB = Database.getInstance();
     private Socket socket;
+
 
     public Server(Socket socket) {
         this.socket = socket;
@@ -46,6 +49,9 @@ public class Server implements Runnable {
             if (socket != null && !socket.isClosed()) {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
+                synchronized (CLIENTSOCKETS) {
+                    CLIENTSOCKETS.add(this);
+                }
                 handleClient();
             } else {
                 System.err.println("[SERVER] Unable to read: Socket is closed");
@@ -76,6 +82,7 @@ public class Server implements Runnable {
             //echoing for now but will add logic for what to do for each possible response
             out.println(response);
         }
+
     }
 
     public void sendToClient(String message) {
@@ -98,6 +105,77 @@ public class Server implements Runnable {
             System.err.println("[SERVER] Error: unable to read from client");
         }
         return response;
+    }
+
+    /**
+     *
+     * @param user the user to be deleted
+     * @return true if the user was deleted false otherwise
+     */
+    public boolean deleteUser(User user) {
+        if(user instanceof Solicitor) {
+            return DB.deleteSolicitor(user.getUsername());
+        } else if (user instanceof Contractor) {
+            return DB.deleteContractor(user.getUsername());
+        }
+        return false;
+    }
+
+    /**
+     * Adds the user to the list of contractors or solicitors in the database
+     * Note: We will need to prompt to create a user object before this method is called
+     * @param user the user to be added
+     * @return true if the user is successfully added else false
+     */
+    public boolean createUser(User user) {
+        if(user instanceof Solicitor) {
+            return DB.addSolicitor((Solicitor) user);
+        } else if (user instanceof Contractor) {
+            return DB.addContractor((Contractor) user);
+        }
+        return false;
+    }
+
+    /**
+     * authenticates a user through their username and password
+     * @return true if the User fits the role, username, and passwords else false
+     * @throws InvalidUserException if the user is not authenticated
+     */
+    public boolean authenticateUser(String role, String username, String password) throws InvalidUserException {
+        if(username == null || password == null || role == null) {
+            throw new InvalidUserException("A parameter is null");
+        }
+        if(role.equalsIgnoreCase("solicitor")) {
+            Solicitor temp = DB.getSolicitor(username);
+            if(temp.getPassword().equals(password)) {
+                return true;
+            }
+        } else if (role.equalsIgnoreCase("contractor")) {
+            Contractor temp = DB.getContractor(username);
+            if(temp.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Sends a message from one client to another
+     * @param message the message to be sent
+     * @return true if the message successfully sent, else false
+     */
+    public boolean deliverBetweenClients(String message, Server receiver) {
+        synchronized (CLIENTSOCKETS) {
+            if(receiver != null) {
+                for (Server s : CLIENTSOCKETS) {
+                    if (s.equals(receiver)) {
+                        receiver.out.println(message);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 
 }

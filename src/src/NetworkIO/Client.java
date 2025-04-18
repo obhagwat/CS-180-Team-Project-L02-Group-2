@@ -100,7 +100,8 @@ public class Client implements Runnable, ClientInterface {
     }
 
     /**
-     * @return
+     * Returns the industry of the the client
+     * @return the client of the industry
      */
     @Override
     public Industry getIndustry() {

@@ -61,6 +61,11 @@ A Better Way to Contract.
 - Tested: Singleton enforcement, User and chats creation/deletion/editing, and search functionality
 - Relationships: Contains and manages all Users, Contracts, Bids, Chats, and Messages data
 
+### Server
+- Deals with client to client and client to database interactions
+- Tested:
+- Relationships: Allows clients to message each other, and allows the clients to manipulate the data
+
 ### InvalidBidException
 - Thrown when invalid Bid objects are detected
 - Usage: Checks bid-related operations throughout the system

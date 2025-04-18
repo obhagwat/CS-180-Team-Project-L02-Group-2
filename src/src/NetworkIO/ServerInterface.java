@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Server Interface Class: Contains all methods and fields pertaining to server objects
  * Note: Some of these will be one line because they are handled by the database
- * and we just need to propogate it up
+ * and we just need to propagate it up
  *
  * @author Saahil Kajarekar, Lab sec 02
  * @version Apr 16, 2025
@@ -32,24 +32,26 @@ public interface ServerInterface{
     boolean authenticateUser();
 
     /**
-     *Sends a message from one client to another
+     * Sends a message from one client to another
      * @param message the message to be sent
+     * @return true if the message successfully sent, else false
      */
-    void delieverToClient(String message);
+    boolean deliverBetweenClients(String message);
+
     //Database based
     /**
-     * creates a user that will be stored in the database
-     * @return true if the user was sucessfully created else false
-     * @throws InvalidUserException  if the use object is invalid
+     * Adds the user to the list of contractors or solicitors in the database
+     * Note: We will need to prompt to create a user object before this method is called
+     * @param user the user to be added
+     * @return true if the user is successfully added else false
      */
-    boolean createUser();
+    boolean createUser(User user);
     /**
      * deletes a user from the database
-     * @return true if the user was deleted sucessfully else false
-     * @throws InvalidUserException if the user object is invalid
-     * @throws InvalidChatException if the chat involves a deleted user
+     * @return true if the user was deleted successfully else false
+     *
      */
-    boolean deleteUser();
+    boolean deleteUser(User user);
 
     //GUI based
     /**

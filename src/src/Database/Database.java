@@ -104,11 +104,13 @@ public class Database implements DatabaseInterface {
      * @param newContractor the Contractor object to add to the database
      */
     @Override
-    public synchronized void addContractor(Contractor newContractor) {
+    public synchronized boolean addContractor(Contractor newContractor) {
         if (!contractorExists(newContractor.getUsername())) {
             contractors.add(newContractor);
             serializeDatabase();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -117,11 +119,13 @@ public class Database implements DatabaseInterface {
      * @param newSolicitor the solicitor object to add to the database
      */
     @Override
-    public synchronized void addSolicitor(Solicitor newSolicitor) {
+    public synchronized boolean addSolicitor(Solicitor newSolicitor) {
         if (!solicitorExists(newSolicitor.getUsername())) {
             solicitors.add(newSolicitor);
             serializeDatabase();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -183,13 +187,16 @@ public class Database implements DatabaseInterface {
      * @param username the username of the contractor to delete
      */
     @Override
-    public synchronized void deleteContractor(String username) {
+    public synchronized boolean deleteContractor(String username) {
+        boolean success = false;
         for (Contractor contractor : contractors) {
             if (contractor.getUsername().equals(username)) {
                 contractors.remove(contractor);
+                success = true;
             }
         }
         serializeDatabase();
+        return success;
     }
 
     /**
@@ -199,13 +206,16 @@ public class Database implements DatabaseInterface {
      * @param username the username of the solicitor to delete
      */
     @Override
-    public synchronized void deleteSolicitor(String username) {
+    public synchronized boolean deleteSolicitor(String username) {
+        boolean success = false;
         for (Solicitor solicitor : solicitors) {
             if (solicitor.getUsername().equals(username)) {
                 solicitors.remove(solicitor);
+                success = true;
             }
         }
         serializeDatabase();
+        return success;
     }
 
     /**

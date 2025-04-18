@@ -11,14 +11,14 @@ public interface DatabaseInterface {
     void initializeDatabase();
     void closeDatabase();
     void setDataFileToStore(String filename);
-    void addContractor(Contractor newContractor);
-    void addSolicitor(Solicitor newSolicitor);
+    boolean addContractor(Contractor newContractor);
+    boolean addSolicitor(Solicitor newSolicitor);
     Contractor getContractor(String username);
     ArrayList<Contractor> getContractors();
     Solicitor getSolicitor(String username);
     ArrayList<Solicitor> getSolicitors();
-    void deleteContractor(String username);
-    void deleteSolicitor(String username);
+    boolean deleteContractor(String username);
+    boolean deleteSolicitor(String username);
     boolean contractorExists(String username);
     boolean solicitorExists(String username);
     ArrayList<Contractor> searchContractor(String search);
