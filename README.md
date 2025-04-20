@@ -63,8 +63,13 @@ A Better Way to Contract.
 
 ### Server
 - Deals with client to client and client to database interactions
-- Tested:
-- Relationships: Allows clients to message each other, and allows the clients to manipulate the data
+- Tested: Not Required
+- Relationships: Communicates with many Client instances, and interacts with Database
+
+### Client
+- Manages communication with server, and sending/receiving messages
+- Tested: Not Required
+- Relationships: Communicates with Server, and interacts with Solicitor, Contractor, and Database classes
 
 ### InvalidBidException
 - Thrown when invalid Bid objects are detected
