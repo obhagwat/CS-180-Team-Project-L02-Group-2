@@ -2,6 +2,7 @@ package NetworkIO;
 
 import Objects.*;
 import Database.*;
+
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ import Exceptions.*;
 
 /**
  * Server Class: Contains all methods and fields pertaining to server objects
- *  @author Ana Farmus, Saahil Kajarekar, Sarah Stone Lab sec 02
- *  @version Apr 20, 2025
+ *
+ * @author Ana Farmus, Saahil Kajarekar, Sarah Stone Lab sec 02
+ * @version Apr 20, 2025
  */
 public class Server implements Runnable, ServerInterface {
     private static final int PORT = 888;
@@ -19,7 +21,7 @@ public class Server implements Runnable, ServerInterface {
     private static ServerSocket serverSocket;
     private BufferedReader in;
     private PrintWriter out;
-    private Database DB = Database.getInstance();
+    private Database dB = Database.getInstance();
     private Socket socket;
 
 
@@ -93,18 +95,20 @@ public class Server implements Runnable, ServerInterface {
 
     /**
      * sends a string to the Client
+     *
      * @param message the message to be sent
      */
     public void sendToClient(String message) {
-            if (socket != null && !socket.isClosed()) {
-                out.println(message);
-            } else {
-                System.err.println("[SERVER] Unable to write: Socket is closed.");
-            }
+        if (socket != null && !socket.isClosed()) {
+            out.println(message);
+        } else {
+            System.err.println("[SERVER] Unable to write: Socket is closed.");
+        }
     }
 
     /**
      * accepts a message from the Client
+     *
      * @return the message from the client
      */
     public String readFromClient() {
@@ -122,15 +126,14 @@ public class Server implements Runnable, ServerInterface {
     }
 
     /**
-     *
      * @param user the user to be deleted
      * @return true if the user was deleted false otherwise
      */
     public boolean deleteUser(User user) {
-        if(user instanceof Solicitor) {
-            return DB.deleteSolicitor(user.getUsername());
+        if (user instanceof Solicitor) {
+            return dB.deleteSolicitor(user.getUsername());
         } else if (user instanceof Contractor) {
-            return DB.deleteContractor(user.getUsername());
+            return dB.deleteContractor(user.getUsername());
         }
         return false;
     }
@@ -138,35 +141,37 @@ public class Server implements Runnable, ServerInterface {
     /**
      * Adds the user to the list of contractors or solicitors in the database
      * Note: We will need to prompt to create a user object before this method is called
+     *
      * @param user the user to be added
      * @return true if the user is successfully added else false
      */
     public boolean createUser(User user) {
-        if(user instanceof Solicitor) {
-            return DB.addSolicitor((Solicitor) user);
+        if (user instanceof Solicitor) {
+            return dB.addSolicitor((Solicitor) user);
         } else if (user instanceof Contractor) {
-            return DB.addContractor((Contractor) user);
+            return dB.addContractor((Contractor) user);
         }
         return false;
     }
 
     /**
      * authenticates a user through their username and password
+     *
      * @return true if the User fits the role, username, and passwords else false
      * @throws InvalidUserException if the user is not authenticated
      */
     public boolean authenticateUser(String role, String username, String password) throws InvalidUserException {
-        if(username == null || password == null || role == null) {
+        if (username == null || password == null || role == null) {
             throw new InvalidUserException("A parameter is null");
         }
-        if(role.equalsIgnoreCase("solicitor")) {
-            Solicitor temp = DB.getSolicitor(username);
-            if(temp.getPassword().equals(password)) {
+        if (role.equalsIgnoreCase("solicitor")) {
+            Solicitor temp = dB.getSolicitor(username);
+            if (temp.getPassword().equals(password)) {
                 return true;
             }
         } else if (role.equalsIgnoreCase("contractor")) {
-            Contractor temp = DB.getContractor(username);
-            if(temp.getPassword().equals(password)) {
+            Contractor temp = dB.getContractor(username);
+            if (temp.getPassword().equals(password)) {
                 return true;
             }
         }
@@ -175,12 +180,13 @@ public class Server implements Runnable, ServerInterface {
 
     /**
      * Sends a message from one client to another
+     *
      * @param message the message to be sent
      * @return true if the message successfully sent, else false
      */
     public boolean deliverBetweenClients(String message, Server receiver) {
         synchronized (CLIENTSOCKETS) {
-            if(receiver != null) {
+            if (receiver != null) {
                 for (Server s : CLIENTSOCKETS) {
                     if (s.equals(receiver)) {
                         receiver.out.println(message);

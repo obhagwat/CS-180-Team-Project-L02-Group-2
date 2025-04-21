@@ -13,7 +13,7 @@ import java.util.*;
  * @author Saahil Kajarekar, Sarah Stone Lab sec 02
  * @version Apr 16, 2025
  */
-public interface ServerInterface{
+public interface ServerInterface {
 
     /**
      * called for each new client to read input and call corresponding methods
