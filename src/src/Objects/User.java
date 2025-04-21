@@ -143,10 +143,10 @@ public class User implements Serializable, UserInterface {
      * Adds a review for another user and calculates their new average rating
      *
      * @param user      The other user which is being rated
-     * @param rating    The rating being given to the other user
+     * @param userRating    The rating being given to the other user
      */
-    public void postReview(User user, int rating) {
-        user.calcRating(rating);
+    public void postReview(User user, int userRating) {
+        user.calcRating(userRating);
     }
 
     /**
