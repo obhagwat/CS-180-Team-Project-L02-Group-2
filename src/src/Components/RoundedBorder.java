@@ -3,6 +3,12 @@ package Components;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * rounded border: has rounded border stuff.
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version May 4, 2025
+ */
 public class RoundedBorder implements Border {
     private final int radius;
     private final Color borderColor;

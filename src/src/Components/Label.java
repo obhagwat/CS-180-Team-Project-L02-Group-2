@@ -4,7 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ghefjqdwkqsliqdheuf2owj12oeh3d2ej
+ * Label: basic tetx label class.
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version May 4, 2025
  */
 public class Label extends JLabel {
     public Label(String text, int fontSize, int boldOrNot) {

@@ -6,6 +6,12 @@ import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+/**
+ * text field: basic text field class.
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version May 4, 2025
+ */
 public class TextField extends JTextField {
     private String placeholder;
 

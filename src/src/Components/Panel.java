@@ -4,6 +4,12 @@ import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import java.awt.LayoutManager;
 
+/**
+ * Panel: basic panel class.
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version May 4, 2025
+ */
 public class Panel extends JPanel {
     public Panel() {
         initializeStyle();

@@ -4,6 +4,12 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * Button: basic button class.
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version May 4, 2025
+ */
 public class Button extends JButton {
     private Color defaultColor = Constants.BREEZY_BLUE;
 

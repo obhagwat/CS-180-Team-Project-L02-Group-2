@@ -6,6 +6,12 @@ import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+/**
+ * Password: basic password field class.
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version May 4, 2025
+ */
 public class PasswordField extends JPasswordField {
     private String placeholder;
 
