@@ -17,14 +17,17 @@ public class Constants {
     public static final Color DUST_BLUE = Color.decode("#9CADD8");
     public static final Color BREEZY_BLUE = Color.decode("#7793C2");
     public static final Color PANES_GREY = Color.decode("#5A6484");
+    public static final Color GREY = Color.decode("#a2a1a0");
+    public static final Color LIGHT_GREY = Color.decode("#E2E1DF");
+    public static final Color PRIMARY_WHITE = Color.decode("#F0F0F0");
 
     //Window dimensions
     public static final int WINDOW_WIDTH = 1200;
     public static final int WINDOW_HEIGHT = 800;
 
     public static final String FONT_NAME = "Verdana";
-    public static final int FONT_SIZE = 15;
-    public static final Font FONT_STYLE = new Font("Verdana", Font.PLAIN, 15);
+    public static final int LEFT_PADDING = 15;
+    public static final Font TEXT_FONT = new Font("Verdana", Font.PLAIN, 15);
 
     //Edge radius for rounded corners + button sizes
     public static final int EDGE_RADIUS = 10;
