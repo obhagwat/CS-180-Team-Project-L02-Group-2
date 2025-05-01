@@ -22,8 +22,8 @@ public class Constants {
     public static final Color PRIMARY_WHITE = Color.decode("#F0F0F0");
 
     //Window dimensions
-    public static final int WINDOW_WIDTH = 1200;
-    public static final int WINDOW_HEIGHT = 800;
+    public static final int WINDOW_WIDTH = 1000;
+    public static final int WINDOW_HEIGHT = 700;
 
     public static final String FONT_NAME = "Verdana";
     public static final int LEFT_PADDING = 15;
