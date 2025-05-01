@@ -39,7 +39,7 @@ public class LandingPage extends Page {
         tagline = new Label("The better way to contract", 14, 2);
 
         loginButton = new Button("login", () -> window.switchPage(new LoginPage(client)), Constants.SIZE_400_40);
-        createAccountButton = new Button("Create Account", () -> window.switchPage(new RegisterPage(client)), Constants.SIZE_400_40, true);
+//        createAccountButton = new Button("Create Account", () -> window.switchPage(new RegisterPage(client)), Constants.SIZE_400_40, true);
 
         addComponents();
     }

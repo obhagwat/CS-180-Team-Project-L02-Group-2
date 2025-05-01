@@ -90,12 +90,12 @@ public class Database implements DatabaseInterface {
     /**
      * Sets the file path for storing serialized user data.
      *
-     * @param filename the name of the file to store serialized data
+     * @param baseName the name of the file to store serialized data
      */
-    public void setDataFileToStore(String filename) {
-        contractorDataFile = DIRECTORY + filename;
-        solicitorDataFile = DIRECTORY + filename;
-        chatDataFile = DIRECTORY + filename;
+    public void setDataFileToStore(String baseName) {
+        contractorDataFile = DIRECTORY + baseName + ".contractorData.dat";
+        solicitorDataFile = DIRECTORY + baseName + ".solicitorData.dat";
+        chatDataFile = DIRECTORY + baseName + ".chatData.dat";
     }
 
     /**
@@ -417,24 +417,21 @@ public class Database implements DatabaseInterface {
                 while (true) {
                     loadedContractors.add((Contractor) oisContractor.readObject());
                 }
-            } catch (EOFException e) {
-                e.printStackTrace();
+            } catch (EOFException ignored ) {
             }
 
             try {
                 while (true) {
                     loadedSolicitors.add((Solicitor) oisSolicitor.readObject());
                 }
-            } catch (EOFException e) {
-                e.printStackTrace();
+            } catch (EOFException ignored) {
             }
 
             try {
                 while (true) {
                     loadedChats.add((Chat) oisChat.readObject());
                 }
-            } catch (EOFException e) {
-                e.printStackTrace();
+            } catch (EOFException ignored) {
             }
 
             this.contractors = loadedContractors;

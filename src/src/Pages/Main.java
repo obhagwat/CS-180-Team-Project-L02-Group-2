@@ -14,9 +14,7 @@ import Exceptions.*;
  */
 public class Main {
     public static void main(String[] args) {
-
         Database database = Database.getInstance();
-        System.out.println("INITIALIZING DATABASE...");
         database.initializeDatabase();
         System.out.println("DATABASE INITIALIZED");
 
@@ -33,6 +31,6 @@ public class Main {
         System.out.println("SETTING UP NETWORK...");
         Server.startServer();
         Client.startClient();
-        System.out.println("NETWORK SETUP COMPLETE");
+        System.out.println("NETWORK SETUP SUCCESSFUL");
     }
 }
