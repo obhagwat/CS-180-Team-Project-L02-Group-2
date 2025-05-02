@@ -1,9 +1,6 @@
 package Pages;
 
-import Components.Button;
-import Components.Constants;
-import Components.Label;
-import Components.Margin;
+import Components.*;
 import NetworkIO.*;
 import javax.swing.*;
 
@@ -34,7 +31,7 @@ public class LandingPage extends Page {
      * for logging in or creating a new account.
      */
     public void initializeContent() {
-        //logoLabel = new Logo(image path, height, width)
+        logoLabel = new Logo("images/whiteLogo.png", 50, 50);
         heading = new Label("GOVBid", 44, 1);
         tagline = new Label("The better way to contract", 14, 2);
 
@@ -51,7 +48,7 @@ public class LandingPage extends Page {
     @Override
     public void addComponents() {
         panel.add(new Margin(150));
-//        panel.add(logoLabel);
+        panel.add(logoLabel);
         panel.add(new Margin(20));
         panel.add(heading);
         panel.add(new Margin(10));
