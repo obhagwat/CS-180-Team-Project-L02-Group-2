@@ -4,9 +4,7 @@ import Components.Button;
 import Components.Constants;
 import Components.BlueLabel;
 import NetworkIO.Client;
-import Objects.Bid;
-import Objects.Contract;
-import Objects.Contractor;
+import Objects.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,13 +53,28 @@ public class ContractorHomePage extends Page {
             showError("No contractor data found.");
         }
 
-        contractList.add(heading);
-        contractList.add(Box.createRigidArea(new Dimension(0, 20)));
-        contractList.add(searchContractsButton);
-        contractList.add(Box.createRigidArea(new Dimension(0, 20)));
-        contractList.add(subheading);
-        contractList.add(contractList);
+        getPanel().add(heading);
+        getPanel().add(Box.createRigidArea(new Dimension(0, 20)));
+        getPanel().add(searchContractsButton);
+        getPanel().add(Box.createRigidArea(new Dimension(0, 20)));
+        getPanel().add(subheading);
+        getPanel().add(contractList);
+    }
 
-        addComponents();
+    public static void main(String[] args) {
+        // Fake client with dummy data
+        Client mockClient = new Client();
+
+        mockClient.setContractor(new Contractor(
+                "greenfieldconstruction", "securePass123", 0.0, "USA", "789 Elm St",
+                "contact@greenfield.com", "5551234567",
+                "Greenfield Construction Inc.", "LLC", "75", 2010,
+                Industry.CONSTRUCTION, "USA"));
+
+        JFrame frame = new JFrame("Contractor Home Page Test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setContentPane(new ContractorHomePage(mockClient).getPanel());
+        frame.setVisible(true);
     }
 }
