@@ -4,10 +4,10 @@ import Components.Button;
 import Components.Label;
 import Components.PasswordField;
 import Components.TextField;
+import Interfaces.PageInterface;
 import NetworkIO.*;
-import Objects.User;
+
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
 /**
  * Login page for logging in

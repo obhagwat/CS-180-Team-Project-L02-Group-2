@@ -2,6 +2,7 @@ package Pages;
 
 import Components.*;
 import Database.*;
+import Interfaces.PageInterface;
 import NetworkIO.*;
 
 import javax.swing.*;

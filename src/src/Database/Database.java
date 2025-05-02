@@ -1,5 +1,6 @@
 package Database;
 
+import Interfaces.DatabaseInterface;
 import Objects.*;
 
 import java.io.*;

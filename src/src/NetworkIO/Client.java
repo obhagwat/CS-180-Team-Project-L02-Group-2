@@ -1,6 +1,7 @@
 package NetworkIO;
 
 import Components.GUIWindow;
+import Interfaces.ClientInterface;
 import Objects.*;
 import Database.*;
 import Pages.LandingPage;
