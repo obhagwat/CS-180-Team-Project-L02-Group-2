@@ -90,12 +90,12 @@ public class Database implements DatabaseInterface {
     /**
      * Sets the file path for storing serialized user data.
      *
-     * @param filename the name of the file to store serialized data
+     * @param baseName the name of the file to store serialized data
      */
-    public void setDataFileToStore(String filename) {
-        contractorDataFile = DIRECTORY + filename;
-        solicitorDataFile = DIRECTORY + filename;
-        chatDataFile = DIRECTORY + filename;
+    public void setDataFileToStore(String baseName) {
+        contractorDataFile = DIRECTORY + baseName + ".contractorData.dat";
+        solicitorDataFile = DIRECTORY + baseName + ".solicitorData.dat";
+        chatDataFile = DIRECTORY + baseName + ".chatData.dat";
     }
 
     /**
@@ -404,46 +404,94 @@ public class Database implements DatabaseInterface {
      * Each user and chat object
      * is read and added to its list, allowing for persistence between sessions.
      */
+//    public void loadDatabase() {
+//        try (ObjectInputStream oisContractor = new ObjectInputStream(new FileInputStream(contractorDataFile));
+//             ObjectInputStream oisSolicitor = new ObjectInputStream(new FileInputStream(solicitorDataFile));
+//             ObjectInputStream oisChat = new ObjectInputStream(new FileInputStream(chatDataFile))) {
+//            ArrayList<Contractor> loadedContractors = new ArrayList<>();
+//            ArrayList<Solicitor> loadedSolicitors = new ArrayList<>();
+//            ArrayList<Chat> loadedChats = new ArrayList<>();
+//
+//            try {
+//                while (true) {
+//                    loadedContractors.add((Contractor) oisContractor.readObject());
+//                }
+//            } catch (EOFException ignored ) {
+//            }
+//
+//            try {
+//                while (true) {
+//                    loadedSolicitors.add((Solicitor) oisSolicitor.readObject());
+//                }
+//            } catch (EOFException ignored) {
+//            }
+//
+//            try {
+//                while (true) {
+//                    loadedChats.add((Chat) oisChat.readObject());
+//                }
+//            } catch (EOFException ignored) {
+//            }
+//
+//            this.contractors = loadedContractors;
+//            this.solicitors = loadedSolicitors;
+//            this.chats = loadedChats;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     @Override
     public void loadDatabase() {
-        try (ObjectInputStream oisContractor = new ObjectInputStream(new FileInputStream(contractorDataFile));
-             ObjectInputStream oisSolicitor = new ObjectInputStream(new FileInputStream(solicitorDataFile));
-             ObjectInputStream oisChat = new ObjectInputStream(new FileInputStream(chatDataFile))) {
-            ArrayList<Contractor> loadedContractors = new ArrayList<>();
-            ArrayList<Solicitor> loadedSolicitors = new ArrayList<>();
-            ArrayList<Chat> loadedChats = new ArrayList<>();
+        ArrayList<Contractor> loadedContractors = new ArrayList<>();
+        ArrayList<Solicitor> loadedSolicitors = new ArrayList<>();
+        ArrayList<Chat> loadedChats = new ArrayList<>();
 
-            try {
-                while (true) {
-                    loadedContractors.add((Contractor) oisContractor.readObject());
-                }
-            } catch (EOFException e) {
-                e.printStackTrace();
+        try {
+            File contractorFile = new File(contractorDataFile);
+            if (isValidDataFile(contractorFile)) {
+                try (ObjectInputStream oisContractor = new ObjectInputStream(new FileInputStream(contractorFile))) {
+                    while (true) {
+                        loadedContractors.add((Contractor) oisContractor.readObject());
+                    }
+                } catch (EOFException ignored) {}
             }
 
-            try {
-                while (true) {
-                    loadedSolicitors.add((Solicitor) oisSolicitor.readObject());
-                }
-            } catch (EOFException e) {
-                e.printStackTrace();
+            File solicitorFile = new File(solicitorDataFile);
+            if (isValidDataFile(solicitorFile)) {
+                try (ObjectInputStream oisSolicitor = new ObjectInputStream(new FileInputStream(solicitorFile))) {
+                    while (true) {
+                        loadedSolicitors.add((Solicitor) oisSolicitor.readObject());
+                    }
+                } catch (EOFException ignored) {}
             }
 
-            try {
-                while (true) {
-                    loadedChats.add((Chat) oisChat.readObject());
-                }
-            } catch (EOFException e) {
-                e.printStackTrace();
+            File chatFile = new File(chatDataFile);
+            if (isValidDataFile(chatFile)) {
+                try (ObjectInputStream oisChat = new ObjectInputStream(new FileInputStream(chatFile))) {
+                    while (true) {
+                        loadedChats.add((Chat) oisChat.readObject());
+                    }
+                } catch (EOFException ignored) {}
             }
 
-            this.contractors = loadedContractors;
-            this.solicitors = loadedSolicitors;
-            this.chats = loadedChats;
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Can also use logging
         }
+
+        this.contractors = loadedContractors;
+        this.solicitors = loadedSolicitors;
+        this.chats = loadedChats;
     }
+
+    /**
+     * checks if the file has data in it and exists
+     * @param file
+     * @return true if valid
+     */
+    private boolean isValidDataFile(File file) {
+        return file.exists() && file.length() > 0;
+    }
+
 
     /**
      * Clears all data from the users list and serializes the empty list to the file.

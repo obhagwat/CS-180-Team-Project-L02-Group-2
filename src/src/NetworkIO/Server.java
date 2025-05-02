@@ -16,7 +16,7 @@ import Exceptions.*;
  * @version Apr 20, 2025
  */
 public class Server implements Runnable, ServerInterface {
-    private static final int PORT = 888;
+    private static final int PORT = 8888;
     private static final ArrayList<Server> CLIENTSOCKETS = new ArrayList<>();
     private static ServerSocket serverSocket;
     private BufferedReader in;

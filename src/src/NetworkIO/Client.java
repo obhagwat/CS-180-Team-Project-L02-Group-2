@@ -1,7 +1,10 @@
 package NetworkIO;
 
+import Components.GUIWindow;
 import Objects.*;
 import Database.*;
+import Pages.LandingPage;
+
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -37,7 +40,7 @@ public class Client implements Runnable, ClientInterface {
      */
     public void run() {
         if (connectToServer()) {
-            System.out.println("BUILD INCOMPLETE -- GUI Infrastructure does not yet exist.");
+            GUIWindow.getInstance().switchPage(new LandingPage(this));
         }
     }
 
