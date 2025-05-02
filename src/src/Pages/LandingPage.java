@@ -51,7 +51,7 @@ public class LandingPage extends Page {
     @Override
     public void addComponents() {
         panel.add(new Margin(150));
-        panel.add(logoLabel);
+//        panel.add(logoLabel);
         panel.add(new Margin(20));
         panel.add(heading);
         panel.add(new Margin(10));
@@ -59,7 +59,7 @@ public class LandingPage extends Page {
         panel.add(new Margin(50));
         panel.add(loginButton);
         panel.add(new Margin(10));
-        panel.add(createAccountButton);
+//        panel.add(createAccountButton);
         panel.revalidate();
     }
 }
