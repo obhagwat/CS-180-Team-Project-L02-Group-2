@@ -1,7 +1,6 @@
 package Components;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -33,10 +32,20 @@ public class Button extends JButton {
         setOpaque(true);
         setBackground(defaultColor);
         setForeground(Constants.WHITE);
-        setBorder(new RoundedBorder(20, defaultColor));
         setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        setBorder(new RoundedBorder(20, defaultColor));
 
         addActionListener(actionListener);
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Ensure the border is painted correctly
+        if (getBorder() != null) {
+            getBorder().paintBorder(this, g, 0, 0, getWidth(), getHeight());
+        }
     }
 }

@@ -41,11 +41,11 @@ public class LoginPage extends Page implements PageInterface {
         titleLabel = new BlueLabel("Login", 40, 0);
         infoLabel = new GreyLabel("Please select your account type", 15, 0);
         solicitorbutton = new Button("Solicitor",
-                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_45);
+                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_300_140);
         contractorButton = new Button("Contractor",
-                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_250);
+                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_300_140);
         goBacktoHomeButton = new TransparentButton("Go back to Home",
-                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_250);
+                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_45);
 
         addComponents();
 
@@ -62,7 +62,7 @@ public class LoginPage extends Page implements PageInterface {
 
         JPanel buttonRow = new JPanel();
         buttonRow.setOpaque(false);
-        buttonRow.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 0));
+        buttonRow.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 0));
 
         buttonRow.add(solicitorbutton);
         buttonRow.add(contractorButton);
@@ -70,10 +70,10 @@ public class LoginPage extends Page implements PageInterface {
         panel.add(buttonRow);
 
 
+        panel.add(new Margin(5));
 
-
-        panel.add(new Margin(10));
         panel.add(goBacktoHomeButton);
+        panel.add(new Margin(150));
         panel.revalidate();
         panel.repaint();
     }
