@@ -36,7 +36,7 @@ public class SolicitorHomePage extends Page {
         heading = new BlueLabel("Solicitor Dashboard", 32, 1);
         subheading = new BlueLabel("Your Open Contracts:", 18, 2);
 
-        createContractButton = new Button("Create New Contract", () -> window.switchPage(new CreateContractPage(client)), Constants.SIZE_400_40);
+        createContractButton = new Button("Create New Contract", e -> window.switchPage(new CreateContractPage(client)), Constants.SIZE_400_40);
 
         openContractList = new JPanel();
         openContractList.setLayout(new BoxLayout(openContractList, BoxLayout.Y_AXIS));

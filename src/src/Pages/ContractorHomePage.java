@@ -37,7 +37,7 @@ public class ContractorHomePage extends Page {
         heading = new BlueLabel("Contractor Dashboard", 32, 1);
         subheading = new BlueLabel("Your Applied Contracts:", 18, 2);
 
-        searchContractsButton = new Button("Search Contracts", () -> window.switchPage(new SearchContractsPage(client)), Constants.SIZE_400_40);
+        searchContractsButton = new Button("Search Contracts", e -> window.switchPage(new SearchContractsPage(client)), Constants.SIZE_400_40);
 
         contractList = new JPanel();
         contractList.setLayout(new BoxLayout(contractList, BoxLayout.Y_AXIS));
