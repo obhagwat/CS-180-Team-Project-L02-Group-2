@@ -1,5 +1,6 @@
-package NetworkIO;
+package Interfaces;
 
+import NetworkIO.Server;
 import Objects.*;
 import Exceptions.*;
 

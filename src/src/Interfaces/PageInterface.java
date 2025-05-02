@@ -1,4 +1,4 @@
-package Pages;
+package Interfaces;
 
 /**
  * PageInterface - Defines the essential methods for any page in the application.
