@@ -2,7 +2,7 @@ package Pages;
 
 import Components.Button;
 import Components.Constants;
-import Components.Label;
+import Components.BlueLabel;
 import NetworkIO.Client;
 import Objects.Contract;
 import Objects.Solicitor;
@@ -18,8 +18,8 @@ import java.util.List;
  * @version May 1, 2025
  */
 public class SolicitorHomePage extends Page {
-    private Label heading;
-    private Label subheading;
+    private BlueLabel heading;
+    private BlueLabel subheading;
     private Button createContractButton;
     private JPanel openContractList;
 
@@ -33,8 +33,8 @@ public class SolicitorHomePage extends Page {
      */
     @Override
     public void initializeContent() {
-        heading = new Label("Solicitor Dashboard", 32, 1);
-        subheading = new Label("Your Open Contracts:", 18, 2);
+        heading = new BlueLabel("Solicitor Dashboard", 32, 1);
+        subheading = new BlueLabel("Your Open Contracts:", 18, 2);
 
         createContractButton = new Button("Create New Contract", () -> window.switchPage(new CreateContractPage(client)), Constants.SIZE_400_40);
 
@@ -46,7 +46,7 @@ public class SolicitorHomePage extends Page {
         if (solicitor != null) {
             List<Contract> contracts = solicitor.getOpenContracts();
             for (Contract c : contracts) {
-                openContractList.add(new Label("- " + c.getContractDescription() + " | Bids: " + c.getBids(), 16, 2));
+                openContractList.add(new BlueLabel("- " + c.getContractDescription() + " | Bids: " + c.getBids(), 16, 2));
                 openContractList.add(Box.createRigidArea(new Dimension(0, 10)));
             }
         } else {

@@ -2,7 +2,7 @@ package Pages;
 
 import Components.Button;
 import Components.Constants;
-import Components.Label;
+import Components.BlueLabel;
 import NetworkIO.Client;
 import Objects.Bid;
 import Objects.Contract;
@@ -19,8 +19,8 @@ import java.util.List;
  * @version May 1, 2025
  */
 public class ContractorHomePage extends Page {
-    private Label heading;
-    private Label subheading;
+    private BlueLabel heading;
+    private BlueLabel subheading;
     private Button searchContractsButton;
     private JPanel contractList;
 
@@ -34,8 +34,8 @@ public class ContractorHomePage extends Page {
      */
     @Override
     public void initializeContent() {
-        heading = new Label("Contractor Dashboard", 32, 1);
-        subheading = new Label("Your Applied Contracts:", 18, 2);
+        heading = new BlueLabel("Contractor Dashboard", 32, 1);
+        subheading = new BlueLabel("Your Applied Contracts:", 18, 2);
 
         searchContractsButton = new Button("Search Contracts", () -> window.switchPage(new SearchContractsPage(client)), Constants.SIZE_400_40);
 
@@ -48,7 +48,7 @@ public class ContractorHomePage extends Page {
             List<Bid> bids = contractor.bidsUnderReview();
             for (Bid b : bids) {
                 Contract c = b.getContract();
-                contractList.add(new Label("- " + c.getContractDescription() + " | Status: " + c.getDeadline(), 16, 2));
+                contractList.add(new BlueLabel("- " + c.getContractDescription() + " | Status: " + c.getDeadline(), 16, 2));
                 contractList.add(Box.createRigidArea(new Dimension(0, 10)));
             }
         } else {

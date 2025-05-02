@@ -17,21 +17,20 @@ public class Logo extends JLabel {
         createLogo(imagePath, width, height);
     }
 
-    public void createLogo(String imagePath, int width, int height) {
+    private void createLogo(String imagePath, int width, int height) {
         try {
             java.net.URL resource = getClass().getClassLoader().getResource(imagePath);
             if (resource == null) {
-                throw new FileNotFoundException("Image not found: " + imagePath);
+                throw new IllegalArgumentException("Image not found: " + imagePath);
             }
             ImageIcon logoIcon = new ImageIcon(resource);
             Image scaledImage = logoIcon.getImage().getScaledInstance(width, height,
                     Image.SCALE_SMOOTH);
             this.setIcon(new ImageIcon(scaledImage));
             this.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-
         } catch (Exception e) {
             e.printStackTrace();
-            this.setText("Logo not found");
+            this.setText("Logo Not Found");
             this.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         }
     }

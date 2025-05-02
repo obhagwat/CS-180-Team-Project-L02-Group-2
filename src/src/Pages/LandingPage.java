@@ -3,6 +3,12 @@ package Pages;
 import Components.*;
 import NetworkIO.*;
 import javax.swing.*;
+import Components.GradientPanel;
+import Components.Constants;
+
+
+
+import static Components.Constants.*;
 
 /**
  * Landing page - prompts user to login or register
@@ -12,10 +18,10 @@ import javax.swing.*;
  */
 public class LandingPage extends Page {
     private JLabel logoLabel;
-    private Label heading;
-    private Label tagline;
-    private Button loginButton;
-    private Button createAccountButton;
+    private WhiteLabel heading;
+    private WhiteLabel tagline;
+    private TransparentButton loginButton;
+    private TransparentButton createAccountButton;
 
     /**
      * Constructor to initialize the LandingPage with a client object.
@@ -23,20 +29,41 @@ public class LandingPage extends Page {
      * @param client The client object representing the current user.
      */
     public LandingPage(Client client) {
-        super(client);
-    }
+            super(client);
 
-    /**
-     * Initializes the components for the LandingPage, including the logo, labels, and buttons
-     * for logging in or creating a new account.
-     */
+            // REPLACE default panel with gradient BEFORE calling initializeContent
+            this.panel = new GradientPanel(
+                    Constants.PANES_GREY,
+                    Constants.BREEZY_BLUE,
+                    Constants.DUST_BLUE,
+                    Constants.VIOLET,
+                    Constants.GRAY,
+                    Constants.WHITE
+            );
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+            // Update the window to use the new panel
+            window = GUIWindow.getInstance();
+//            window.setContentPane(panel);
+
+            // Now add components
+            initializeContent();
+        }
+
+
+
+
+        /**
+         * Initializes the components for the LandingPage, including the logo, labels, and buttons
+         * for logging in or creating a new account.
+         */
     public void initializeContent() {
-        logoLabel = new Logo("images/whiteLogo.png", 50, 50);
-        heading = new Label("GOVBid", 44, 1);
-        tagline = new Label("The better way to contract", 14, 2);
+        logoLabel = new Logo("Components/whiteLogo.png", 65, 65);
+        heading = new WhiteLabel("GOVBid", 46, 0);
+        tagline = new WhiteLabel("The better way to contract", 14, 2);
 
-        loginButton = new Button("login", () -> window.switchPage(new LoginPage(client)), Constants.SIZE_400_40);
-//        createAccountButton = new Button("Create Account", () -> window.switchPage(new RegisterPage(client)), Constants.SIZE_400_40, true);
+        loginButton = new TransparentButton("Login", e -> window.switchPage(new LoginPage(client)), Constants.SIZE_500_45);
+        createAccountButton = new TransparentButton("Create Account", e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
 
         addComponents();
     }
@@ -56,7 +83,7 @@ public class LandingPage extends Page {
         panel.add(new Margin(50));
         panel.add(loginButton);
         panel.add(new Margin(10));
-//        panel.add(createAccountButton);
+        panel.add(createAccountButton);
         panel.revalidate();
     }
 }

@@ -6,14 +6,16 @@ import Objects.*;
 import Database.*;
 import Pages.LandingPage;
 
+import javax.swing.*;
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 
 /**
  * Client Class: Contains all methods and fields pertaining to client objects
- *  @author Ana Farmus, Lab sec 02
- *  @version Apr 20, 2025
+ *
+ * @author Ana Farmus, Lab sec 02
+ * @version Apr 20, 2025
  */
 public class Client implements Runnable, ClientInterface {
     public static final int PORT = 8888;
@@ -39,11 +41,14 @@ public class Client implements Runnable, ClientInterface {
     /**
      * runs client thread, connects to server, allows communications, then disconnecting.
      */
+    @Override
     public void run() {
         if (connectToServer()) {
-            GUIWindow.getInstance().switchPage(new LandingPage(this));
+            Client currentClient = this;  // capture 'this' properly
+            SwingUtilities.invokeLater(() -> GUIWindow.getInstance().switchPage(new LandingPage(currentClient)));
         }
     }
+
 
     /**
      * Connects to server by establishing socket on specified host and port.
@@ -105,6 +110,7 @@ public class Client implements Runnable, ClientInterface {
 
     /**
      * Returns the industry of the the client
+     *
      * @return the client of the industry
      */
     @Override

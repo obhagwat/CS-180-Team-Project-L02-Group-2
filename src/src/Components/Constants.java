@@ -32,4 +32,6 @@ public class Constants {
     //Edge radius for rounded corners + button sizes
     public static final int EDGE_RADIUS = 10;
     public static final Dimension SIZE_400_40 = new Dimension(350, 40);
+    public static final Dimension SIZE_500_45 = new Dimension(500, 45);
+
 }

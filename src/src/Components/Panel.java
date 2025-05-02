@@ -2,7 +2,7 @@ package Components;
 
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
-import java.awt.LayoutManager;
+import java.awt.*;
 
 /**
  * Panel: basic panel class.

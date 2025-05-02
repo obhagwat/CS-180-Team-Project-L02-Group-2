@@ -1,7 +1,7 @@
 package Pages;
 
 import Components.Button;
-import Components.Label;
+import Components.BlueLabel;
 import Components.PasswordField;
 import Components.TextField;
 import Interfaces.PageInterface;
@@ -17,7 +17,7 @@ import javax.swing.*;
  */
 public class LoginPage extends Page implements PageInterface {
     private JLabel logoLabel; // For displaying the logo
-    private Label titleLabel;
+    private BlueLabel titleLabel;
     private TextField usernameField;
     private PasswordField passwordField;
     private Button loginButton;
@@ -38,7 +38,7 @@ public class LoginPage extends Page implements PageInterface {
     public void initializeContent() {
         panel.removeAll();
 //        logoLabel = new Logo(image path, width, height);
-        titleLabel = new Label("Login", 40, 1);
+        titleLabel = new BlueLabel("Login", 40, 1);
     }
 
 }

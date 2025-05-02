@@ -26,9 +26,11 @@ public class GUIWindow extends JFrame {
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         setLocationRelativeTo(null);
         setResizable(false);
+
         cardLayout = new CardLayout();
         contentPanel = new Panel(cardLayout);
         getContentPane().add(contentPanel, BorderLayout.CENTER);
+
         setVisible(true);
     }
 

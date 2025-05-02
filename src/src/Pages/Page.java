@@ -30,6 +30,13 @@ public class Page implements PageInterface {
         this.client = client;
         window = GUIWindow.getInstance();
         panel = new Panel();
+//        SwingUtilities.invokeLater(() -> initializeContent());
+    }
+
+    public Page(Client client, Panel panel) {
+        this.client = client;
+        this.panel = panel;
+        window = GUIWindow.getInstance();
         SwingUtilities.invokeLater(() -> initializeContent());
     }
 
