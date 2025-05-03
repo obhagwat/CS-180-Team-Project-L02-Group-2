@@ -42,7 +42,7 @@ public class SolicitorRegistrationPage extends Page implements PageInterface {
         emailAddressField = new TextField("Enter email address", Constants.SIZE_100_20);
         phoneNumberField = new TextField("Enter phone number", Constants.SIZE_100_20);
 
-        continueButton = new Button("Continue", e -> window.switchPage(new SolicitorHomePage(client)), Constants.SIZE_500_45);
+        continueButton = new Button("Continue", e -> window.switchPage(new SolicitorPaymentInfoPage(client)), Constants.SIZE_500_45);
         goBackButton = new TransparentButton("Go Back",
                 e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
 

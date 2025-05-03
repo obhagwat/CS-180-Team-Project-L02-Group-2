@@ -48,7 +48,7 @@ public class ContractorRegistrationPage extends Page implements PageInterface {
         numEmployeesField = new TextField("Enter number of employees", Constants.SIZE_100_20);
         foundingYrField = new TextField("Enter founding year", Constants.SIZE_100_20);
 
-        continueButton = new Button("Continue", e -> window.switchPage(new SolicitorHomePage(client)), Constants.SIZE_500_45);
+        continueButton = new Button("Continue", e -> window.switchPage(new ContractorPaymentInfoPage(client)), Constants.SIZE_500_45);
         goBackButton = new TransparentButton("Go Back",
                 e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
         addComponents();

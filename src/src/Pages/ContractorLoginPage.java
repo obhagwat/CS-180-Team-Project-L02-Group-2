@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Solicitor login page for solicitors logging in
+ * Contractor login page for solicitors logging in
  *
  * @author Ana Farmus, lab sec 02
  * @version May 4, 2025
