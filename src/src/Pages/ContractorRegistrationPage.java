@@ -1,0 +1,97 @@
+package Pages;
+
+import Components.*;
+import Components.Button;
+import Components.TextField;
+import Interfaces.PageInterface;
+import NetworkIO.*;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class ContractorRegistrationPage extends Page implements PageInterface {
+    private JLabel logoLabel; // For displaying the logo
+    private BlueLabel titleLabel;
+    private TextField profileNameField;
+    private TextField organizationNameField;
+    private TextField countryField;
+    private TextField physicalAddressField;
+    private TextField emailAddressField;
+    private TextField phoneNumberField;
+    private TextField organizationTypeField;
+    private TextField numEmployeesField;
+    private TextField foundingYrField;
+
+    private Button continueButton;  //leads to payment info page
+    private TransparentButton goBackButton;
+
+    public ContractorRegistrationPage(Client client) {
+        super(client);
+        initializeContent();
+    }
+
+    /**
+     * initializes page content
+     */
+    public void initializeContent() {
+        panel.removeAll();
+        logoLabel = new Logo("Components/blueLogo.png", 55, 55);
+        titleLabel = new BlueLabel("Register", 40, 0);
+
+        profileNameField = new TextField("Enter username", Constants.SIZE_100_20);
+        organizationNameField = new TextField("Enter organization name", Constants.SIZE_100_20);
+        countryField = new TextField("Enter country", Constants.SIZE_100_20);
+        physicalAddressField = new TextField("Enter phone number", Constants.SIZE_100_20);
+        emailAddressField = new TextField("Enter email address", Constants.SIZE_100_20);
+        phoneNumberField = new TextField("Enter phone number", Constants.SIZE_100_20);
+        organizationTypeField = new TextField("Enter organization type", Constants.SIZE_100_20);
+        numEmployeesField = new TextField("Enter number of employees", Constants.SIZE_100_20);
+        foundingYrField = new TextField("Enter founding year", Constants.SIZE_100_20);
+
+        continueButton = new Button("Continue", e -> window.switchPage(new SolicitorHomePage(client)), Constants.SIZE_500_45);
+        goBackButton = new TransparentButton("Go Back",
+                e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
+        addComponents();
+    }
+
+    /**
+     * Adds all the components to the page layout, including the logo, heading, tagline,
+     * login button, and register button.
+     */
+    public void addComponents() {
+        panel.add(new Margin(100));
+        panel.add(logoLabel);
+        panel.add(new Margin(6));
+        panel.add(titleLabel);
+        panel.add(new Margin(50));
+
+        JPanel fieldsPanel = new JPanel(new GridLayout(3, 3, 20, 20));
+        fieldsPanel.setOpaque(false);  // Transparent background
+        fieldsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+// Add margin around the fieldsPanel
+        fieldsPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+
+// Add fields to the grid
+        fieldsPanel.add(profileNameField);
+        fieldsPanel.add(organizationNameField);
+        fieldsPanel.add(countryField);
+        fieldsPanel.add(physicalAddressField);
+        fieldsPanel.add(emailAddressField);
+        fieldsPanel.add(phoneNumberField);
+        fieldsPanel.add(organizationTypeField);
+        fieldsPanel.add(numEmployeesField);
+        fieldsPanel.add(foundingYrField);
+
+        panel.add(fieldsPanel);
+        panel.add(new Margin(50));
+
+        panel.add(continueButton);
+        panel.add(new Margin(10));
+        panel.add(goBackButton);
+        panel.add(new Margin(100));
+        panel.revalidate();
+        panel.repaint();
+    }
+
+}
