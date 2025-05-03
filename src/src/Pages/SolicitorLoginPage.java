@@ -2,6 +2,7 @@ package Pages;
 
 import Components.*;
 import Components.Button;
+import Components.TextField;
 import Interfaces.PageInterface;
 import NetworkIO.*;
 
@@ -18,8 +19,8 @@ import java.awt.*;
 public class SolicitorLoginPage extends Page implements PageInterface {
     private JLabel logoLabel; // For displaying the logo
     private BlueLabel titleLabel;
-    //need username + password fields
-    private Button loginButton;
+    private TextField usernameField;
+    private PasswordField passwordField;    private Button loginButton;
     private TransparentButton goBacktoHomeButton;
 
 
@@ -40,7 +41,11 @@ public class SolicitorLoginPage extends Page implements PageInterface {
 
         logoLabel = new Logo("Components/blueLogo.png", 55, 55);
         titleLabel = new BlueLabel("Login", 40, 0);
-        loginButton = new Button("Login", e -> (new SolicitorHomePage(client)), Constants.SIZE_500_45);
+
+        usernameField = new TextField("Enter your Username", Constants.SIZE_500_45);
+        passwordField = new PasswordField("Enter your Password", Constants.SIZE_500_45);
+
+        loginButton = new Button("Login", e -> window.switchPage(new SolicitorHomePage(client)), Constants.SIZE_500_45);
         goBacktoHomeButton = new TransparentButton("Go back to Home",
                 e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_45);
         addComponents();
@@ -55,12 +60,12 @@ public class SolicitorLoginPage extends Page implements PageInterface {
         panel.add(logoLabel);
         panel.add(new Margin(6));
         panel.add(titleLabel);
-        // add margin between title and username text field
-        // add username text field
-        // add small margin between username and password text fields
-        // add password text field
-        // add margin between text fields and login button
-        // add login button
+        panel.add(new Margin(50));
+        panel.add(usernameField);
+        panel.add(new Margin(8));
+        panel.add(passwordField);
+        panel.add(new Margin(50));
+        panel.add(loginButton);
         panel.add(new Margin(4));
         panel.add(goBacktoHomeButton);
         panel.revalidate();
