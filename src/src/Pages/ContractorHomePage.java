@@ -1,80 +1,41 @@
+// ContractorHomePage.java
 package Pages;
 
+import Components.*;
 import Components.Button;
-import Components.Constants;
-import Components.BlueLabel;
 import NetworkIO.Client;
-import Objects.*;
-
+import Objects.Bid;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Contractor home page - shows applied contracts and search option
- *
- * @author Ovi Bhagwat, lab sec 02
- * @version May 1, 2025
- */
 public class ContractorHomePage extends Page {
-    private BlueLabel heading;
-    private BlueLabel subheading;
-    private Button searchContractsButton;
-    private JPanel contractList;
-
     public ContractorHomePage(Client client) {
         super(client);
-    }
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-    /**
-     * Initializes the components for the contractor dashboard, including
-     * the heading, search button, and list of applied contracts.
-     */
-    @Override
-    public void initializeContent() {
-        heading = new BlueLabel("Contractor Dashboard", 32, 1);
-        subheading = new BlueLabel("Your Applied Contracts:", 18, 2);
+        BlueLabel heading = new BlueLabel("Your Applied Contracts", 24, 0);
+        panel.add(new Margin(20));
+        panel.add(heading);
 
-        searchContractsButton = new Button("Search Contracts", e -> window.switchPage(new SearchContractsPage(client)), Constants.SIZE_400_40);
+        JPanel contractsPanel = new JPanel();
+        contractsPanel.setLayout(new BoxLayout(contractsPanel, BoxLayout.Y_AXIS));
 
-        contractList = new JPanel();
-        contractList.setLayout(new BoxLayout(contractList, BoxLayout.Y_AXIS));
-        contractList.setOpaque(false);
-
-        Contractor contractor = client.getContractor();
-        if (contractor != null) {
-            List<Bid> bids = contractor.bidsUnderReview();
-            for (Bid b : bids) {
-                Contract c = b.getContract();
-                contractList.add(new BlueLabel("- " + c.getContractDescription() + " | Status: " + c.getDeadline(), 16, 2));
-                contractList.add(Box.createRigidArea(new Dimension(0, 10)));
-            }
-        } else {
-            showError("No contractor data found.");
+        List<Bid> appliedContracts = client.getContractor().getAllBids();
+        for (Bid bid : appliedContracts) {
+            JPanel card = new JPanel(new BorderLayout());
+            card.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+            card.add(new JLabel(bid.getContract().getContractDescription() + " - Status: " + bid.getStatus()), BorderLayout.CENTER);
+            contractsPanel.add(card);
+            contractsPanel.add(new Margin(10));
         }
 
-        getPanel().add(heading);
-        getPanel().add(Box.createRigidArea(new Dimension(0, 20)));
-        getPanel().add(searchContractsButton);
-        getPanel().add(Box.createRigidArea(new Dimension(0, 20)));
-        getPanel().add(subheading);
-        getPanel().add(contractList);
-    }
+        JScrollPane scrollPane = new JScrollPane(contractsPanel);
+        scrollPane.setPreferredSize(new Dimension(600, 300));
+        panel.add(scrollPane);
 
-    public static void main(String[] args) {
-        // Fake client with dummy data
-        Client mockClient = new Client();
-
-        mockClient.setContractor(new Contractor(
-                "greenfieldconstruction", "securePass123", 0.0, "USA", "789 Elm St",
-                "contact@greenfield.com", "5551234567",
-                "Greenfield Construction Inc.", "LLC", "75", 2010,
-                Industry.CONSTRUCTION, "USA"));
-
-        JFrame frame = new JFrame("Contractor Home Page Test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setContentPane(new ContractorHomePage(mockClient).getPanel());
-        frame.setVisible(true);
+        Button searchButton = new Button("Search Contracts", e -> window.switchPage(new SearchContractsPage(client)), new Dimension(30,10));
+        panel.add(new Margin(20));
+        panel.add(searchButton);
     }
 }
