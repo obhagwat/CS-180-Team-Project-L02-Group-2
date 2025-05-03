@@ -41,9 +41,9 @@ public class LoginPage extends Page implements PageInterface {
         titleLabel = new BlueLabel("Login", 40, 0);
         infoLabel = new GreyLabel("Please select your account type", 15, 0);
         solicitorbutton = new Button("Solicitor",
-                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_300_140);
+                e -> window.switchPage(new SolicitorLoginPage(client)), Constants.SIZE_300_140);
         contractorButton = new Button("Contractor",
-                e -> window.switchPage(new LandingPage(client)), Constants.SIZE_300_140);
+                e -> window.switchPage(new ContractorLoginPage(client)), Constants.SIZE_300_140);
         goBacktoHomeButton = new TransparentButton("Go back to Home",
                 e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_45);
 
