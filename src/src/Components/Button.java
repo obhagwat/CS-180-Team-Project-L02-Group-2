@@ -11,41 +11,58 @@ import java.awt.event.ActionListener;
  * @version May 4, 2025
  */
 public class Button extends JButton {
-    private Color defaultColor = Constants.BREEZY_BLUE;
+//    private Color defaultColor = Constants.BREEZY_BLUE;
 
     /**
      *  Constructor for Button with a standard style
-     * @param label the text label of the button
+     * @param text the text label of the button
      * @param actionListener the action to be executed when the button is clicked
-     * @param buttonSize the size of the button
+     * @param size the size of the button
      */
-    public Button(String label, ActionListener actionListener, Dimension buttonSize) {
-        super(label);
+    public Button(String text, ActionListener actionListener, Dimension size) {
+        super(text);
 
-        setPreferredSize(buttonSize);
-        setMaximumSize(buttonSize);
-        setMinimumSize(buttonSize);
+        setPreferredSize(size);
+        setMaximumSize(size);
+        setMinimumSize(size);
 
         setFont(new Font(Constants.FONT_NAME, Font.PLAIN, 16));
         setFocusPainted(false);
-        setContentAreaFilled(true);
-        setOpaque(true);
-        setBackground(defaultColor);
-        setForeground(Constants.WHITE);
+        setOpaque(false);
+        setContentAreaFilled(false);
+        setBackground(Constants.BREEZY_BLUE);
+        setForeground(Constants.BREEZY_BLUE);
+        setBorder(new RoundedBorder(20, Constants.BREEZY_BLUE));
         setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        setBorder(new RoundedBorder(20, defaultColor));
-
         addActionListener(actionListener);
-
     }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Ensure the border is painted correctly
-        if (getBorder() != null) {
-            getBorder().paintBorder(this, g, 0, 0, getWidth(), getHeight());
-        }
-    }
+//    public Button(String label, ActionListener actionListener, Dimension buttonSize) {
+//        super(label);
+//
+//        setPreferredSize(buttonSize);
+//        setMaximumSize(buttonSize);
+//        setMinimumSize(buttonSize);
+//
+//        setFont(new Font(Constants.FONT_NAME, Font.PLAIN, 16));
+//        setFocusPainted(false);
+//        setContentAreaFilled(true);
+//        setOpaque(true);
+//        setBackground(defaultColor);
+//        setForeground(Constants.WHITE);
+//        setAlignmentX(Component.CENTER_ALIGNMENT);
+//
+//        setBorder(new RoundedBorder(20, defaultColor));
+//
+//        addActionListener(actionListener);
+//
+//    }
+//
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        // Ensure the border is painted correctly
+//        if (getBorder() != null) {
+//            getBorder().paintBorder(this, g, 0, 0, getWidth(), getHeight());
+//        }
+//    }
 }
