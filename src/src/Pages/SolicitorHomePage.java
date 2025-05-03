@@ -27,8 +27,8 @@ public class SolicitorHomePage extends Page {
             JPanel card = new JPanel(new BorderLayout());
             card.setBorder(BorderFactory.createLineBorder(Color.GRAY));
             card.add(new JLabel(contract.getContractDescription()), BorderLayout.CENTER);
-//            Button viewBids = new Button("View Bids", e -> new ViewBidsPopup(client, contract), new Dimension(30,10));
-//            card.add(viewBids, BorderLayout.EAST);
+            Button viewBids = new Button("View Bids", e -> new ViewBidsPopup(client, contract), new Dimension(30,10));
+            card.add(viewBids, BorderLayout.EAST);
             contractsPanel.add(card);
             contractsPanel.add(new Margin(10));
         }
