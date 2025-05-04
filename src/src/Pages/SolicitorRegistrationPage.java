@@ -49,8 +49,8 @@ public class SolicitorRegistrationPage extends Page implements PageInterface {
         usernameField = new TextField("Enter username", Constants.SIZE_100_20);
         passwordField = new TextField("Enter password", Constants.SIZE_100_20);
 
-        //continueButton = new Button("Continue", e -> window.switchPage(new SolicitorPaymentInfoPage(client)), Constants.SIZE_500_45);
-        continueButton = new Button("Continue", e -> register(), Constants.SIZE_500_45);
+        continueButton = new Button("Continue", e -> window.switchPage(new SolicitorPaymentInfoPage(client)), Constants.SIZE_500_45);
+//        continueButton = new Button("Continue", e -> register(), Constants.SIZE_500_45);
         goBackButton = new TransparentButton("Go Back",
                 e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
 
