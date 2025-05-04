@@ -19,7 +19,6 @@ public class Constants {
     public static final Color PANES_GREY = Color.decode("#5A6484");
     public static final Color GREY = Color.decode("#a2a1a0");
     public static final Color LIGHT_GREY = Color.decode("#E2E1DF");
-    public static final Color PRIMARY_WHITE = Color.decode("#F0F0F0");
 
     //Window dimensions
     public static final int WINDOW_WIDTH = 1000;
@@ -34,6 +33,7 @@ public class Constants {
     public static final Dimension SIZE_400_40 = new Dimension(350, 40);
     public static final Dimension SIZE_500_45 = new Dimension(500, 45);
     public static final Dimension SIZE_300_140 = new Dimension(300, 140);
+    public static final Dimension SIZE_300_40 = new Dimension(300, 40);
     public static final Dimension SIZE_100_20 = new Dimension(80, 10);
 
 }

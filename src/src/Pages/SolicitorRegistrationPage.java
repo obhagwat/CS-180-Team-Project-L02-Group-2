@@ -18,6 +18,10 @@ public class SolicitorRegistrationPage extends Page implements PageInterface {
     private TextField physicalAddressField;
     private TextField emailAddressField;
     private TextField phoneNumberField;
+    private TextField usernameField;
+    private TextField passwordField;
+
+
 
     private Button continueButton;  // Leads to payment info page
     private TransparentButton goBackButton;
@@ -35,12 +39,15 @@ public class SolicitorRegistrationPage extends Page implements PageInterface {
         logoLabel = new Logo("Components/blueLogo.png", 55, 55);
         titleLabel = new BlueLabel("Register", 40, 0);
 
+
         agencyLevelField = new TextField("Enter agency level", Constants.SIZE_100_20);
         branchField = new TextField("Enter branch", Constants.SIZE_100_20);
         subBranchField = new TextField("Enter sub-branch", Constants.SIZE_100_20);
         physicalAddressField = new TextField("Enter physical address", Constants.SIZE_100_20);
         emailAddressField = new TextField("Enter email address", Constants.SIZE_100_20);
         phoneNumberField = new TextField("Enter phone number", Constants.SIZE_100_20);
+        usernameField = new TextField("Enter username", Constants.SIZE_100_20);
+        passwordField = new TextField("Enter password", Constants.SIZE_100_20);
 
         continueButton = new Button("Continue", e -> window.switchPage(new SolicitorPaymentInfoPage(client)), Constants.SIZE_500_45);
         goBackButton = new TransparentButton("Go Back",
@@ -61,11 +68,13 @@ public class SolicitorRegistrationPage extends Page implements PageInterface {
         panel.add(new Margin(50));
 
         // Fields in a 3-row, 2-column grid with spacing and margin
-        JPanel fieldsPanel = new JPanel(new GridLayout(3, 2, 20, 20));
+        JPanel fieldsPanel = new JPanel(new GridLayout(2, 3, 20, 20));
         fieldsPanel.setOpaque(false);
         fieldsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         fieldsPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
+        fieldsPanel.add(usernameField);
+        fieldsPanel.add(passwordField);
         fieldsPanel.add(agencyLevelField);
         fieldsPanel.add(branchField);
         fieldsPanel.add(subBranchField);
