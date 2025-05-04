@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Solicitor login page for solicitors logging in
+ * Contractor login page for solicitors logging in
  *
  * @author Ana Farmus, lab sec 02
  * @version May 4, 2025
@@ -45,7 +45,7 @@ public class ContractorLoginPage extends Page implements PageInterface {
         usernameField = new TextField("Enter your Username", Constants.SIZE_500_45);
         passwordField = new PasswordField("Enter your Password", Constants.SIZE_500_45);
 
-        loginButton = new Button("Login", e -> window.switchPage(new SolicitorHomePage(client)), Constants.SIZE_500_45);
+        loginButton = new Button("Login", e -> window.switchPage(new ContractorHomePage(client)), Constants.SIZE_500_45);
         goBacktoHomeButton = new TransparentButton("Go back to Home",
                 e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_45);
         addComponents();
