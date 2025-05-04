@@ -1,4 +1,3 @@
-// ContractorHomePage.java
 package Pages;
 
 import Components.*;

@@ -1,4 +1,3 @@
-// CreateContractPopup.java
 package Pages;
 
 import NetworkIO.Client;

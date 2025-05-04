@@ -1,4 +1,3 @@
-// SolicitorHomePage.java
 package Pages;
 
 import Components.*;

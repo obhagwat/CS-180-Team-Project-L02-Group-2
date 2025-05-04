@@ -1,4 +1,3 @@
-// SearchContractsPage.java
 package Pages;
 
 import Components.*;
