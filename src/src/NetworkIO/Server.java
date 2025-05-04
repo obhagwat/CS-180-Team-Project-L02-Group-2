@@ -89,7 +89,6 @@ public class Server implements Runnable, ServerInterface {
         while ((response = in.readLine()) != null) {
             System.out.println("[SERVER] Client Response: " + response);
             //echoing for now but will add logic for what to do for each possible response
-            out.println(response);
             String[] message = response.split(": ");
             String first = message[0];
             String[] rest;
@@ -101,6 +100,8 @@ public class Server implements Runnable, ServerInterface {
             switch (first) {
                 case "CONTRACTOR LOGIN" -> clogin(rest);
                 case "CREATE_CONTRACTOR" -> createc(rest);
+                case "CREATE_SOLICITOR" -> creates(rest);
+                case "SOLICITOR LOGIN" -> slogin(rest);
             }
         }
 
@@ -122,8 +123,24 @@ public class Server implements Runnable, ServerInterface {
         }
     }
 
+    public synchronized void slogin(String[] message) {
+        System.out.println("[SERVER] slogin");
+        String username = message[0];
+        String password = message[1];
+        System.out.println(username);
+        System.out.println(password);
+        Solicitor solicitor = database.getSolicitor(username);
+        if (solicitor != null && solicitor.getPassword().equals(password)) {
+            System.out.println("[SERVER] Login success " + solicitor.getUsername());
+            sendToClient("SUCCESS");
+        } else {
+            System.out.println("[SERVER] Login failed " + username);
+            sendToClient("FAILURE");
+        }
+    }
+
     public synchronized void createc(String[] message) {
-        System.out.println("[SERVER] creating user");
+        System.out.println("[SERVER] creating contractor");
         String username = message[0];
         String password = message[1];
         String profileName = message[2];
@@ -135,13 +152,36 @@ public class Server implements Runnable, ServerInterface {
         String organizationType = message[8];
         String numEmployees = message[9];
         String foundingYr = message[10];
-        if (database.getContractor(username) != null) {
-            System.out.println("[SERVER] Contractor already exists " + username);
+        if ((database.getContractor(username) != null) || (database.getSolicitor(username) != null)) {
+            System.out.println("[SERVER] User already exists " + username);
             sendToClient("FAILURE");
         } else {
             Contractor newContractor = new Contractor(username, password, 0.0, country, physicalAddress, emailAddress, phoneNumber, profileName, organizationType, numEmployees, foundingYr, null);
             database.addContractor(newContractor);
             System.out.println("[SERVER] Contractor created " + username);
+            database.serializeDatabase();
+            database.loadDatabase();
+            sendToClient("SUCCESS");
+        }
+    }
+
+    public synchronized void creates(String[] message) {
+        System.out.println("[SERVER] creating solicitor");
+        String username = message[0];
+        String password = message[1];
+        String agencyLevel = message[2];
+        String branch = message[3];
+        String subBranch = message[4];
+        String physicalAddress = message[5];
+        String emailAddress = message[6];
+        String phoneNumber = message[7];
+        if ((database.getSolicitor(username) != null) || (database.getContractor(username) != null)) {
+            System.out.println("[SERVER] User already exists " + username);
+            sendToClient("FAILURE");
+        } else {
+            Solicitor newSolicitor = new Solicitor(username, password, 0.0, "", physicalAddress, emailAddress, phoneNumber, username, agencyLevel, branch, subBranch, 0.0);
+            database.addSolicitor(newSolicitor);
+            System.out.println("[SERVER] Solicitor created " + username);
             database.serializeDatabase();
             database.loadDatabase();
             sendToClient("SUCCESS");

@@ -84,7 +84,6 @@ public class ContractorLoginPage extends Page implements PageInterface {
         System.out.println("Logging in: " + username + password);
         client.sendToServer("CONTRACTOR LOGIN: " + username + ", " + password);
         String response = client.readFromServer();
-        response = client.readFromServer();
         System.out.println("server response: " + response);
         if (response.equals("SUCCESS")) {
             client.setContractor((Contractor) database.getContractor(username));

@@ -49,7 +49,8 @@ public class SolicitorRegistrationPage extends Page implements PageInterface {
         usernameField = new TextField("Enter username", Constants.SIZE_100_20);
         passwordField = new TextField("Enter password", Constants.SIZE_100_20);
 
-        continueButton = new Button("Continue", e -> window.switchPage(new SolicitorPaymentInfoPage(client)), Constants.SIZE_500_45);
+        //continueButton = new Button("Continue", e -> window.switchPage(new SolicitorPaymentInfoPage(client)), Constants.SIZE_500_45);
+        continueButton = new Button("Continue", e -> register(), Constants.SIZE_500_45);
         goBackButton = new TransparentButton("Go Back",
                 e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
 
@@ -92,5 +93,22 @@ public class SolicitorRegistrationPage extends Page implements PageInterface {
 
         panel.revalidate();
         panel.repaint();
+    }
+
+    private void register() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String agencyLevel = agencyLevelField.getText();
+        String branch = branchField.getText();
+        String subBranch = subBranchField.getText();
+        String physicalAddress = physicalAddressField.getText();
+        String emailAddress = emailAddressField.getText();
+        String phoneNumber = phoneNumberField.getText();
+
+        client.sendToServer("CREATE_SOLICITOR: " + username + ", " + password + ", " + agencyLevel + ", " + branch + ", " + subBranch + ", " + physicalAddress + ", " + emailAddress + ", " + phoneNumber);
+        String response = client.readFromServer();
+        if (response.equals("SUCCESS")) {
+            window.switchPage(new SolicitorPaymentInfoPage(client));
+        }
     }
 }

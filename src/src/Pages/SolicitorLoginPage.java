@@ -5,6 +5,8 @@ import Components.Button;
 import Components.TextField;
 import Interfaces.PageInterface;
 import NetworkIO.*;
+import Objects.Contractor;
+import Objects.Solicitor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +47,8 @@ public class SolicitorLoginPage extends Page implements PageInterface {
         usernameField = new TextField("Enter your Username", Constants.SIZE_500_45);
         passwordField = new PasswordField("Enter your Password", Constants.SIZE_500_45);
 
-        loginButton = new Button("Login", e -> window.switchPage(new SolicitorHomePage(client)), Constants.SIZE_500_45);
+        //loginButton = new Button("Login", e -> window.switchPage(new SolicitorHomePage(client)), Constants.SIZE_500_45);
+        loginButton = new Button("Login", e -> login(), Constants.SIZE_500_45);
         goBacktoHomeButton = new TransparentButton("Go back to Home",
                 e -> window.switchPage(new LandingPage(client)), Constants.SIZE_500_45);
         addComponents();
@@ -70,5 +73,22 @@ public class SolicitorLoginPage extends Page implements PageInterface {
         panel.add(goBacktoHomeButton);
         panel.revalidate();
         panel.repaint();
+    }
+
+    private void login() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        if (username.isEmpty() || password.isEmpty()) {
+            showError("Username or password is empty");
+            return;
+        }
+        System.out.println("Logging in: " + username + password);
+        client.sendToServer("SOLICITOR LOGIN: " + username + ", " + password);
+        String response = client.readFromServer();
+        System.out.println("server response: " + response);
+        if (response.equals("SUCCESS")) {
+            client.setSolicitor((Solicitor) database.getSolicitor(username));
+            window.switchPage(new SolicitorHomePage(client));
+        }
     }
 }
