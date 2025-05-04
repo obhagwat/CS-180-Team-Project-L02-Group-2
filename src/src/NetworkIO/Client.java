@@ -165,6 +165,12 @@ public class Client implements Runnable, ClientInterface {
 
         Contract contract1 = new Contract(solicitor, "Build website for government services", true, java.time.LocalDateTime.now().plusDays(10), null);
         Contract contract2 = new Contract(solicitor, "Design mobile app interface", false, java.time.LocalDateTime.now().minusDays(2), null);
+        Contract contract3 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+        Contract contract4 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+        Contract contract5 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+        Contract contract6 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+
+
 
         Bid bid1 = new Bid(contractor, contract1, 9500.0, "Under Consideration");
         Bid bid2 = new Bid(contractor, contract2, 8700.0, "Rejected");
@@ -176,6 +182,15 @@ public class Client implements Runnable, ClientInterface {
 
         solicitor.getContractsSolicited().add(contract1);
         solicitor.getContractsSolicited().add(contract2);
+        solicitor.getContractsSolicited().add(contract3);
+        solicitor.getContractsSolicited().add(contract4);
+        solicitor.getContractsSolicited().add(contract5);
+        solicitor.getContractsSolicited().add(contract6);
+        solicitor.getContractsSolicited().add(contract3);
+        solicitor.getContractsSolicited().add(contract3);
+        solicitor.getContractsSolicited().add(contract3);
+
+
         solicitor.getOpenContracts().add(contract1);
 
         mock.contractList.add(contract1);

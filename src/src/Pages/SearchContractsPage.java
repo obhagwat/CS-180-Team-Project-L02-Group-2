@@ -25,7 +25,7 @@ public class SearchContractsPage extends Page {
             JPanel card = new JPanel(new BorderLayout());
             card.setBorder(BorderFactory.createLineBorder(Color.GRAY));
             card.add(new JLabel(contract.getContractDescription()), BorderLayout.CENTER);
-            Button viewDetails = new Button("View", e -> new Pages.ContractDetailsPopup(client, contract), new Dimension(30,10));
+            Button viewDetails = new Button("View", e -> new Pages.ContractDetailsPopup(client, contract), new Dimension(300,50));
             card.add(viewDetails, BorderLayout.EAST);
             listPanel.add(card);
             listPanel.add(new Margin(10));

@@ -14,6 +14,11 @@ public class ViewBidsPopup {
         for (Bid bid : bids) {
             sb.append(bid.getContractor().getContractorName()).append(" - $").append(bid.getRequestedPay()).append("\n");
         }
-        JOptionPane.showMessageDialog(null, sb.toString(), "Submitted Bids", JOptionPane.INFORMATION_MESSAGE);
+        if(bids.isEmpty()){
+            sb.append("No Bids Yet!");
+            JOptionPane.showMessageDialog(null, sb.toString(), "No Bids Yet!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, sb.toString(), "Submitted Bids", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
