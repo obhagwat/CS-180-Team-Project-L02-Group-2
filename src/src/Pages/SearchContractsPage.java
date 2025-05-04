@@ -20,7 +20,7 @@ public class SearchContractsPage extends Page {
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
 
-        List<Contract> contracts = client.getSolicitor().getOpenContracts();
+        List<Contract> contracts = client.contractList;
         for (Contract contract : contracts) {
             JPanel card = new JPanel(new BorderLayout());
             card.setBorder(BorderFactory.createLineBorder(Color.GRAY));

@@ -4,6 +4,7 @@ import Components.*;
 import Components.Button;
 import NetworkIO.Client;
 import Objects.Bid;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -37,4 +38,10 @@ public class ContractorHomePage extends Page {
         panel.add(new Margin(20));
         panel.add(searchButton);
     }
+    public static void main(String[] args) {
+        Client mockClient = Client.startMockClientContractorOnly();
+        GUIWindow window = GUIWindow.getInstance();
+        window.switchPage(new ContractorHomePage(mockClient));
+    }
+
 }

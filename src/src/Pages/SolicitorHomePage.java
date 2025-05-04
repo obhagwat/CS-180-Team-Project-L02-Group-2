@@ -40,4 +40,11 @@ public class SolicitorHomePage extends Page {
         panel.add(new Margin(20));
         panel.add(createButton);
     }
+
+    public static void main(String[] args) {
+        Client mockClient = Client.startMockClientSolicitorOnly();
+        GUIWindow window = GUIWindow.getInstance();
+        window.switchPage(new SolicitorHomePage(mockClient));
+    }
+
 }

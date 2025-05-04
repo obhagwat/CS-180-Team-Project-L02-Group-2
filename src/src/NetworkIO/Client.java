@@ -28,33 +28,22 @@ public class Client implements Runnable, ClientInterface {
     private User user;
     public static Thread clientThread;
     private Database db = Database.getInstance();
+    public ArrayList<Contract> contractList = new ArrayList<>(); // Added for mock testing
 
-    /**
-     * Starts client by creating client object and running it in client thread.
-     */
     public static void startClient() {
         Client client = new Client();
         clientThread = new Thread(client);
         clientThread.start();
     }
 
-    /**
-     * runs client thread, connects to server, allows communications, then disconnecting.
-     */
     @Override
     public void run() {
         if (connectToServer()) {
-            Client currentClient = this;  // capture 'this' properly
+            Client currentClient = this;
             SwingUtilities.invokeLater(() -> GUIWindow.getInstance().switchPage(new LandingPage(currentClient)));
         }
     }
 
-
-    /**
-     * Connects to server by establishing socket on specified host and port.
-     *
-     * @return true if the connection is successful, false if not.
-     */
     @Override
     public boolean connectToServer() {
         try {
@@ -67,117 +56,62 @@ public class Client implements Runnable, ClientInterface {
         }
     }
 
-    /**
-     * Disconnects from the server, closes os streams the socket
-     */
     @Override
     public void disconnect() {
         try {
-            if (in != null) {
-                in.close();
-            }
-            if (out != null) {
-                out.close();
-            }
-            if (socket != null && !socket.isClosed()) {
-                socket.close();
-            }
+            if (in != null) in.close();
+            if (out != null) out.close();
+            if (socket != null && !socket.isClosed()) socket.close();
             System.out.println("[CLIENT] Client disconnected");
         } catch (IOException e) {
             System.err.println("[CLIENT] Could not close input stream");
         }
     }
 
-    /**
-     * Fetches username from solicitor client-user
-     *
-     * @return solicitor client's username
-     */
     @Override
     public String getUsername() {
         return user.getUsername();
     }
 
-    /**
-     * returns client's password
-     *
-     * @return client user's password
-     */
     @Override
     public String getPassword() {
         return user.getPassword();
     }
 
-    /**
-     * Returns the industry of the the client
-     *
-     * @return the client of the industry
-     */
     @Override
     public Industry getIndustry() {
         if (user instanceof Contractor) {
             return ((Contractor) user).getIndustry();
         } else if (user instanceof Solicitor) {
-            return (Industry.GOVERNMENT);
+            return Industry.GOVERNMENT;
         }
         return null;
     }
 
-    /**
-     * Fetches Contractor object
-     *
-     * @return Contractor object associated with client
-     */
     @Override
     public Contractor getContractor() {
         return contractor;
     }
 
-    /**
-     * Fetches Solicitor object
-     *
-     * @return Solicitor object associated with client
-     */
     @Override
     public Solicitor getSolicitor() {
         return solicitor;
     }
 
-    /**
-     * Sets contractor object for this client
-     *
-     * @param contractor
-     */
     @Override
     public void setContractor(Contractor contractor) {
         this.contractor = contractor;
     }
 
-    /**
-     * Sets solicitor object for this client
-     *
-     * @param solicitor
-     */
     @Override
     public void setSolicitor(Solicitor solicitor) {
         this.solicitor = solicitor;
     }
 
-    /**
-     * Retrieves array of chats associated with the User object of this client.
-     *
-     * @return arrayList of user's Chat objects
-     */
     public ArrayList<Chat> getChats() {
         return db.getChatsForUser(user.getUsername());
     }
 
-    /**
-     * Sends message to the server thrpugh socket.
-     * Ensures message is written and flushed to server instantly.
-     *
-     * @param message to be sent to server
-     */
     @Override
     public void sendToServer(String message) {
         try {
@@ -193,9 +127,6 @@ public class Client implements Runnable, ClientInterface {
         }
     }
 
-    /**
-     * Continuously reads server response and prints to terminal until connection closes.
-     */
     @Override
     public synchronized String readFromServer() {
         try {
@@ -214,5 +145,54 @@ public class Client implements Runnable, ClientInterface {
         }
         return null;
     }
-}
 
+    // --- Mock Testing Methods ---
+    public static Client startMockClient() {
+        Client mock = new Client();
+
+        Contractor contractor = new Contractor(
+                "testContractor", "pass123", 4.5, "USA", "123 Main St", "test@contractor.com",
+                "555-1234", "BuildCo", "LLC", "50", 2010, Industry.CONSTRUCTION, "USA"
+        );
+        mock.contractor = contractor;
+        mock.user = contractor;
+
+        Solicitor solicitor = new Solicitor(
+                "testSolicitor", "pass456", 4.8, "USA", "789 Agency Rd", "test@agency.com",
+                "555-5678", "Gov Agency", "Federal", "Procurement", "IT", 10000000
+        );
+        mock.solicitor = solicitor;
+
+        Contract contract1 = new Contract(solicitor, "Build website for government services", true, java.time.LocalDateTime.now().plusDays(10), null);
+        Contract contract2 = new Contract(solicitor, "Design mobile app interface", false, java.time.LocalDateTime.now().minusDays(2), null);
+
+        Bid bid1 = new Bid(contractor, contract1, 9500.0, "Under Consideration");
+        Bid bid2 = new Bid(contractor, contract2, 8700.0, "Rejected");
+
+        contractor.getAllBids().add(bid1);
+        contractor.getAllBids().add(bid2);
+        contract1.getBids().add(bid1);
+        contract2.getBids().add(bid2);
+
+        solicitor.getContractsSolicited().add(contract1);
+        solicitor.getContractsSolicited().add(contract2);
+        solicitor.getOpenContracts().add(contract1);
+
+        mock.contractList.add(contract1);
+        mock.contractList.add(contract2);
+
+        return mock;
+    }
+
+    public static Client startMockClientContractorOnly() {
+        Client mock = startMockClient();
+        mock.solicitor = null;
+        return mock;
+    }
+
+    public static Client startMockClientSolicitorOnly() {
+        Client mock = startMockClient();
+        mock.contractor = null;
+        return mock;
+    }
+}
