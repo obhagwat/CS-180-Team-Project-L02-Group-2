@@ -73,7 +73,7 @@ public class TestContract {
     public void addBidToOpenContractTest() {
         Contractor constructionCo = new Contractor("turnerconstruction", "build2024", 0.0, "USA",
                 "500 Construction Way", "bids@turner.com", "2125553000",
-                "Turner Construction", "Inc", "5000", 100000, Industry.CONSTRUCTION, "Global");
+                "Turner Construction", "Inc", "5000", "100000", Industry.CONSTRUCTION);
         Bid proposal = new Bid(constructionCo, govtDeal, 15000000.0, "Submitted");
 
         govtDeal.addBid(proposal);
@@ -86,7 +86,7 @@ public class TestContract {
         govtDeal.setContractStatus(false);
         Contractor constructionCo = new Contractor("turnerconstruction", "build2024", 0.0, "USA",
                 "500 Construction Way", "bids@turner.com", "2125553000",
-                "Turner Construction", "Inc", "5000", 100000, Industry.CONSTRUCTION, "Global");
+                "Turner Construction", "Inc", "5000", "100000", Industry.CONSTRUCTION);
         Bid proposal = new Bid(constructionCo, govtDeal, 15000000.0, "Submitted");
 
         govtDeal.addBid(proposal);
@@ -96,7 +96,7 @@ public class TestContract {
     public void winningBidTest() {
         Contractor constructionCo = new Contractor("turnerconstruction", "build2024", 0.0, "USA",
                 "500 Construction Way", "bids@turner.com", "2125553000",
-                "Turner Construction", "Inc", "5000", 100000, Industry.CONSTRUCTION, "Global");
+                "Turner Construction", "Inc", "5000", "100000", Industry.CONSTRUCTION);
         Bid winningProposal = new Bid(constructionCo, govtDeal, 14500000.0, "Accepted");
 
         govtDeal.setWinningBid(winningProposal);

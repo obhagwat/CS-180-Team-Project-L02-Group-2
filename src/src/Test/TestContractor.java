@@ -27,7 +27,7 @@ public class TestContractor {
     public void setUp() {
         contractor = new Contractor("greenfieldconstruction", "securePass123", 0.0, "USA", "789 Elm St",
                 "contact@greenfield.com", "5551234567",
-                "Greenfield Construction Inc.", "LLC", "75", 2010, Industry.CONSTRUCTION, "USA");
+                "Greenfield Construction Inc.", "LLC", "75", "2010", Industry.CONSTRUCTION);
         contract = new Contract(null, "New Government Building Contract", true, null, new ArrayList<>());
         bid = new Bid(contractor, contract, 250000.0, "Under Review");
     }
@@ -49,7 +49,7 @@ public class TestContractor {
         contractor.setContractorName("Greenfield Construction Enterprises");
         contractor.setCompanyType("Corporation");
         contractor.setNumEmployees("120");
-        contractor.setYearFounded(2005);
+        contractor.setYearFounded("2005");
         contractor.setIndustry(Industry.IT_SERVICES);
 
         assertEquals("Contractor name should be updated", "Greenfield Construction Enterprises",

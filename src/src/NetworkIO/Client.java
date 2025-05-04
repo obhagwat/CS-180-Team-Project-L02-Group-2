@@ -152,7 +152,7 @@ public class Client implements Runnable, ClientInterface {
 
         Contractor contractor = new Contractor(
                 "testContractor", "pass123", 4.5, "USA", "123 Main St", "test@contractor.com",
-                "555-1234", "BuildCo", "LLC", "50", 2010, Industry.CONSTRUCTION, "USA"
+                "555-1234", "BuildCo", "LLC", "50", "2010", Industry.CONSTRUCTION
         );
         mock.contractor = contractor;
         mock.user = contractor;

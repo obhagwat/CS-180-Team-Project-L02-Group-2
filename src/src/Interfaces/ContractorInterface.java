@@ -16,7 +16,7 @@ public interface ContractorInterface {
     String getContractorName();
     String getCompanyType();
     String getNumEmployees();
-    int getYearFounded();
+    String getYearFounded();
     Industry getIndustry();
     ArrayList<Contract> getContractsWon();
     ArrayList<Bid> getAllBids();
@@ -24,7 +24,7 @@ public interface ContractorInterface {
     void setContractorName(String contractorName);
     void setCompanyType(String companyType);
     void setNumEmployees(String numEmployees);
-    void setYearFounded(int yearFounded);
+    void setYearFounded(String yearFounded);
     void setIndustry(Industry industry);
     void setContractsWon(ArrayList<Contract> contractsWon);
     void setAllBids(ArrayList<Bid> allBids);

@@ -47,7 +47,7 @@ public class TestDatabase {
         bobTheBuilder = new Contractor(
                 "buildy", "hammerTime", 0.0, "USA",
                 "456 Construction Ave", "buildy@build.com", "1045550202",
-                "Buildy McBuildface", "LLC", "700", 1992, Industry.CONSTRUCTION, "USA"
+                "Buildy McBuildface", "LLC", "700", "1992", Industry.CONSTRUCTION
         );
 
         db.addSolicitor(legalEagle);
@@ -107,7 +107,7 @@ public class TestDatabase {
         Contractor newBuilder = new Contractor(
                 "bobTheBuilder", "yesWeCan", 0.0, "Canada",
                 "789 Builder Blvd", "bob@build.com", "555-0404",
-                "Bob the Builder", "Inc", "100", 2000, Industry.CONSTRUCTION, "Canada"
+                "Bob the Builder", "Inc", "100", "2000", Industry.CONSTRUCTION
         );
 
         db.addContractor(newBuilder);

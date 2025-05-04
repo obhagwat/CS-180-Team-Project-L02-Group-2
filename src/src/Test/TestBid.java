@@ -30,7 +30,7 @@ public class TestBid {
     public void setUp() {
         contractor = new Contractor("ProtectUs", "sheildforall", 0.0, "USA",
                 "410 Salisbury Ave", "protectUS@yahoo.com", "5550005050",
-                "ProtectUs", "INC", "5000", 2014, Industry.DEFENSE, "USA");
+                "ProtectUs", "INC", "5000", "2014", Industry.DEFENSE);
         contract = new Contract(null, "Test contract", true, null, new ArrayList<>());
         bid = new Bid(contractor, contract, 1000.0, "Under Consideration");
     }
@@ -48,7 +48,7 @@ public class TestBid {
     public void gettersAndSettersTest() {
         Contractor newContractor = new Contractor("farmersedu", "fruitbasket", 0.0, "US",
                 "Main St", "farmersedu@outlook.com", "4254254255",
-                "Farmer's Edu", "LLC", "3000", 1946, Industry.EDUCATION, "US");
+                "Farmer's Edu", "LLC", "3000", "1946", Industry.EDUCATION);
         Contract newContract = new Contract(null, "New contract", true, null, new ArrayList<>());
 
         bid.setContractor(newContractor);

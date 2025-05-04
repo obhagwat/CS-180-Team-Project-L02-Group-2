@@ -24,7 +24,7 @@ public class Server implements Runnable, ServerInterface {
     private PrintWriter out;
     private Database dB = Database.getInstance();
     private Socket socket;
-
+    public Database database = Database.getInstance();
 
     public Server(Socket socket) {
         this.socket = socket;
@@ -90,8 +90,62 @@ public class Server implements Runnable, ServerInterface {
             System.out.println("[SERVER] Client Response: " + response);
             //echoing for now but will add logic for what to do for each possible response
             out.println(response);
+            String[] message = response.split(": ");
+            String first = message[0];
+            String[] rest;
+            if (message.length > 1) {
+                rest = message[1].split(", ");
+            } else {
+                rest = new String[0];
+            }
+            switch (first) {
+                case "CONTRACTOR LOGIN" -> clogin(rest);
+                case "CREATE_CONTRACTOR" -> createc(rest);
+            }
         }
 
+    }
+
+    public synchronized void clogin(String[] message) {
+        System.out.println("[SERVER] clogin");
+        String username = message[0];
+        String password = message[1];
+        System.out.println(username);
+        System.out.println(password);
+        Contractor contractor = database.getContractor(username);
+        if (contractor != null && contractor.getPassword().equals(password)) {
+            System.out.println("[SERVER] Login success " + contractor.getUsername());
+            sendToClient("SUCCESS");
+        } else {
+            System.out.println("[SERVER] Login failed " + username);
+            sendToClient("FAILURE");
+        }
+    }
+
+    public synchronized void createc(String[] message) {
+        System.out.println("[SERVER] creating user");
+        String username = message[0];
+        String password = message[1];
+        String profileName = message[2];
+        String organizationName = message[3];
+        String country = message[4];
+        String physicalAddress = message[5];
+        String emailAddress = message[6];
+        String phoneNumber = message[7];
+        String organizationType = message[8];
+        String numEmployees = message[9];
+        String foundingYr = message[10];
+        if (database.getContractor(username) != null) {
+            System.out.println("[SERVER] Contractor already exists " + username);
+            sendToClient("FAILURE");
+        } else {
+            Contractor newContractor = new Contractor(username, password, 0.0, country, physicalAddress, emailAddress, phoneNumber, profileName, organizationType, numEmployees, foundingYr, null);
+            database.addContractor(newContractor);
+            System.out.println("[SERVER] Contractor created " + username);
+            database.serializeDatabase();
+            database.loadDatabase();
+            sendToClient("SUCCESS");
+        }
     }
 
     /**
@@ -102,6 +156,7 @@ public class Server implements Runnable, ServerInterface {
     public void sendToClient(String message) {
         if (socket != null && !socket.isClosed()) {
             out.println(message);
+            System.out.println("[SERVER] sent message to client: " + message);
         } else {
             System.err.println("[SERVER] Unable to write: Socket is closed.");
         }

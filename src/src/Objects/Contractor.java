@@ -19,7 +19,7 @@ public class Contractor extends User implements Serializable, ContractorInterfac
     private String contractorName;
     private String companyType;
     private String numEmployees;
-    private int yearFounded;
+    private String yearFounded;
     private Industry industry;
     private ArrayList<Contract> contractsWon;   //Contracts for which they were selected
     private ArrayList<Bid> allBids; //These are only visible to the contractor
@@ -27,7 +27,7 @@ public class Contractor extends User implements Serializable, ContractorInterfac
     public Contractor(String username, String password,
                       double rating, String countryOfOrigin, String address, String email,
                       String phoneNumber, String contractorName, String companyType,
-                      String numEmployees, int yearFounded, Industry industry, String country) {
+                      String numEmployees, String yearFounded, Industry industry) {
         super(username, password, rating, countryOfOrigin, address, email, phoneNumber);
         this.contractorName = contractorName;
         this.companyType = companyType;
@@ -62,11 +62,11 @@ public class Contractor extends User implements Serializable, ContractorInterfac
         this.numEmployees = numEmployees;
     }
 
-    public int getYearFounded() {
+    public String getYearFounded() {
         return yearFounded;
     }
 
-    public void setYearFounded(int yearFounded) {
+    public void setYearFounded(String yearFounded) {
         this.yearFounded = yearFounded;
     }
 

@@ -54,20 +54,21 @@ public class ContractorRegistrationPage extends Page implements PageInterface {
         logoLabel = new Logo("Components/blueLogo.png", 55, 55);
         titleLabel = new BlueLabel("Register", 40, 0);
 
-        profileNameField = new TextField("Enter username", Constants.SIZE_100_20);
+        profileNameField = new TextField("Enter name", Constants.SIZE_100_20);
         organizationNameField = new TextField("Enter organization name", Constants.SIZE_100_20);
         countryField = new TextField("Enter country", Constants.SIZE_100_20);
-        physicalAddressField = new TextField("Enter phone number", Constants.SIZE_100_20);
+        physicalAddressField = new TextField("Enter address", Constants.SIZE_100_20);
         emailAddressField = new TextField("Enter email address", Constants.SIZE_100_20);
         phoneNumberField = new TextField("Enter phone number", Constants.SIZE_100_20);
         organizationTypeField = new TextField("Enter organization type", Constants.SIZE_100_20);
         numEmployeesField = new TextField("Enter number of employees", Constants.SIZE_100_20);
         foundingYrField = new TextField("Enter founding year", Constants.SIZE_100_20);
-        usernameField = new TextField("Enter username", Constants.SIZE_300_40);
-        passwordField = new TextField("Enter password", Constants.SIZE_300_40);
+        usernameField = new TextField("Enter username", new Dimension(300, 40));
+        passwordField = new TextField("Enter password", new Dimension(300, 40));
 
-        continueButton = new Button("Continue",
-                e -> window.switchPage(new ContractorPaymentInfoPage(client)), Constants.SIZE_500_45);
+        //continueButton = new Button("Continue",
+        //        e -> window.switchPage(new ContractorPaymentInfoPage(client)), Constants.SIZE_500_45);
+        continueButton = new Button("Continue", e -> register(), Constants.SIZE_500_45);
         goBackButton = new TransparentButton("Go Back",
                 e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
 
@@ -121,5 +122,24 @@ public class ContractorRegistrationPage extends Page implements PageInterface {
 
         panel.revalidate();
         panel.repaint();
+    }
+
+    private void register() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String profileName = profileNameField.getText();
+        String organizationName = organizationNameField.getText();
+        String country = countryField.getText();
+        String physicalAddress = physicalAddressField.getText();
+        String emailAddress = emailAddressField.getText();
+        String phoneNumber = phoneNumberField.getText();
+        String organizationType = organizationTypeField.getText();
+        String numEmployees = numEmployeesField.getText();
+        String foundingYr = foundingYrField.getText();
+        client.sendToServer("CREATE_CONTRACTOR: " + username + ", " + password + ", " + profileName + ", " + organizationName + ", " + country + ", " + physicalAddress + ", " + emailAddress + ", " + phoneNumber + ", " + organizationType + ", " + numEmployees + ", " + foundingYr);
+        String response = client.readFromServer();
+        if (response.equals("SUCCESS")) {
+            window.switchPage(new ContractorPaymentInfoPage(client));
+        }
     }
 }

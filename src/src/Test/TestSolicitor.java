@@ -74,7 +74,7 @@ public class TestSolicitor {
     public void makePaymentTest() {
         Contractor worker = new Contractor("worker123", "pw123", 0.0, "USA",
                 "789 Campus Ln", "worker@sample.com", "3216549870",
-                "Taylor Smith", "Inc", "15", 1500, Industry.CONSTRUCTION, "USA");
+                "Taylor Smith", "Inc", "15", "1500", Industry.CONSTRUCTION);
         Contract contract = new Contract(testUser, "Paint city benches", true, contractDue, new ArrayList<>());
         Bid newBid = new Bid(worker, contract, 1200.0, "Accepted");
 
