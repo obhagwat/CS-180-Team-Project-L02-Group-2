@@ -29,6 +29,25 @@ public class SolicitorHomePage extends Page {
 
         topBar.add(logoLabel, BorderLayout.WEST);
         topBar.add(titleLabel, BorderLayout.CENTER);
+
+        Button deleteAccountButton = new Button("Delete Account", e -> {
+            int confirm = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to delete your account? This action cannot be undone.",
+                    "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                if (client.getSolicitor() != null) {
+                    Database.getInstance().deleteSolicitor(client.getSolicitor().getUsername());
+                }
+                Database.getInstance().serializeDatabase();
+                GUIWindow.getInstance().switchPage(new LandingPage(client));
+            }
+        }, new Dimension(350, 40));
+        deleteAccountButton.setContentAreaFilled(true);
+        deleteAccountButton.setOpaque(true);
+        deleteAccountButton.setBackground(Constants.WHITE);
+        deleteAccountButton.setForeground(Constants.BREEZY_BLUE);
+        topBar.add(deleteAccountButton, BorderLayout.EAST);
+
         panel.add(topBar);
 
         //Section heading
