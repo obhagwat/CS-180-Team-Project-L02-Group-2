@@ -30,7 +30,7 @@ public class TestContract {
                 "john.smith@gsa.gov", "2025550100", "John Smith",
                 "Federal", "GSA", "Public Buildings Service", 250000.0);
         deadline = LocalDateTime.now().plusDays(30);
-        govtDeal = new Contract(builidingsSolicitor, "New Federal Courthouse Construction",
+        govtDeal = new Contract(builidingsSolicitor, "New Federal Courthouse Construction", "Need to build a 7 story building with numerous court rooms and additional facilities.",
                 true, deadline, new ArrayList<>());
     }
 

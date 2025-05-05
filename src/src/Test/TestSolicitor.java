@@ -57,7 +57,7 @@ public class TestSolicitor {
 
     @Test
     public void postContractTest() {
-        testUser.postContract("Fixing trails in local park", contractDue, new ArrayList<>());
+        testUser.postContract("Trail Landscaping", "Fixing trails in local park", contractDue, new ArrayList<>());
         assertEquals("Contracts solicited list should have 1 contract",
                 1, testUser.getContractsSolicited().size());
         assertEquals("Open contracts list should have 1 contract",
@@ -75,7 +75,7 @@ public class TestSolicitor {
         Contractor worker = new Contractor("worker123", "pw123", 0.0, "USA",
                 "789 Campus Ln", "worker@sample.com", "3216549870",
                 "Taylor Smith", "Inc", "15", "1500", Industry.CONSTRUCTION);
-        Contract contract = new Contract(testUser, "Paint city benches", true, contractDue, new ArrayList<>());
+        Contract contract = new Contract(testUser, "Paint city benches", "Repaint all benches in Central Park blue.", true, contractDue, new ArrayList<>());
         Bid newBid = new Bid(worker, contract, 1200.0, "Accepted");
 
         double startingBalance = testUser.getBalance();
@@ -86,7 +86,7 @@ public class TestSolicitor {
 
     @Test
     public void closeContractTest() {
-        testUser.postContract("Set up lighting in gym", contractDue, new ArrayList<>());
+        testUser.postContract("Gym Electricity Modifications","Set up lighting in gym", contractDue, new ArrayList<>());
         Contract openOne = testUser.getOpenContracts().getFirst();
 
         testUser.closeContract(openOne);

@@ -65,8 +65,7 @@ public class Bid implements Serializable, BidInterface {
 
     @Override
     public String toString() {
-        return String.format("Bid [Contractor: %s, Contract: %s, Requested Pay: $%.2f, Status: %s]",
-                contractor, contract, requestedPay, status);
+        return String.format("Bid [Pay: %.2f, Contractor: %s]", requestedPay, contractor.getUsername());
     }
 
 }

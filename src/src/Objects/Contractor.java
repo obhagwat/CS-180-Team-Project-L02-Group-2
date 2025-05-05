@@ -1,5 +1,6 @@
 package Objects;
 
+import Database.Database;
 import Interfaces.ContractorInterface;
 
 import java.util.ArrayList;
@@ -110,6 +111,8 @@ public class Contractor extends User implements Serializable, ContractorInterfac
      */
     public void replyWithBid(Contract contract, double bidAmount) {
         allBids.add(new Bid(this, contract, bidAmount, "Under Consideration"));
+        contract.addBid(new Bid(this, contract, bidAmount, "Under Consideration"));
+        Database.getInstance().serializeDatabase();
     }
 
     /**

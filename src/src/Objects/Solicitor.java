@@ -1,6 +1,8 @@
 package Objects;
 
 import Interfaces.SolicitorInterface;
+import Database.Database;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -91,10 +93,11 @@ public class Solicitor extends User implements Serializable, SolicitorInterface 
      * @param deadline            The deadline for bid submissions.
      * @param bids                The list of initial bids (can be empty).
      */
-    public void postContract(String contractDescription, LocalDateTime deadline, ArrayList<Bid> bids) {
-        Contract newContract = new Contract(this, contractDescription, true, deadline, bids);
+    public void postContract(String title, String contractDescription, LocalDateTime deadline, ArrayList<Bid> bids) {
+        Contract newContract = new Contract(this, title, contractDescription, true, deadline, bids);
         contractsSolicted.add(newContract);
         openContracts.add(newContract);
+        Database.getInstance().serializeDatabase();
     }
 
 

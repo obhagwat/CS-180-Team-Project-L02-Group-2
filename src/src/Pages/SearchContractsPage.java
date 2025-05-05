@@ -2,10 +2,15 @@ package Pages;
 
 import Components.*;
 import Components.Button;
+import Database.Database;
 import NetworkIO.Client;
 import Objects.Contract;
+import Objects.Solicitor;
+
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchContractsPage extends Page {
@@ -20,12 +25,22 @@ public class SearchContractsPage extends Page {
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
 
-        List<Contract> contracts = client.contractList;
+        // Grab contracts from all solicitors with valid (future) deadlines
+        List<Contract> contracts = new ArrayList<>();
+        for (Solicitor s : Database.getInstance().getSolicitors()) {
+            for (Contract c : s.getContractsSolicited()) {
+                if (c.getDeadline().isAfter(LocalDateTime.now())) {
+                    contracts.add(c);
+                }
+            }
+        }
+
+        // Render each valid contract as a card
         for (Contract contract : contracts) {
             JPanel card = new JPanel(new BorderLayout());
             card.setBorder(BorderFactory.createLineBorder(Color.GRAY));
             card.add(new JLabel(contract.getContractDescription()), BorderLayout.CENTER);
-            Button viewDetails = new Button("View", e -> new Pages.ContractDetailsPopup(client, contract), new Dimension(300,50));
+            Button viewDetails = new Button("View", e -> new Pages.ContractDetailsPopup(client, contract), new Dimension(300, 50));
             card.add(viewDetails, BorderLayout.EAST);
             listPanel.add(card);
             listPanel.add(new Margin(10));
@@ -36,4 +51,3 @@ public class SearchContractsPage extends Page {
         panel.add(scrollPane);
     }
 }
-

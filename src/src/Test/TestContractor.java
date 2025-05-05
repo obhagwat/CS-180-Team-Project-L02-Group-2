@@ -28,7 +28,7 @@ public class TestContractor {
         contractor = new Contractor("greenfieldconstruction", "securePass123", 0.0, "USA", "789 Elm St",
                 "contact@greenfield.com", "5551234567",
                 "Greenfield Construction Inc.", "LLC", "75", "2010", Industry.CONSTRUCTION);
-        contract = new Contract(null, "New Government Building Contract", true, null, new ArrayList<>());
+        contract = new Contract(null, "New Government Building Contract", "Requires construction of a new facility for research and innovation at NASA.", true, null, new ArrayList<>());
         bid = new Bid(contractor, contract, 250000.0, "Under Review");
     }
 

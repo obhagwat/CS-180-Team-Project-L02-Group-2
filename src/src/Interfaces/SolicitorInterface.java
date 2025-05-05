@@ -27,7 +27,7 @@ public interface SolicitorInterface {
     void setContractsSolicited(ArrayList<Contract> contractsSolicited);
     void setOpenContracts(ArrayList<Contract> openContracts);
 
-    void postContract(String contractDescription, LocalDateTime deadline, ArrayList<Bid> bids);
+    void postContract(String title, String contractDescription, LocalDateTime deadline, ArrayList<Bid> bids);
     void makePayment(Bid bid);
     void closeContract(Contract contract);
 }

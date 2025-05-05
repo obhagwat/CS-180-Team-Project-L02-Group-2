@@ -163,12 +163,12 @@ public class Client implements Runnable, ClientInterface {
         );
         mock.solicitor = solicitor;
 
-        Contract contract1 = new Contract(solicitor, "Build website for government services", true, java.time.LocalDateTime.now().plusDays(10), null);
-        Contract contract2 = new Contract(solicitor, "Design mobile app interface", false, java.time.LocalDateTime.now().minusDays(2), null);
-        Contract contract3 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
-        Contract contract4 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
-        Contract contract5 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
-        Contract contract6 = new Contract(solicitor, "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+        Contract contract1 = new Contract(solicitor, "Website Building","Build website for government services", true, java.time.LocalDateTime.now().plusDays(10), null);
+        Contract contract2 = new Contract(solicitor,"Mobile App Designing", "Design mobile app interface", false, java.time.LocalDateTime.now().minusDays(2), null);
+        Contract contract3 = new Contract(solicitor,"Construct building", "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+        Contract contract4 = new Contract(solicitor,"Construct building", "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+        Contract contract5 = new Contract(solicitor,"Construct building", "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
+        Contract contract6 = new Contract(solicitor,"Construct building", "Construct building for DOD interns", false, java.time.LocalDateTime.now().minusDays(15), null);
 
 
 

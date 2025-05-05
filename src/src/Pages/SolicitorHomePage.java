@@ -56,7 +56,12 @@ public class SolicitorHomePage extends Page {
         panel.add(scrollPane);
 
         // Create contract button
-        Button createButton = new Button("Create New Contract", e -> new CreateContractPopup(client), new Dimension(300,50));
+        Button createButton = new Button("Create New Contract", e -> {
+            new CreateContractPopup(client, () -> {
+                GUIWindow.getInstance().switchPage(new SolicitorHomePage(client));
+            });
+        }, new Dimension(300, 50));
+
 
         panel.add(Box.createVerticalGlue()); // pushes the button up from the bottom
         panel.add(new Margin(20));

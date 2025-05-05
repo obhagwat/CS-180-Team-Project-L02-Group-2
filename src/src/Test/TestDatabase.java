@@ -56,6 +56,7 @@ public class TestDatabase {
         buildingProjct = new Contract(
                 legalEagle,
                 "Build a new office space for our employees",
+                "Construction of 7-story building with glass office rooms and built in cubicles.",
                 true,
                 LocalDateTime.now().plusDays(7),
                 new ArrayList<>()

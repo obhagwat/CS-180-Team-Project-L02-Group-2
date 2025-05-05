@@ -17,15 +17,19 @@ import java.io.Serializable;
  *  @version Apr 6, 2025
  */
 public class Contract implements Serializable, ContractInterface {
+    
     private Solicitor solicitor; // The solicitor who posted the contract
     private String contractDescription; // includes description of work needing to be done, and expected completion date
     private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it, or open
     private LocalDateTime deadline; // The "due date" for bids
     private ArrayList<Bid> bids;    // The list of bids on this contract
     private Bid winningBid;
+    private String title;
 
-    public Contract(Solicitor solicitor, String contractDescription,
+
+    public Contract(Solicitor solicitor, String title, String contractDescription,
                     boolean contractStatus, LocalDateTime deadline, ArrayList<Bid> bids) {
+        this.title = title;
         this.solicitor = solicitor;
         this.contractDescription = contractDescription;
         this.contractStatus = true; // constructor should initialize contract status to be open
@@ -33,6 +37,8 @@ public class Contract implements Serializable, ContractInterface {
         this.bids = new ArrayList<>();
         this.winningBid = null;
     }
+
+    public String getTitle() { return title; }
 
     public Solicitor getSolicitor() {
         return solicitor;
@@ -93,8 +99,9 @@ public class Contract implements Serializable, ContractInterface {
     @Override
     public String toString() {
         String bidList = bids.isEmpty() ? "No bids" : bids.toString(); // Converts the list of bids to a string
-        return String.format("Contract [Solicitor: %s, Description: %s, Status: %s, Deadline: %s, Bids: %s]",
+        return String.format("Contract [Solicitor: %s, Title: %s, Description: %s, Status: %s, Deadline: %s, Bids: %s]",
                 solicitor,
+                title,
                 contractDescription,
                 contractStatus ? "Open" : "Closed",
                 deadline,

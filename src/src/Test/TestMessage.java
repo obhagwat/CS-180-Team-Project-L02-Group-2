@@ -49,7 +49,7 @@ public class TestMessage {
 
     @Test
     public void constructorWithBidTest() {
-        Contract testContract = new Contract(null, "Secure Facility Upgrade", true, null, new ArrayList<>());
+        Contract testContract = new Contract(null, "Secure Facility Upgrade", "Requires installation of cameras and software on all headquarter buildings.", true, null, new ArrayList<>());
         Bid proposal = new Bid(null, testContract, 250000.0, "Submitted");
         Message messageWithProposal = new Message(messageTimestamp, "Proposal attached for consideration.",
                 agencyRep, contractor, proposal);
