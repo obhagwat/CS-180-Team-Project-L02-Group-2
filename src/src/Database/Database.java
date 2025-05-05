@@ -189,16 +189,16 @@ public class Database implements DatabaseInterface {
      */
     @Override
     public synchronized boolean deleteContractor(String username) {
-        boolean success = false;
-        for (Contractor contractor : contractors) {
-            if (contractor.getUsername().equals(username)) {
-                contractors.remove(contractor);
-                success = true;
+        for (int i = 0; i < contractors.size(); i++) {
+            if (contractors.get(i).getUsername().equals(username)) {
+                contractors.remove(i);
+                serializeDatabase();
+                return true;
             }
         }
-        serializeDatabase();
-        return success;
+        return false;
     }
+
 
     /**
      * Deletes a solicitor with a specified username from the database and
@@ -208,16 +208,16 @@ public class Database implements DatabaseInterface {
      */
     @Override
     public synchronized boolean deleteSolicitor(String username) {
-        boolean success = false;
-        for (Solicitor solicitor : solicitors) {
-            if (solicitor.getUsername().equals(username)) {
-                solicitors.remove(solicitor);
-                success = true;
+        for (int i = 0; i < solicitors.size(); i++) {
+            if (solicitors.get(i).getUsername().equals(username)) {
+                solicitors.remove(i);
+                serializeDatabase();
+                return true;
             }
         }
-        serializeDatabase();
-        return success;
+        return false;
     }
+
 
     /**
      * Checks if a contractor with the specified username exists in the database.
