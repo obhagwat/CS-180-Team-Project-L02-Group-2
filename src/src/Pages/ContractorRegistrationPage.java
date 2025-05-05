@@ -66,9 +66,7 @@ public class ContractorRegistrationPage extends Page implements PageInterface {
         usernameField = new TextField("Enter username", new Dimension(300, 40));
         passwordField = new TextField("Enter password", new Dimension(300, 40));
 
-        //continueButton = new Button("Continue",
-        //        e -> window.switchPage(new ContractorPaymentInfoPage(client)), Constants.SIZE_500_45);
-        continueButton = new Button("Continue", e -> window.switchPage(new ContractorPaymentInfoPage(client)), Constants.SIZE_500_45);
+        continueButton = new Button("Continue", e -> register(), Constants.SIZE_500_45);
         goBackButton = new TransparentButton("Go Back",
                 e -> window.switchPage(new RegisterPage(client)), Constants.SIZE_500_45);
 

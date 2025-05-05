@@ -49,6 +49,7 @@ public class SolicitorHomePage extends Page {
             contractsPanel.add(card);
             contractsPanel.add(new Margin(10));
         }
+        System.out.println(postedContracts);
 
         JScrollPane scrollPane = new JScrollPane(contractsPanel);
         scrollPane.setPreferredSize(new Dimension(600, 300));

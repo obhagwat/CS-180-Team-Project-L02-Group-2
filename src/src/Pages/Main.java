@@ -31,7 +31,7 @@ public class Main {
             }
 
             System.out.println("SETTING UP NETWORK...");
-            Thread serverThread = new Thread(() -> Server.startServer());
+            Thread serverThread = new Thread(Server::startServer);
             serverThread.start();
             System.out.println("NETWORK SETUP SUCCESSFUL");
 
