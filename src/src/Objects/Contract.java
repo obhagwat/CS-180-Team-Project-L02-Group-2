@@ -17,7 +17,7 @@ import java.io.Serializable;
  *  @version Apr 6, 2025
  */
 public class Contract implements Serializable, ContractInterface {
-    
+
     private Solicitor solicitor; // The solicitor who posted the contract
     private String contractDescription; // includes description of work needing to be done, and expected completion date
     private boolean contractStatus; //Whether the contract is still "up for grabs", true = you can bid on it, or open
@@ -78,6 +78,10 @@ public class Contract implements Serializable, ContractInterface {
 
     public void setBids(ArrayList<Bid> bids) {
         this.bids = bids;
+    }
+
+    public void removeBid(Bid bid) {
+        bids.remove(bid);
     }
 
     public Bid getWinningBid() { return winningBid; }

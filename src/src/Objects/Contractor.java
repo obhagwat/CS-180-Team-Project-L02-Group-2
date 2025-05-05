@@ -121,6 +121,7 @@ public class Contractor extends User implements Serializable, ContractorInterfac
 
     public void withdrawBid(Bid bid) {
         allBids.remove(bid);
+        bid.getContract().removeBid(bid);
         Database.getInstance().serializeDatabase();
     }
 
