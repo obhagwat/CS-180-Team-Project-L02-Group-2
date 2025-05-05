@@ -3,6 +3,7 @@ package Objects;
 import Database.Database;
 import Interfaces.ContractorInterface;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -17,6 +18,9 @@ import java.io.Serializable;
  * @version Apr 6, 2025
  */
 public class Contractor extends User implements Serializable, ContractorInterface {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private String contractorName;
     private String companyType;
     private String numEmployees;
@@ -112,6 +116,11 @@ public class Contractor extends User implements Serializable, ContractorInterfac
     public void replyWithBid(Contract contract, double bidAmount) {
         allBids.add(new Bid(this, contract, bidAmount, "Under Consideration"));
         contract.addBid(new Bid(this, contract, bidAmount, "Under Consideration"));
+        Database.getInstance().serializeDatabase();
+    }
+
+    public void withdrawBid(Bid bid) {
+        allBids.remove(bid);
         Database.getInstance().serializeDatabase();
     }
 

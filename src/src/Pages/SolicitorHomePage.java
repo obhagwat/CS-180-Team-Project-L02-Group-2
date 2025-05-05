@@ -2,6 +2,7 @@ package Pages;
 
 import Components.*;
 import Components.Button;
+import Database.Database;
 import NetworkIO.Client;
 import Objects.Contract;
 
@@ -47,6 +48,14 @@ public class SolicitorHomePage extends Page {
             card.add(new JLabel(contract.getContractDescription()), BorderLayout.CENTER);
             Button viewBids = new Button("View Bids", e -> new ViewBidsPopup(client, contract), new Dimension(200,50));
             card.add(viewBids, BorderLayout.EAST);
+
+            Button deleteContract = new Button("Delete Contract", e -> {
+                client.getSolicitor().deleteContract(contract);
+                Database.getInstance().serializeDatabase();
+                GUIWindow.getInstance().switchPage(new SolicitorHomePage(client));  // Refresh
+            }, new Dimension(150, 50));
+            card.add(deleteContract, BorderLayout.SOUTH);
+
             contractsPanel.add(card);
             contractsPanel.add(new Margin(10));
         }

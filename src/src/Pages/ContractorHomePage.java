@@ -4,6 +4,7 @@ import Components.*;
 import Components.Button;
 import NetworkIO.Client;
 import Objects.Bid;
+import Database.Database;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +44,12 @@ public class ContractorHomePage extends Page {
             card.setBorder(BorderFactory.createLineBorder(Color.GRAY));
             card.add(new JLabel(bid.getContract().getContractDescription()), BorderLayout.WEST);
             card.add(new JLabel("Status: " + bid.getStatus()), BorderLayout.EAST);
+            Button deleteBid = new Button("Withdraw Bid", e -> {
+                client.getContractor().withdrawBid(bid);
+                Database.getInstance().serializeDatabase();
+                GUIWindow.getInstance().switchPage(new ContractorHomePage(client));
+            }, new Dimension(150, 50));
+            card.add(deleteBid, BorderLayout.SOUTH);
 
             contractsPanel.add(card);
             contractsPanel.add(new Margin(10));

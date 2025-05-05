@@ -4,6 +4,7 @@ import Interfaces.SolicitorInterface;
 import Database.Database;
 
 
+import java.io.Serial;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -19,6 +20,10 @@ import java.io.Serializable;
  * @version Apr 6, 2025
  */
 public class Solicitor extends User implements Serializable, SolicitorInterface {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private String solicitorName;
     private String agencyLevel;
     private String branch;
@@ -97,6 +102,12 @@ public class Solicitor extends User implements Serializable, SolicitorInterface 
         Contract newContract = new Contract(this, title, contractDescription, true, deadline, bids);
         contractsSolicted.add(newContract);
         openContracts.add(newContract);
+        Database.getInstance().serializeDatabase();
+    }
+
+    public void deleteContract(Contract contract) {
+        contractsSolicted.remove(contract);
+        openContracts.remove(contract);
         Database.getInstance().serializeDatabase();
     }
 

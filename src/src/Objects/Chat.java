@@ -1,6 +1,7 @@
 package Objects;
 import Interfaces.ChatInterface;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -12,6 +13,8 @@ import java.util.UUID;
  *  @version Apr 6, 2025
  */
 public class Chat implements Serializable, ChatInterface {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private User user1;
     private User user2;
     private String chatId;
