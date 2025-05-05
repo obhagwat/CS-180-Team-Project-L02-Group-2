@@ -49,5 +49,11 @@ public class SearchContractsPage extends Page {
         JScrollPane scrollPane = new JScrollPane(listPanel);
         scrollPane.setPreferredSize(new Dimension(600, 300));
         panel.add(scrollPane);
+
+        // Add Go Back button
+        panel.add(new Margin(20));
+        Button goBack = new Button("Go Back", e -> GUIWindow.getInstance().switchPage(new ContractorHomePage(client)), new Dimension(200, 50));
+        panel.add(goBack);
+        panel.add(new Margin(20));
     }
 }
