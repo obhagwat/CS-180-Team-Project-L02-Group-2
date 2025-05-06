@@ -92,10 +92,23 @@ public class SolicitorHomePage extends Page {
         }, new Dimension(300, 50));
 
 
-        panel.add(Box.createVerticalGlue()); // pushes the button up from the bottom
+        panel.add(Box.createVerticalGlue());
         panel.add(new Margin(20));
-        panel.add(createButton);
-        panel.add(new Margin(20)); // optional: more breathing room below
+
+        JPanel bottomButtons = new JPanel();
+        bottomButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        bottomButtons.setOpaque(false);
+
+        bottomButtons.add(createButton);
+
+        Button messagesButton = new Button("Messages", e -> {
+            GUIWindow.getInstance().switchPage(new MessagesPage(client, client.getSolicitor()));
+        }, new Dimension(300, 50));
+        bottomButtons.add(messagesButton);
+
+        panel.add(bottomButtons);
+        panel.add(new Margin(20));
+
     }
 
     public static void main(String[] args) {

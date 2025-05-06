@@ -5,6 +5,7 @@ import Objects.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Database.Database Class: Contains all methods and fields pertaining to database objects
@@ -370,6 +371,27 @@ public class Database implements DatabaseInterface {
             chats.remove(chatToRemove);
             serializeDatabase(); // Ensures that the change is saved
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * Sends a message between two users and saves it to the correct chat
+     *
+     * @param text      the content of the message
+     * @param sender    the user sending the message
+     * @param recipient the user receiving the message
+     * @return true if message was sent successfully
+     */
+    public synchronized boolean sendMessage(String text, User sender, User recipient) {
+        Message message = new Message(new Date(), text, sender, recipient);
+        if (message.verifyMessage()) {
+            Chat chat = getChatBetweenUsers(sender, recipient);
+            boolean success = chat.addMessage(message);
+            if (success) {
+                serializeDatabase();
+            }
+            return success;
         }
         return false;
     }
