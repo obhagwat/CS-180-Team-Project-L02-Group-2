@@ -80,7 +80,19 @@ public class ContractorHomePage extends Page {
 
         Button searchButton = new Button("Search Contracts", e -> window.switchPage(new SearchContractsPage(client)), new Dimension(300,50));
         panel.add(new Margin(20));
+
+        JPanel bottomButtons = new JPanel();
+        bottomButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        bottomButtons.setOpaque(false);
+
         panel.add(searchButton);
+        Button messagesButton = new Button("Messages", e -> {
+            GUIWindow.getInstance().switchPage(new MessagesPage(client, client.getContractor()));
+        }, new Dimension(300, 50));
+        bottomButtons.add(messagesButton);
+
+        panel.add(bottomButtons);
+        panel.add(new Margin(20));
     }
     public static void main(String[] args) {
         Client mockClient = Client.startMockClientContractorOnly();
